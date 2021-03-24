@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/rest/loginprofissional")
+@RequestMapping("/loginprofissional")
 @RequiredArgsConstructor
 public class LoginProfissionalController {
 
