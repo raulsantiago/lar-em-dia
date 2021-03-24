@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class LoginProfissionalService {
 
-  apiURL: string = environment.apiURLBase + '/loginprofissional';  
+  apiURL: string = environment.api + '/loginprofissional';  
 
     constructor(protected http: HttpClient) { }
 

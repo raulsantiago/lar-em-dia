@@ -29,12 +29,13 @@ import { LoginProfissionalService } from './services/login-profissional.service'
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home/home.component';
 import { TokenInterceptor } from './token.interceptor';
+import { GerenciarLoginProfissionalComponent } from './components/login-profissional/gerenciar-login-profissional/gerenciar-login-profissional.component';
 
 @NgModule({
   declarations: [    
     AppComponent,
     LoginProfissionalComponent,    
-    HomeComponent
+    HomeComponent, GerenciarLoginProfissionalComponent
   ],
   imports: [
     CommonModule,

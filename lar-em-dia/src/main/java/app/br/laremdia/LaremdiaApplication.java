@@ -1,6 +1,8 @@
 package app.br.laremdia;
 
+import app.br.laremdia.model.entity.LoginClienteEntity;
 import app.br.laremdia.model.entity.LoginProfissionalEntity;
+import app.br.laremdia.model.repository.LoginClienteRepository;
 import app.br.laremdia.model.repository.LoginProfissionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,11 +13,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class LaremdiaApplication {
 
-    // LoginClienteRepository repositoryCli
-
     @Bean
     public CommandLineRunner commandLineRunner(
-            @Autowired LoginProfissionalRepository repository){
+            @Autowired LoginProfissionalRepository repository, LoginClienteRepository repositoryCliente){
         return args -> {
             LoginProfissionalEntity loginProfissional = new LoginProfissionalEntity();
             loginProfissional.setNome("Jaq");
@@ -24,18 +24,17 @@ public class LaremdiaApplication {
             loginProfissional.setAtivo(true);
             repository.save(loginProfissional);
 
-//            LoginClienteEntity loginCliente = new LoginClienteEntity();
-//            loginCliente.setNome("Marcia");
-//            loginCliente.setEmail("marcia@gmail.com");
-//            loginCliente.setSenha("123");
-//            loginCliente.setEndereco("Rua Rafa Audax");
-//            loginCliente.setNumero("1005");
-//            loginCliente.setBairro("Laranjeiras");
-//            loginCliente.setEstado("RJ");
-//            loginCliente.setMunicipio("Rio de Janeiro");
-//            loginCliente.setAtivo(true);
-//            repositoryCli.save(loginCliente);
-
+            LoginClienteEntity loginCliente = new LoginClienteEntity();
+            loginCliente.setNome("Marcia");
+            loginCliente.setEmail("marcia@gmail.com");
+            loginCliente.setSenha("123");
+            loginCliente.setEndereco("Rua Rafa Audax");
+            loginCliente.setNumero("1005");
+            loginCliente.setBairro("Laranjeiras");
+            loginCliente.setEstado("RJ");
+            loginCliente.setMunicipio("Rio de Janeiro");
+            loginCliente.setAtivo(true);
+            repositoryCliente.save(loginCliente);
         };
     }
 

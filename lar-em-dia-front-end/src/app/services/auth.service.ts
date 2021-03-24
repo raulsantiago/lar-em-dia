@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { environmentToken } from 'src/environments/environment.token';
 import { LoginProfissionalDTO } from '../dto/login-profissional/login-profissionalDTO';
 import { JwtHelperService } from '@auth0/angular-jwt'  
 
@@ -10,10 +11,10 @@ import { JwtHelperService } from '@auth0/angular-jwt'
 })
 export class AuthService {
 
-  apiURL: string = environment.apiURLBase + "/loginprofissional"
-  tokenURL: string = environment.apiURLBase + environment.obterTokenUrl
-  clientID: string = environment.clientId;
-  clientSecret: string = environment.clientSecret;
+  apiURL: string = environment.api + "/loginprofissional"
+  tokenURL: string = environmentToken.apiURLBase + environmentToken.obterTokenUrl
+  clientID: string = environmentToken.clientId;
+  clientSecret: string = environmentToken.clientSecret;
   jwtHelper: JwtHelperService = new JwtHelperService();
   
   constructor(private http: HttpClient) { }  
