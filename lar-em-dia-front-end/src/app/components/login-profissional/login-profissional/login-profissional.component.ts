@@ -72,7 +72,7 @@ export class LoginProfissionalComponent {
       this.cadastrando = false;
             this.email = '';
             this.senha = '';
-            this.ativo = true;
+            this.ativo = null;
             this.celular = '';
             this.cpf = '';
             this.foto = null;

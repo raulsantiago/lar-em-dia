@@ -18,14 +18,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //     .authenticated() - só para usuário autenticados.
 //     .anyRequest().denyAll() - negae acesso a todas as outras sem configiração
 
+
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/loginprofissional/").permitAll()
-                .antMatchers("/gerenciarprofissional/**").authenticated()
+                .antMatchers("/loginprofissional").permitAll()
+                .antMatchers(
+                        "/gerenciarprofissional/**").authenticated()
                 .anyRequest().denyAll();
+
         ;
     }
-
 }

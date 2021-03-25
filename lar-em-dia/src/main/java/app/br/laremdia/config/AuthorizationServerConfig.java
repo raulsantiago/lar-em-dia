@@ -1,5 +1,6 @@
 package app.br.laremdia.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -23,13 +24,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Value("${security.jwt.signing-key}")
     private String signingKey;
 
-    // Essa classe serve para configurar o Token JWT
     @Bean
     public TokenStore tokenStore(){
         return new JwtTokenStore(accessTokenConverter());
     }
 
-    // Converte o token
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
@@ -47,6 +46,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     // Configurando o ClientID(login), Secret(password), Socopes(Leitura e escrita da API),
     // authorizedGrantTypes(tipo de autorização) e accessTokenValiditySeconds(validade do token)
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
@@ -55,7 +55,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret("66a4100a-ea5f-4bb5-a990-7c342b5b44f4")
                 .scopes("read", "write")
                 .authorizedGrantTypes("password")
-                .accessTokenValiditySeconds(900);
+                .accessTokenValiditySeconds(1800);
     }
-
 }
