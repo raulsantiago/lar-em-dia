@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-
     // Gerenciamento de permissão de acesso aos usuário para as APIs
 //     .permitAll() - permite a todos os usuário e não usuários, não necessita de autenticação
 //     .hasAnyRole() - permite varios usuários especificando criados na classe SecurityConfig
@@ -18,17 +17,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //     .authenticated() - só para usuário autenticados.
 //     .anyRequest().denyAll() - negae acesso a todas as outras sem configiração
 
-
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/loginprofissional").permitAll()
-                .antMatchers(
-                        "/gerenciarprofissional/**").authenticated()
+                .antMatchers("/loginprofissional/**").permitAll()
+                .antMatchers("/gerenciarprofissional/**").authenticated()
                 .anyRequest().denyAll();
-
         ;
     }
 }
