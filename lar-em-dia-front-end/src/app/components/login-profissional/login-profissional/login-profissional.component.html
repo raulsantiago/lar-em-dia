@@ -1,11 +1,10 @@
 <br>
 <div class="container">
-    <h1>Bem vindo Profissional</h1>
-    <h4>Entre com seu login</h4>
+    <h1>Bem vindo Profissional</h1>    
 
     <div class="card-header">
         <h3 class="text-center font-weight-light my-4">
-            {{ cadastrando ? 'Cadastro de Novo Profissional' : 'Entrar' }}
+            {{ cadastrando ? 'Cadastro de Novo Profissional' : 'Entre com seu login' }}
         </h3>
     </div>
     <div class="alert alert-success" *ngIf="mensagemSucesso">
@@ -13,53 +12,51 @@
     </div>
 
     <div class="alert alert-danger" *ngFor="let erro of errors">
-    {{ erro }}
+        {{ erro }}
     </div>
 
     <form #loginForm="ngForm" (submit)="onSubmit();">
 
         <div class="custom-file mb-3" *ngIf="cadastrando">
-            <input type="file" class="custom-file-input" id="validatedCustomFile" name="foto" />
-            <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>        
+            <input type="file" class="custom-file-input" id="validatedCustomFile" 
+            name="foto" [(ngModel)]="foto" />
+            <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
         </div>
         <div  *ngIf="cadastrando">
             <label for="exampleDropdownFormEmailnome">Nome</label>
             <input type="text" id="exampleDropdownFormEmailnome" 
-            name="nome" [(ngModel)]="nome">
+            name="nome" [(ngModel)]="nome" />
         </div>
         <div  *ngIf="cadastrando">
             <label for="exampleDropdownFormEmailcpf">CPF</label>
             <input type="text" id="exampleDropdownFormEmailcpf" 
-            name="cpf" [(ngModel)]="cpf">
+            name="cpf" [(ngModel)]="cpf" />
         </div>
         <div>
             <label for="exampleDropdownFormEmail1">Email</label>
             <input type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
-            name="email" [(ngModel)]="email"            
-            
-            >
+            name="email" [(ngModel)]="email" />
         </div>
         <div  *ngIf="cadastrando">
             <label for="exampleDropdownFormEmailcelular">Celular</label>
             <input type="text" id="exampleDropdownFormEmailcelular" 
-            name="celular" [(ngModel)]="celular">
+            name="celular" [(ngModel)]="celular" />
         </div>
         <div>
             <label for="exampleDropdownFormPassword1">Senha</label>
             <input type="password"  id="exampleDropdownFormPassword1"
-            name="senha"
-            [(ngModel)]="senha">            
+            name="senha"   [(ngModel)]="senha" />
         </div>
         <div  *ngIf="cadastrando">
-        <p>Cancelar acesso</p>
+            <p>Cancelar acesso</p>
             <div class="custom-control custom-radio custom-control-inline">                
                 <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input"
-                [(ngModel)]="ativo" value="true">
+                [(ngModel)]="ativo" value="true" />
                 <label class="custom-control-label" for="customRadioInline1">Não</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input"
-                [(ngModel)]="ativo" value="false">
+                [(ngModel)]="ativo" value="false" />
                 <label class="custom-control-label" for="customRadioInline2">Sim</label>
             </div>
         </div>

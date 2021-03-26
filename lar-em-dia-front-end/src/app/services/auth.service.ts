@@ -11,43 +11,44 @@ import { JwtHelperService } from '@auth0/angular-jwt'
 })
 export class AuthService {
 
-  apiURL: string = environment.api + "/loginprofissional"
-  tokenURL: string = environmentToken.apiURLBase + environmentToken.obterTokenUrl
+  apiURL: string = environment.api + "/loginprofissional";
+  tokenURL: string = environmentToken.apiURLBase + environmentToken.obterTokenUrl;
   clientID: string = environmentToken.clientId;
   clientSecret: string = environmentToken.clientSecret;
+  
   jwtHelper: JwtHelperService = new JwtHelperService();
   
   constructor(private http: HttpClient) { }  
 
   obterToken(){
-    const tokenString = localStorage.getItem('access_token')
+    const tokenString = localStorage.getItem('access_token');
     if(tokenString){
-      const token = JSON.parse(tokenString).access_token
+      const token = JSON.parse(tokenString).access_token;
       return token;
     }
     return null;
   }
 
-   isAuthenticated() : boolean {
-    const token = this.obterToken();
-    if(token){
-      const expired = this.jwtHelper.isTokenExpired(token)
-      return !expired;
-    }
-    return false;
+  encerrarSessao(){
+    localStorage.removeItem('access_token');
   }
 
   getUsuarioAutenticado(){
     const token = this.obterToken();
     if(token){
-      const usuario = this.jwtHelper.decodeToken(token).user_name
+      const usuario = this.jwtHelper.decodeToken(token).user_name;
       return usuario;
     }
     return null;
   }
 
-  encerrarSessao(){
-    localStorage.removeItem('access_token')
+  isAuthenticated() : boolean {
+    const token = this.obterToken();
+    if(token){
+      const expired = this.jwtHelper.isTokenExpired(token);
+      return !expired;
+    }
+    return false;
   }
 
   tentarLogar( username: string, password: string ) : Observable<any> {
@@ -67,7 +68,6 @@ export class AuthService {
   incluir(loginProfissionalDTO: LoginProfissionalDTO) : Observable<LoginProfissionalDTO> {
     return this.http.post<LoginProfissionalDTO>(this.apiURL, loginProfissionalDTO);
   }
-
 
 
 }

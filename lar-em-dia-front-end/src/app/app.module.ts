@@ -32,10 +32,11 @@ import { TokenInterceptor } from './token.interceptor';
 import { GerenciarLoginProfissionalComponent } from './components/login-profissional/gerenciar-login-profissional/gerenciar-login-profissional.component';
 
 @NgModule({
-  declarations: [    
+  declarations: [
     AppComponent,
-    LoginProfissionalComponent,    
-    HomeComponent, GerenciarLoginProfissionalComponent
+    LoginProfissionalComponent,
+    HomeComponent,
+    GerenciarLoginProfissionalComponent
   ],
   imports: [
     CommonModule,

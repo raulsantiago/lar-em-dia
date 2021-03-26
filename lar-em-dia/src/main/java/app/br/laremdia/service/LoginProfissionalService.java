@@ -32,9 +32,8 @@ public class LoginProfissionalService implements UserDetailsService {
                 .builder()
                 .username(loginProfissional.getEmail())
                 .password(loginProfissional.getSenha())
-                .roles("USER")
+                .roles("USER") // posso salvar roles no banco e pegar com .getRoles()
                 .build()
                 ;
     }
-
 }

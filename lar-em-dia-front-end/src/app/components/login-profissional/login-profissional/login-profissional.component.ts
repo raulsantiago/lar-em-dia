@@ -30,17 +30,17 @@ export class LoginProfissionalComponent {
 
   onSubmit(){
     console.log(`Email: ${this.email}, Senha: ${this.senha}`);
-    
-    this.authService
-          .tentarLogar(this.email, this.senha)
-          .subscribe(response => {
-            const access_token = JSON.stringify(response);
-            localStorage.setItem('access_token', access_token)
-            this.router.navigate([''])
-          }, errorResponse => {
-            this.errors = ['Usuário e/ou senha incorreto(s).']
-          })
 
+    this.authService
+    .tentarLogar(this.email, this.senha)
+    .subscribe(response => {
+      console.log(response)
+      const access_token = JSON.stringify(response);
+      localStorage.setItem('access_token', access_token);
+      this.router.navigate(['']);
+    }, errorResponse => {
+      this.errors = ['Usuário e/ou senha incorreto(s).']
+    })
   }
 
   preparaCadastrar(event){
@@ -51,8 +51,6 @@ export class LoginProfissionalComponent {
   cancelaCadastro(){
     this.cadastrando = false;
   }  
-
-
 
   incluir(){
     const loginProfissionalDTO: LoginProfissionalDTO = new LoginProfissionalDTO();
@@ -72,13 +70,13 @@ export class LoginProfissionalComponent {
       this.cadastrando = false;
             this.email = '';
             this.senha = '';
-            this.ativo = null;
-            this.celular = '';
-            this.cpf = '';
-            this.foto = null;
-            this.nome = '';
-            console.log(`nome: ${this.nome}, cpf: ${this.cpf}, email: ${this.email}, senha: ${this.senha}
-            , ativo: ${this.ativo}, celular: ${this.celular}, foto: ${this.foto}`);
+            // this.ativo = null;
+            // this.celular = '';
+            // this.cpf = '';
+            // this.foto = null;
+            // this.nome = '';
+            // console.log(`nome: ${this.nome}, cpf: ${this.cpf}, email: ${this.email}, senha: ${this.senha}
+            // , ativo: ${this.ativo}, celular: ${this.celular}, foto: ${this.foto}`);
             this.errors = []      
       }, errorResponse => {
             this.mensagemSucesso = null;
