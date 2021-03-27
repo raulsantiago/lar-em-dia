@@ -28,6 +28,11 @@ public class GerenciarProfissionalController {
         return ResponseEntity.ok(gerenciarProfissionalService.consultar(id));
     }
 
+    @GetMapping("/{email}/email")
+    public ResponseEntity consultarEmail(@PathVariable("email") String email){
+        return ResponseEntity.ok(gerenciarProfissionalService.consultarEmail(email));
+    }
+
     @GetMapping()
     public ResponseEntity listar(){
         return ResponseEntity.ok(gerenciarProfissionalService.listar());

@@ -29,6 +29,11 @@ public class GerenciarProfissionalService {
         return loginProfissionalEntity.map(LoginProfissionalDTO::create).orElseThrow(() -> new BusinessException("Profissional não encontrado."));
     }
 
+    public LoginProfissionalDTO consultarEmail(String email) {
+        Optional<LoginProfissionalEntity> loginProfissionalEntity = loginProfissionalRepository.findByEmail(email);
+        return loginProfissionalEntity.map(LoginProfissionalDTO::create).orElseThrow(() -> new BusinessException("Profissional não encontrado."));
+    }
+
     public LoginProfissionalDTO inserir(LoginProfissionalEntity loginProfissionalEntity){
         Assert.isNull(loginProfissionalEntity.getIdProfissional(), "Não foi possível atualizar o registro");
         return LoginProfissionalDTO.create(loginProfissionalRepository.save(loginProfissionalEntity));

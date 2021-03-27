@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GerenciarProfissionalDTO } from 'src/app/dto/login-profissional/gerenciar-profissionalDTO';
+import { AuthService } from 'src/app/services/auth.service';
+import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
 
 @Component({
   selector: 'app-gerenciar-login-profissional',
@@ -7,26 +11,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GerenciarLoginProfissionalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private loginProfissionalService: LoginProfissionalService,
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
+  idProfissional: number;
   nome: string;
   cpf: string;
   email: string;
   celular: string;
   senha: string;
-  foto: any; 
-  ativo: boolean;
+  foto: any = null;
+  ativo: boolean = true;
 
-  loginError: boolean;
-  mensagemSucesso: boolean = false;
+ //gerenciarProfissionalDTO: GerenciarProfissionalDTO;
+
+  usuarioLogado: string;
+  mensagemSucesso: string;  
+  errors: String[];
   
 
-
   ngOnInit(): void {
+    this.usuarioLogado = this.authService.getUsuarioAutenticado();    
+    this.loginProfissionalService.consultarEmail(this.usuarioLogado).subscribe( dado =>{
+      console.log(dado);
+      this.ativo = dado.ativo;
+      this.celular = dado.celular;
+      this.cpf = dado.cpf;
+      this.email = dado.email;
+      this.foto = dado.foto;      
+      this.nome = dado.nome;
+      this.senha = dado.senha;
+      this.idProfissional = dado.idProfissional;
+    });
+    
+
   }
 
-  incluir(){
-    
+  alterar(){
+    let gerenciarProfissionalDTO: GerenciarProfissionalDTO = new GerenciarProfissionalDTO();
+    gerenciarProfissionalDTO.ativo = this.ativo;    
+    gerenciarProfissionalDTO.celular = this.celular;
+    gerenciarProfissionalDTO.cpf = this.cpf;
+    gerenciarProfissionalDTO.email = this.email;
+    gerenciarProfissionalDTO.foto = this.foto;
+    gerenciarProfissionalDTO.nome = this.nome;
+    gerenciarProfissionalDTO.senha = this.senha;
+    gerenciarProfissionalDTO.idProfissional = this.idProfissional;
+    console.log(gerenciarProfissionalDTO);
+    this.loginProfissionalService.alterar(this.idProfissional, gerenciarProfissionalDTO);
+  }
+
+  logout(){
+    this.authService.encerrarSessao();
+    this.router.navigate(['']);    
   }
 
 

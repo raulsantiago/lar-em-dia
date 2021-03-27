@@ -51,12 +51,12 @@
             <p>Cancelar acesso</p>
             <div class="custom-control custom-radio custom-control-inline">                
                 <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input"
-                [(ngModel)]="ativo" value="true" />
+                [(ngModel)]="ativo" [value]=true />
                 <label class="custom-control-label" for="customRadioInline1">Não</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input"
-                [(ngModel)]="ativo" value="false" />
+                [(ngModel)]="ativo" [value]=false />
                 <label class="custom-control-label" for="customRadioInline2">Sim</label>
             </div>
         </div>

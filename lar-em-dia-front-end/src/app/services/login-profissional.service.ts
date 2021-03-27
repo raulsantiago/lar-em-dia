@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { LoginProfissionalDTO } from '../dto/login-profissional/login-profissionalDTO';
+import { GerenciarProfissionalDTO } from '../dto/login-profissional/gerenciar-profissionalDTO';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -10,16 +9,20 @@ import { environment } from '../../environments/environment';
 })
 export class LoginProfissionalService {
 
-  apiURL: string = environment.api + '/loginprofissional';  
+  apiURL: string = environment.api + "/gerenciarprofissional";    
 
-    constructor(protected http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
-    // incluir(loginProfissionalDTO: LoginProfissionalDTO) : Observable<LoginProfissionalDTO> {
-    //   return this.http.post<LoginProfissionalDTO>(`${environment.url}${this.api}`, loginProfissionalDTO);
-    // }
+  consultarEmail(email: string) : Observable<GerenciarProfissionalDTO> {
+    return this.http.get<GerenciarProfissionalDTO>(`${this.apiURL}/${email}/email`);
+  }
 
-    // addFoto(loginProfissionalDTO: LoginProfissionalDTO, formData: FormData) : Observable<any> {
-    //   return this.http.put(`${environment.url}${this.api}/${loginProfissionalDTO.idProfissional}/foto`, formData);
-    // }
+  alterar(id: number, gerenciarProfissionalDTO: GerenciarProfissionalDTO): Observable<GerenciarProfissionalDTO> {
+    return this.http.put<GerenciarProfissionalDTO>(`${this.apiURL}/${id}`, gerenciarProfissionalDTO);
+  }
+
+  // addFoto(loginProfissionalDTO: LoginProfissionalDTO, formData: FormData) : Observable<any> {
+  //   return this.http.put(`${environment.url}${this.api}/${loginProfissionalDTO.idProfissional}/foto`, formData);
+  // }
 
 }
