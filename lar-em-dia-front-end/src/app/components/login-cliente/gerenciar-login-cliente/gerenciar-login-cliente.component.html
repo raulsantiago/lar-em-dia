@@ -1,0 +1,113 @@
+<br>
+<div class="container">
+    <h1>Gerenciar Acesso do Cliente</h1>    
+    <h6 *ngIf="mensagemSucesso" >Cadastro alterado com sucesso</h6>
+    <form   #cadForm="ngForm" (submit)="alterar()">
+
+        <input type="text" id="id" 
+        name="idCliente" [(ngModel)]="idCliente" disabled >
+    
+        <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="validatedCustomFile" name="foto" [(ngModel)]="foto" >
+            <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
+        </div>
+        <div >
+            <label for="exampleDropdownFormEmailnome">Nome</label>
+            <input type="text" id="exampleDropdownFormEmailnome" 
+            name="nome" [(ngModel)]="nome" >            
+        </div>
+        <div>
+            <label for="exampleDropdownFormEmailcpf">CPF</label>
+            <input type="text" id="exampleDropdownFormEmailcpf" 
+            name="cpf" [(ngModel)]="cpf" >
+        </div>
+        <div>
+            <label for="exampleDropdownFormEmail1">Email</label>
+            <input type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
+            name="email" [(ngModel)]="email" >
+        </div>
+        <div>
+            <label for="exampleDropdownFormEmailcelular">Celular</label>
+            <input type="text" id="exampleDropdownFormEmailcelular" 
+            name="celular" [(ngModel)]="celular" >
+        </div>
+        <div>
+            <label for="exampleDropdownFormPassword1">Senha</label>
+            <input type="password"  id="exampleDropdownFormPassword1"            
+            name="senha" [(ngModel)]="senha" >
+        </div>
+        <div>
+            <label for="Ender">Endereço</label>
+            <input type="text" id="Ender" 
+            name="endereco" [(ngModel)]="endereco" >
+
+            <label for="Number">Número</label>
+            <input type="text" id="Number"
+            name="numero" [(ngModel)]="numero" >
+        </div>
+        <div>
+            <label for="Bairro">Bairro</label>
+            <input type="text" id="Bairro" 
+            name="bairro" [(ngModel)]="bairro" >
+
+            <label for="Complement">Complemento</label>
+            <input type="text" id="Complement" 
+            name="complemento" [(ngModel)]="complemento" >
+        </div>
+
+        <div class="form-group" >
+            <label for="exampleFormControlSelect1">Estado</label>
+            <select class="form-control" id="exampleFormControlSelect1"
+            [(ngModel)]="estado" name="estado">
+                <option value="" selected>Selecione</option>
+                <option value="RJ" >RJ</option>
+            </select>
+        </div>
+        <div class="form-group" >
+            <label for="exampleFormControlSelect2">Município</label>
+            <select class="form-control" id="exampleFormControlSelect2"
+            [(ngModel)]="municipio" name="municipio" >
+                <option value="" selected>Selecione</option>
+                <option value="Nova Iguaçu" >Nova Iguaçu</option>
+                <option value="São João de Meriti" >São João de Meriti</option>
+            </select>
+        </div>
+        <div >
+            <label for="Refe">Referência</label>
+            <input type="text" id="Refe" 
+            name="referencia" [(ngModel)]="referencia" >
+        </div>          
+        <div>
+            <p>Cancelar acesso</p>
+            <div class="custom-control custom-radio custom-control-inline">                
+                <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input"
+                [(ngModel)]="ativo" [value]=true value="true" >
+                <label class="custom-control-label" for="customRadioInline1">Não</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input"
+                [(ngModel)]="ativo" [value]=false value="false">
+                <label class="custom-control-label" for="customRadioInline2">Sim</label>
+            </div>
+        </div>
+        <br>        
+        <button [routerLink]="['']" type="reset" >Voltar</button>
+        <button type="submit" >Salvar</button>
+    </form> 
+</div>
+<div>
+    <div>Logout</div>
+    <div class="card-footer text-center">
+        <div class="small">
+            <a href="#" (click)="logout()" >
+                Sair
+            </a>
+        </div>    
+    </div>
+    <div>Usuário Logado</div>
+    <div class="card-footer text-center">
+        <div class="small">
+            {{usuarioLogado}}
+        </div>    
+    </div>
+</div>

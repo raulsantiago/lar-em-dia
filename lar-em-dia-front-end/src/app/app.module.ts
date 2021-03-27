@@ -30,13 +30,18 @@ import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home/home.component';
 import { TokenInterceptor } from './token.interceptor';
 import { GerenciarLoginProfissionalComponent } from './components/login-profissional/gerenciar-login-profissional/gerenciar-login-profissional.component';
+import { LoginClienteComponent } from './components/login-cliente/login-cliente/login-cliente.component';
+import { GerenciarLoginClienteComponent } from './components/login-cliente/gerenciar-login-cliente/gerenciar-login-cliente.component';
+import { LoginClienteService } from './services/login-cliente.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginProfissionalComponent,
     HomeComponent,
-    GerenciarLoginProfissionalComponent
+    GerenciarLoginProfissionalComponent,
+    LoginClienteComponent,
+    GerenciarLoginClienteComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +67,7 @@ import { GerenciarLoginProfissionalComponent } from './components/login-profissi
     DatePipe,
     CurrencyPipe,
     LoginProfissionalService,
+    LoginClienteService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

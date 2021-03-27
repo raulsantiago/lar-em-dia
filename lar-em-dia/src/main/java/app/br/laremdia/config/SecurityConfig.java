@@ -1,5 +1,6 @@
 package app.br.laremdia.config;
 
+import app.br.laremdia.service.LoginClienteService;
 import app.br.laremdia.service.LoginProfissionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,10 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private LoginProfissionalService loginProfissionalService;
 
+    @Autowired
+    private LoginClienteService loginClienteService;
+
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(loginProfissionalService)
+                .userDetailsService(loginClienteService).and().userDetailsService(loginProfissionalService)
                 .passwordEncoder(passwordEncoder());
     }
 

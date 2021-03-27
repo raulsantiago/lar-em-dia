@@ -52,7 +52,9 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
 
   alterar(){
     let gerenciarProfissionalDTO: GerenciarProfissionalDTO = new GerenciarProfissionalDTO();
-    gerenciarProfissionalDTO.ativo = this.ativo;    
+    console.log(gerenciarProfissionalDTO);
+    console.log(this.ativo+"-"+this.idProfissional);    
+    gerenciarProfissionalDTO.ativo = this.ativo;
     gerenciarProfissionalDTO.celular = this.celular;
     gerenciarProfissionalDTO.cpf = this.cpf;
     gerenciarProfissionalDTO.email = this.email;
@@ -61,7 +63,14 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
     gerenciarProfissionalDTO.senha = this.senha;
     gerenciarProfissionalDTO.idProfissional = this.idProfissional;
     console.log(gerenciarProfissionalDTO);
-    this.loginProfissionalService.alterar(this.idProfissional, gerenciarProfissionalDTO);
+    this.loginProfissionalService.alterar(this.idProfissional, gerenciarProfissionalDTO).subscribe( response => {
+      console.log(response);
+      this.mensagemSucesso = "Cadastro alterado com sucesso!";
+            this.errors = []      
+      }, errorResponse => {
+            this.mensagemSucesso = null;
+            this.errors = errorResponse.error.errors;
+    })
   }
 
   logout(){

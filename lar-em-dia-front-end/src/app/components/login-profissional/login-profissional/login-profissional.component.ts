@@ -33,12 +33,9 @@ export class LoginProfissionalComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(`Email: ${this.email}, Senha: ${this.senha}`);
-
     this.authService
     .tentarLogar(this.email, this.senha)
-    .subscribe(response => {
-      console.log(response)
+    .subscribe(response => {      
       const access_token = JSON.stringify(response);
       localStorage.setItem('access_token', access_token);
       this.router.navigate(['/gerenciarprofissional']);
@@ -64,29 +61,18 @@ export class LoginProfissionalComponent implements OnInit {
     loginProfissionalDTO.celular = this.celular;
     loginProfissionalDTO.cpf = this.cpf;    
     loginProfissionalDTO.foto = this.foto;
-    loginProfissionalDTO.nome = this.nome;
-    console.log(`nome: ${this.nome}, cpf: ${this.cpf}, email: ${this.email}, senha: ${this.senha}
-    , ativo: ${this.ativo}, celular: ${this.celular}, foto: ${this.foto}`);
-    this.authService.incluir(loginProfissionalDTO)
-    .subscribe( response => {
-      console.log(response);
+    loginProfissionalDTO.nome = this.nome;    
+    this.authService.incluirProfissional(loginProfissionalDTO)
+    .subscribe( response => {      
       this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";
       this.cadastrando = false;
             this.email = '';
-            this.senha = '';
-            // this.ativo = null;
-            // this.celular = '';
-            // this.cpf = '';
-            // this.foto = null;
-            // this.nome = '';
-            // console.log(`nome: ${this.nome}, cpf: ${this.cpf}, email: ${this.email}, senha: ${this.senha}
-            // , ativo: ${this.ativo}, celular: ${this.celular}, foto: ${this.foto}`);
+            this.senha = '';            
             this.errors = []      
       }, errorResponse => {
             this.mensagemSucesso = null;
             this.errors = errorResponse.error.errors;
     })
-
   }
 
 }
