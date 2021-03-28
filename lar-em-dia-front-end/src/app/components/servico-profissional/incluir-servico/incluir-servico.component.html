@@ -1,0 +1,25 @@
+<br>
+<div class="container">
+    <h1>Cadastro do Serviço Profissional</h1>        
+    <h6 *ngIf="mensagemSucesso" >Cadastro realizado com sucesso</h6>
+    <form   #cadForm="ngForm" (submit)="inserir()">
+        <div >
+            <label for="exampleDropdownFormEmailnome">Onde será o serviço</label>
+            <input type="text" id="exampleDropdownFormEmailnome" 
+            name="nomeServico" [(ngModel)]="nomeServico" >
+        </div>
+        <div >
+            <label for="exampleDropdownFormEmailcpf">Tipo do serviço</label>
+            <input type="text" id="exampleDropdownFormEmailcpf" 
+            name="nomeTipo" [(ngModel)]="nomeTipo" >
+        </div>        
+        <div>
+            <label for="exampleDropdownFormEmailcelular">Preço</label>
+            <input type="text" id="exampleDropdownFormEmailcelular" 
+            name="preco" [(ngModel)]="preco" >
+        </div>
+        <br>
+        <button [routerLink]="['/listarservico']" type="reset" >Voltar</button>
+        <button type="submit" >Salvar</button>
+    </form>
+</div>

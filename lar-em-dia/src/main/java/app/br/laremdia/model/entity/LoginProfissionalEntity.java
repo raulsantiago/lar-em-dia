@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -25,11 +24,11 @@ public class LoginProfissionalEntity {
     @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
 
-    @Column(nullable = true, length = 11)
+    @Column(nullable = true, length = 11, unique=true)
     @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
 
-    @Column(nullable = false, length = 70)
+    @Column(nullable = false, length = 70, unique=true)
     @NotEmpty(message = "{campo.email.obrigatorio}")
     private String email;
 

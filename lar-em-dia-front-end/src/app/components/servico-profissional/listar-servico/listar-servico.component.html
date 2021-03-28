@@ -1,0 +1,29 @@
+<br>
+<div class="container">
+    <h1>Lista de Serviços Profissionais</h1>
+        <button [routerLink]="['/cadastrarservico']" type="reset" >Novo</button>
+        <br>
+        <br>
+        <div class="table-responsive">            
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">Onde será o serviço</th>
+                      <th scope="col">Tipo do serviço</th>
+                      <th scope="col">Preço</th>
+                      <th scope="col">Ação</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let dado of servicoProfissionalDTO" >
+                    <tr>
+                      <td>{{ dado.nome }}</td>
+                      <td>{{ dado.tipoServidoDTO }}</td>
+                      <td>{{ dado.preco }}</td>
+                      <td><a href="/alterarservico">Alterar</a></td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>
+        <br>
+        <button [routerLink]="['/gerenciarprofissional']" type="reset" >Voltar</button>
+</div>

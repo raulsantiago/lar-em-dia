@@ -1,0 +1,40 @@
+<br>
+
+<div class="container">    
+    <h1>Alteração do Serviço Profissional</h1>    
+    <h6 *ngIf="mensagemSucesso" >Cadastro alterado com sucesso</h6>
+    <form   #cadForm="ngForm" (submit)="alterar()">
+        <input type="text" id="id" name="idServico" [(ngModel)]="idServico" hidden >        
+        <div >
+            <label for="exampleDropdownFormEmailnome">Onde será o serviço</label>
+            <input type="text" id="exampleDropdownFormEmailnome" 
+            name="nomeServico" [(ngModel)]="nomeServico" >
+        </div>
+        <div >
+            <label for="exampleDropdownFormEmailcpf">Tipo do serviço</label>
+            <input type="text" id="exampleDropdownFormEmailcpf" 
+            name="nomeTipo" [(ngModel)]="nomeTipo" >
+        </div>        
+        <div>
+            <label for="exampleDropdownFormEmailcelular">Preço</label>
+            <input type="text" id="exampleDropdownFormEmailcelular" 
+            name="preco" [(ngModel)]="preco" >
+        </div>
+        <div>
+            <p>Cancelar serviço</p>
+            <div class="custom-control custom-radio custom-control-inline">                
+                <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input" 
+                [(ngModel)]="ativo" [value]=true value="true" >
+                <label class="custom-control-label" for="customRadioInline1">Não</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input"
+                [(ngModel)]="ativo" [value]=false value="false">
+                <label class="custom-control-label" for="customRadioInline2">Sim</label>
+            </div>
+        </div>
+        <br>
+        <button [routerLink]="['/listarservico']" type="reset" >Voltar</button>
+        <button type="submit" >Salvar</button>
+    </form>
+</div>

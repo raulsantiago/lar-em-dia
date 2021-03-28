@@ -5,7 +5,7 @@
     <form   #cadForm="ngForm" (submit)="alterar()">
 
         <input type="text" id="id" 
-        name="idCliente" [(ngModel)]="idCliente" disabled >
+        name="idCliente" [(ngModel)]="idCliente" hidden >
     
         <div class="custom-file mb-3">
             <input type="file" class="custom-file-input" id="validatedCustomFile" name="foto" [(ngModel)]="foto" >

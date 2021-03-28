@@ -33,6 +33,9 @@ import { GerenciarLoginProfissionalComponent } from './components/login-profissi
 import { LoginClienteComponent } from './components/login-cliente/login-cliente/login-cliente.component';
 import { GerenciarLoginClienteComponent } from './components/login-cliente/gerenciar-login-cliente/gerenciar-login-cliente.component';
 import { LoginClienteService } from './services/login-cliente.service';
+import { IncluirServicoComponent } from './components/servico-profissional/incluir-servico/incluir-servico.component';
+import { ListarServicoComponent } from './components/servico-profissional/listar-servico/listar-servico.component';
+import { AlterarServicoComponent } from './components/servico-profissional/alterar-servico/alterar-servico.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { LoginClienteService } from './services/login-cliente.service';
     HomeComponent,
     GerenciarLoginProfissionalComponent,
     LoginClienteComponent,
-    GerenciarLoginClienteComponent
+    GerenciarLoginClienteComponent,
+    IncluirServicoComponent,
+    ListarServicoComponent,
+    AlterarServicoComponent
   ],
   imports: [
     CommonModule,
