@@ -8,12 +8,12 @@ import org.modelmapper.ModelMapper;
 public class LoginProfissionalDTO {
 
     private Integer idProfissional;
-    private String nome;
-    private String cpf;
-    private String email;
-    private String celular;
-    private String senha;
-    private byte[] foto;
+    private String  nome;
+    private String  cpf;
+    private String  email;
+    private String  celular;
+    private String  senha;
+    private byte[]  foto;
     private Boolean ativo;
 
     public static LoginProfissionalDTO create(LoginProfissionalEntity loginProfissionalEntity){

@@ -35,7 +35,7 @@ public class GerenciarProfissionalService {
     }
 
     public LoginProfissionalDTO inserir(LoginProfissionalEntity loginProfissionalEntity){
-        Assert.isNull(loginProfissionalEntity.getIdProfissional(), "Não foi possível atualizar o registro");
+        Assert.isNull(loginProfissionalEntity.getIdProfissional(), "Não foi possível encontrar o registro");
         return LoginProfissionalDTO.create(loginProfissionalRepository.save(loginProfissionalEntity));
     }
 

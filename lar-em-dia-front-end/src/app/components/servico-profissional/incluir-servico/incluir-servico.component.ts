@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { IncluirServicoProfissionalDTO } from 'src/app/dto/servico-profissional/incluir-servico-profissionalDTO';
+import { IncluirTipoServicoProfissionalDTO } from 'src/app/dto/servico-profissional/incluir-tipo-servico-profissionalDTO';
+import { ServicoProfissionalDTO } from 'src/app/dto/servico-profissional/servico-profissionalDTO';
+import { ServicoProfissionalService } from 'src/app/services/servico-profissional.service';
+import { TipoServicoProfissionalService } from 'src/app/services/tipo-servico-profissional.service';
 
 @Component({
   selector: 'app-incluir-servico',
@@ -7,19 +12,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IncluirServicoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private servicoProfissionalService: ServicoProfissionalService,
+    private tipoServicoProfissionalService: TipoServicoProfissionalService
+    ) { }
 
   nomeServico: string;
   nomeTipo: string;
-  preco: string;
+  preco: number;
+  servicoProfissionalDTO: ServicoProfissionalDTO;
 
-  mensagemSucesso: string;
+  mensagemSucesso: string;  
+  errors: String[];
 
   ngOnInit(): void {
   }
 
   inserir(){
+    const incluirServicoProfissionalDTO: IncluirServicoProfissionalDTO = new IncluirServicoProfissionalDTO();
+    incluirServicoProfissionalDTO.nome = this.nomeServico;
+    incluirServicoProfissionalDTO.ativo = true;
+    this.servicoProfissionalService.inserir(incluirServicoProfissionalDTO)
+      .subscribe( response => {
+        this.servicoProfissionalService.consultarNome(this.nomeServico).subscribe(data => {
+          this.servicoProfissionalDTO = data;
+          const incluirTipoServicoProfissionalDTO: IncluirTipoServicoProfissionalDTO = new IncluirTipoServicoProfissionalDTO();
+          incluirTipoServicoProfissionalDTO.idServico = this.servicoProfissionalDTO.idServico;
+          incluirTipoServicoProfissionalDTO.nome = this.nomeTipo;
+          incluirTipoServicoProfissionalDTO.preco = this.preco;          
+          this.tipoServicoProfissionalService.inserir(incluirTipoServicoProfissionalDTO)
+            .subscribe(response => {
+              this.mensagemSucesso = "Cadastro realizado com sucesso!";
+              this.nomeTipo = '';
+              this.preco = null;
+              this.errors = []
+            }), errorResponse => {
+              this.mensagemSucesso = null;
+              this.errors = errorResponse.error.errors;
+            }
+          })
+          this.nomeServico = '';                  
+        }, errorResponse => {
+              this.mensagemSucesso = null;              
+              this.errors = ['Já exite cadastro com este nome.']
+      })
 
   }
+
 
 }

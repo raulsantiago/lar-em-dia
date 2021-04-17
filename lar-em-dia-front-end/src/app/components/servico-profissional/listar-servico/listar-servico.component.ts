@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoServicoProfissionalDTO } from 'src/app/dto/servico-profissional/tipo-servico-profissionalDTO';
+import { TipoServicoProfissionalService } from 'src/app/services/tipo-servico-profissional.service';
 
 @Component({
   selector: 'app-listar-servico',
@@ -7,15 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarServicoComponent implements OnInit {
 
-  constructor() { }
-
-  servicoProfissionalDTO: Object[];
+  constructor(private tipoServicoProfissionalService: TipoServicoProfissionalService) { }
+ 
+  listaTipoServicoProfissionalDTO: TipoServicoProfissionalDTO[];
 
   ngOnInit(): void {
-    this.servicoProfissionalDTO = [
-      {nome: "Ar condicionado de janela", tipoServidoDTO: "Limpeza", preco: "R$ 123.456,99"},
-      {nome: "Ar condicionado de janela", tipoServidoDTO: "Instalação", preco: "R$ 0,01"}
-    ];
+    let listarServicosPromise: Promise<TipoServicoProfissionalDTO> = this.tipoServicoProfissionalService.listar().toPromise();
+
+    Promise.all([listarServicosPromise]).then(( data: TipoServicoProfissionalDTO[]) =>{      
+      this.listaTipoServicoProfissionalDTO = data[0];
+    });
+
   }   
     
   

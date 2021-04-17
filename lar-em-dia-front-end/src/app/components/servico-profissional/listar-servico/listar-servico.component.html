@@ -12,14 +12,18 @@
                       <th scope="col">Tipo do serviço</th>
                       <th scope="col">Preço</th>
                       <th scope="col">Ação</th>
+                      <th hidden scope="col"></th>
+                      <th hidden scope="col"></th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let dado of servicoProfissionalDTO" >
+                  <tbody *ngFor="let dado of listaTipoServicoProfissionalDTO" >
                     <tr>
+                      <td>{{ dado.servicoProfissionalDTO?.nome }}</td>                      
                       <td>{{ dado.nome }}</td>
-                      <td>{{ dado.tipoServidoDTO }}</td>
                       <td>{{ dado.preco }}</td>
-                      <td><a href="/alterarservico">Alterar</a></td>
+                      <td><a href="/alterarservico">Alterar</a></td>                      
+                      <td hidden>{{ dado.servicoProfissionalDTO?.idServico }}</td>
+                      <td hidden>{{ dado.idTipo }}</td>
                     </tr>
                   </tbody>
             </table>

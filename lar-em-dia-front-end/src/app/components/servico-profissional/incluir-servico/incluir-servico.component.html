@@ -1,7 +1,14 @@
 <br>
 <div class="container">
     <h1>Cadastro do Serviço Profissional</h1>        
-    <h6 *ngIf="mensagemSucesso" >Cadastro realizado com sucesso</h6>
+
+    <div class="alert alert-success" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+    </div>
+    <div class="alert alert-danger" *ngFor="let erro of errors">
+        {{ erro }}
+    </div>
+
     <form   #cadForm="ngForm" (submit)="inserir()">
         <div >
             <label for="exampleDropdownFormEmailnome">Onde será o serviço</label>
