@@ -17,53 +17,23 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
     private router: Router
     ) { }
 
-  idProfissional: number;
-  nome: string;
-  cpf: string;
-  email: string;
-  celular: string;
-  senha: string;
-  foto: any = null;
-  ativo: boolean = true;
-
- //gerenciarProfissionalDTO: GerenciarProfissionalDTO;
+ gerenciarProfissionalDTO: GerenciarProfissionalDTO; 
 
   usuarioLogado: string;
   mensagemSucesso: string;  
   errors: String[];
-  
 
   ngOnInit(): void {
     this.usuarioLogado = this.authService.getUsuarioAutenticado();    
+    console.log(this.usuarioLogado);
     this.loginProfissionalService.consultarEmail(this.usuarioLogado).subscribe( dado =>{
-      console.log(dado);
-      this.ativo = dado.ativo;
-      this.celular = dado.celular;
-      this.cpf = dado.cpf;
-      this.email = dado.email;
-      this.foto = dado.foto;      
-      this.nome = dado.nome;
-      this.senha = dado.senha;
-      this.idProfissional = dado.idProfissional;
+      this.gerenciarProfissionalDTO = dado;
     });
-    
 
   }
 
   alterar(){
-    let gerenciarProfissionalDTO: GerenciarProfissionalDTO = new GerenciarProfissionalDTO();
-    console.log(gerenciarProfissionalDTO);
-    console.log(this.ativo+"-"+this.idProfissional);    
-    gerenciarProfissionalDTO.ativo = this.ativo;
-    gerenciarProfissionalDTO.celular = this.celular;
-    gerenciarProfissionalDTO.cpf = this.cpf;
-    gerenciarProfissionalDTO.email = this.email;
-    gerenciarProfissionalDTO.foto = this.foto;
-    gerenciarProfissionalDTO.nome = this.nome;
-    gerenciarProfissionalDTO.senha = this.senha;
-    gerenciarProfissionalDTO.idProfissional = this.idProfissional;
-    console.log(gerenciarProfissionalDTO);
-    this.loginProfissionalService.alterar(this.idProfissional, gerenciarProfissionalDTO).subscribe( response => {
+    this.loginProfissionalService.alterar(this.gerenciarProfissionalDTO.idProfissional, this.gerenciarProfissionalDTO).subscribe( response => {
       console.log(response);
       this.mensagemSucesso = "Cadastro alterado com sucesso!";
             this.errors = []      
@@ -78,18 +48,15 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
     this.router.navigate(['']);    
   }
 
-
-   // uploadFoto(event, loginProfissionalDTO){
-  //   const files = event.target.files;
-  //   if(files){
-  //     const foto = files[0];
-  //     const formData: FormData = new FormData();
-  //     formData.append("foto", foto);
-  //     this.loginProfissionalService.addFoto(loginProfissionalDTO, formData);
-  //       //.subscribe(response => this.consultaid());
-  //   }
-  // }
-
-  
+  uploadFoto(event){
+    const files = event.target.files;
+    if(files){
+      const foto = files[0];
+      const formData: FormData = new FormData();
+      formData.append("foto", foto);
+      this.loginProfissionalService.addFoto(this.gerenciarProfissionalDTO, formData)
+        .subscribe(response => this.ngOnInit() );
+    }
+  }
 
 }

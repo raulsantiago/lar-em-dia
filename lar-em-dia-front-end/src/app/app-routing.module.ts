@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
   { path: 'cadastrarservico', component: IncluirServicoComponent },
   { path: 'listarservico', component: ListarServicoComponent },
-  { path: 'alterarservico', component: AlterarServicoComponent }
+  { path: 'alterarservico/:id', component: AlterarServicoComponent }
 ];
 
 @NgModule({

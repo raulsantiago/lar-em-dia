@@ -19,14 +19,16 @@ export class ServicoProfissionalService {
     return this.http.get<ServicoProfissionalDTO>(`${this.apiURL}/${nome}/nome`);
   }
 
+  consultar(id: number): Observable<ServicoProfissionalDTO>{
+    return this.http.get<ServicoProfissionalDTO>(`${this.apiURL}/${id}`);
+  }
+
   inserir(incluirServicoProfissionalDTO: IncluirServicoProfissionalDTO): Observable<IncluirServicoProfissionalDTO>{
     return this.http.post<IncluirServicoProfissionalDTO>(`${this.apiURL}`, incluirServicoProfissionalDTO);
   }
 
-
-  /*
-   alterar(id: number, gerenciarProfissionalDTO: GerenciarProfissionalDTO): Observable<GerenciarProfissionalDTO> {
-    return this.http.put<GerenciarProfissionalDTO>(`${this.apiURL}/${id}`, gerenciarProfissionalDTO);
+  alterar(servicoProfissionalDTO: ServicoProfissionalDTO, id: number): Observable<ServicoProfissionalDTO> {
+    return this.http.put<ServicoProfissionalDTO>(`${this.apiURL}/${id}`, servicoProfissionalDTO);
   }
-  */
+  
 }

@@ -2,7 +2,12 @@
 
 <div class="container">    
     <h1>Alteração do Serviço Profissional</h1>    
-    <h6 *ngIf="mensagemSucesso" >Cadastro alterado com sucesso</h6>
+    <div class="alert alert-success" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+    </div>
+    <div class="alert alert-danger" *ngFor="let erro of errors">
+        {{ erro }}
+    </div>
     <form   #cadForm="ngForm" (submit)="alterar()">
         <input type="text" id="id" name="idServico" [(ngModel)]="idServico" hidden >        
         <div >

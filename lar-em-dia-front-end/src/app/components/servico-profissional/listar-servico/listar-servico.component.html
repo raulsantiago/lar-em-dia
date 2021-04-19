@@ -11,9 +11,7 @@
                       <th scope="col">Onde será o serviço</th>
                       <th scope="col">Tipo do serviço</th>
                       <th scope="col">Preço</th>
-                      <th scope="col">Ação</th>
-                      <th hidden scope="col"></th>
-                      <th hidden scope="col"></th>
+                      <th scope="col">Ação</th>                      
                     </tr>
                   </thead>
                   <tbody *ngFor="let dado of listaTipoServicoProfissionalDTO" >
@@ -21,9 +19,7 @@
                       <td>{{ dado.servicoProfissionalDTO?.nome }}</td>                      
                       <td>{{ dado.nome }}</td>
                       <td>{{ dado.preco }}</td>
-                      <td><a href="/alterarservico">Alterar</a></td>                      
-                      <td hidden>{{ dado.servicoProfissionalDTO?.idServico }}</td>
-                      <td hidden>{{ dado.idTipo }}</td>
+                      <td><a href="" onclick="return false;" (click)="alterarServicoTipo(dado.idTipo)">Alterar</a></td>
                     </tr>
                   </tbody>
             </table>

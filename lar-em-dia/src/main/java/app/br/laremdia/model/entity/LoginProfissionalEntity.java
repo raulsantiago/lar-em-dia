@@ -39,8 +39,7 @@ public class LoginProfissionalEntity {
     @NotEmpty(message = "{campo.senha.obrigatorio}")
     private String senha;
 
-    @Column(nullable = true)
-    @Lob
+    @Column(nullable = true, length = 1000)
     private byte[] foto;
 
     @Column(nullable = false)

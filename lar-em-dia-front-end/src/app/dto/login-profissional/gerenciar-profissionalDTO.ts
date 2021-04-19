@@ -6,7 +6,7 @@ export class GerenciarProfissionalDTO {
     email: string 
     celular: string 
     senha: string 
-    foto: any 
+    foto: any[] 
     ativo: boolean 
 
 }

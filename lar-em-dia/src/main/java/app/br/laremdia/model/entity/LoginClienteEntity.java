@@ -66,7 +66,6 @@ public class LoginClienteEntity {
     private String referencia;
 
     @Column(nullable = true)
-    @Lob
     private byte[] foto;
 
     @Column(nullable = false)

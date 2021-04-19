@@ -21,8 +21,8 @@ export class LoginProfissionalService {
     return this.http.put<GerenciarProfissionalDTO>(`${this.apiURL}/${id}`, gerenciarProfissionalDTO);
   }
 
-  // addFoto(loginProfissionalDTO: LoginProfissionalDTO, formData: FormData) : Observable<any> {
-  //   return this.http.put(`${environment.url}${this.api}/${loginProfissionalDTO.idProfissional}/foto`, formData);
-  // }
+  addFoto(gerenciarProfissionalDTO: GerenciarProfissionalDTO, formData: FormData) : Observable<any> {
+    return this.http.put(`${this.apiURL}/${gerenciarProfissionalDTO.idProfissional}/foto`, formData, { responseType: 'blob'} );
+  }
 
 }
