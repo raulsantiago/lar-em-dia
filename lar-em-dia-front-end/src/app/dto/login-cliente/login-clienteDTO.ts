@@ -12,7 +12,7 @@ export class LoginClienteDTO {
     estado: string;
     municipio: string;
     referencia: string;
-    foto: any;
+    foto: any[];
     ativo: boolean;
 
 }

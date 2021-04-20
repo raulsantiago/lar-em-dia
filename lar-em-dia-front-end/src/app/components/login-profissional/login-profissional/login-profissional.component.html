@@ -16,12 +16,7 @@
     </div>
 
     <form #loginForm="ngForm" (submit)="onSubmit();">
-
-        <div class="custom-file mb-3" *ngIf="cadastrando">
-            <input type="file" class="custom-file-input" id="validatedCustomFile" 
-            name="foto" [(ngModel)]="foto" />
-            <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
-        </div>
+        
         <div  *ngIf="cadastrando">
             <label for="exampleDropdownFormEmailnome">Nome</label>
             <input type="text" id="exampleDropdownFormEmailnome" 

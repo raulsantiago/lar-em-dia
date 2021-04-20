@@ -21,8 +21,7 @@ export class LoginProfissionalComponent implements OnInit {
   cpf: string;
   email: string;
   celular: string;
-  senha: string;
-  foto: any = null;
+  senha: string;  
   ativo: boolean = true;
 
   cadastrando: boolean;
@@ -59,8 +58,7 @@ export class LoginProfissionalComponent implements OnInit {
     loginProfissionalDTO.senha = this.senha;    
     loginProfissionalDTO.ativo = this.ativo;
     loginProfissionalDTO.celular = this.celular;
-    loginProfissionalDTO.cpf = this.cpf;    
-    loginProfissionalDTO.foto = this.foto;
+    loginProfissionalDTO.cpf = this.cpf;        
     loginProfissionalDTO.nome = this.nome;    
     this.authService.incluirProfissional(loginProfissionalDTO)
     .subscribe( response => {      

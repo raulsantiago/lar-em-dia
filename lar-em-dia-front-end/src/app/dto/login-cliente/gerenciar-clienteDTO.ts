@@ -13,7 +13,7 @@ export class GerenciarClienteDTO {
     estado: string;
     municipio: string;
     referencia: string;
-    foto: any;
+    foto: any[];
     ativo: boolean;
 
 }

@@ -2,7 +2,14 @@
 
 <div class="container">
     <h1>Gerenciar Acesso do Profissional</h1>        
-    <h6 *ngIf="mensagemSucesso" >Cadastro alterado com sucesso</h6>    
+    
+    <div class="alert alert-success" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+    </div>
+
+    <div class="alert alert-danger" *ngFor="let erro of errors">
+        {{ erro }}
+    </div>
 
         <div class="custom-file mb-3">
             <div *ngIf="gerenciarProfissionalDTO?.foto != null || gerenciarProfissionalDTO?.foto != undefined" >

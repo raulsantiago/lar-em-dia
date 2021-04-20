@@ -26,8 +26,7 @@ export class LoginClienteComponent implements OnInit {
   complemento: string;
   estado: string;
   municipio: string;
-  referencia: string;
-  foto: any = null;
+  referencia: string;  
   ativo: boolean = true;
   
   cadastrando: boolean;
@@ -67,8 +66,7 @@ export class LoginClienteComponent implements OnInit {
     loginClienteDTO.cpf = this.cpf;
     loginClienteDTO.email = this.email;
     loginClienteDTO.endereco = this.endereco;
-    loginClienteDTO.estado = this.estado;
-    loginClienteDTO.foto = this.foto;
+    loginClienteDTO.estado = this.estado;    
     loginClienteDTO.municipio = this.municipio;
     loginClienteDTO.nome = this.nome;
     loginClienteDTO.numero = this.numero;

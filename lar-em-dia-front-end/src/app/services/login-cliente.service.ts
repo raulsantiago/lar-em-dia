@@ -20,6 +20,9 @@ export class LoginClienteService {
   alterar(id: number, gerenciarClienteDTO: GerenciarClienteDTO): Observable<GerenciarClienteDTO> {
     return this.http.put<GerenciarClienteDTO>(`${this.apiURL}/${id}`, gerenciarClienteDTO);
   }
-
+  
+  addFoto(gerenciarClienteDTO: GerenciarClienteDTO, formData: FormData) : Observable<any> {
+    return this.http.put(`${this.apiURL}/${gerenciarClienteDTO.idCliente}/foto`, formData, { responseType: 'blob'} );
+  }
 
 }
