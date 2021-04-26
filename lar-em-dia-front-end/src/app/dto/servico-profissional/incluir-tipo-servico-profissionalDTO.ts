@@ -1,7 +1,7 @@
 export class IncluirTipoServicoProfissionalDTO {
 
-    nome: string
-    preco: number
-    idServico: number    
+    nome:      string;
+    preco:     number;
+    idServico: number;
 
 }

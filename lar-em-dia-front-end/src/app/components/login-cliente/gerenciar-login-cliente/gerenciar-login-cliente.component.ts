@@ -91,10 +91,12 @@ export class GerenciarLoginClienteComponent implements OnInit {
     // gerenciarClienteDTO.municipio = this.municipio
     this.loginClienteService.alterar(this.gerenciarClienteDTO.idCliente, this.gerenciarClienteDTO).subscribe( response => {      
       this.mensagemSucesso = "Cadastro alterado com sucesso!";
-            this.errors = []      
+      setInterval( res => { this.mensagemSucesso = ''; }, 5000);
+      this.errors = null;
       }, errorResponse => {
-            this.mensagemSucesso = null;
-            this.errors = errorResponse.error.errors;
+        this.mensagemSucesso = null;
+        this.errors = errorResponse.error.errors;
+        setInterval( res => { this.errors = null; }, 5000);
     })
   }
 

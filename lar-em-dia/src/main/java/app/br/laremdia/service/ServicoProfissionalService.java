@@ -34,11 +34,10 @@ public class ServicoProfissionalService {
     }
 
     public ServicoProfissionalDTO inserir(ServicoProfissionalEntity servicoProfissionalEntity){
-        //Assert.isNull(servicoProfissionalEntity.getIdServico(), "Não foi possível encontrar o registro");
         String name = servicoProfissionalEntity.getNome();
         Optional< ServicoProfissionalEntity > entity = servicoProfissionalRepository.findByNome(name);
         if(entity.isPresent()){
-            throw new BusinessException("J\u00E1 existe cadastro com o mesmo nome.");
+            Assert.isTrue(false, "J\u00E1 existe serviço cadastrado com este nome.");
         }
         return ServicoProfissionalDTO.create(servicoProfissionalRepository.save(servicoProfissionalEntity));
     }

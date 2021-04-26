@@ -53,20 +53,27 @@ export class AlterarServicoComponent implements OnInit {
     const servicoProfissionalDTO: ServicoProfissionalDTO = new ServicoProfissionalDTO();
     servicoProfissionalDTO.ativo = this.ativo;
     servicoProfissionalDTO.nome = this.nomeServico;
-    this.servicoProfissionalService.alterar(servicoProfissionalDTO, this.idServico).subscribe(response => {
-
-      const alterarTipoServicoProfissionalDTO: AlterarTipoServicoProfissionalDTO = new AlterarTipoServicoProfissionalDTO();
-      alterarTipoServicoProfissionalDTO.nome = this.nomeTipo;
-      alterarTipoServicoProfissionalDTO.preco = this.preco;
-      this.tipoServicoProfissionalService.alterar(alterarTipoServicoProfissionalDTO, this.idTipo).subscribe(response => {
-        this.mensagemSucesso = "Cadastro alterado com sucesso!";
-        this.errors = [];
-        this.router.navigate(['listarservico']);
-      })
-    }), errorResponse => {
-      this.mensagemSucesso = null;
-      this.errors = errorResponse.error.errors;
-    }
+    this.servicoProfissionalService.alterar(servicoProfissionalDTO, this.idServico)
+      .subscribe(response => {
+        const alterarTipoServicoProfissionalDTO: AlterarTipoServicoProfissionalDTO = new AlterarTipoServicoProfissionalDTO();
+        alterarTipoServicoProfissionalDTO.nome = this.nomeTipo;
+        alterarTipoServicoProfissionalDTO.preco = this.preco;
+        this.tipoServicoProfissionalService.alterar(alterarTipoServicoProfissionalDTO, this.idTipo)
+          .subscribe(response => {
+            this.mensagemSucesso = "Cadastro alterado com sucesso!";
+            setInterval( res => { this.mensagemSucesso = ''; }, 5000);
+            this.errors = null;
+            this.router.navigate(['listarservico']);
+          }, errorResponse => {
+            this.mensagemSucesso = null;
+            this.errors = errorResponse.error.errors;
+            setInterval( res => { this.errors = null; }, 5000);
+          });
+      }, errorResponse => {
+        this.mensagemSucesso = null;
+        this.errors = errorResponse.error.errors;
+        setInterval( res => { this.errors = null; }, 5000);
+      });
 
   }
 

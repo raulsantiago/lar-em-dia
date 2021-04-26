@@ -99,18 +99,18 @@
         <br>    
         
         <div class="form-group align-items-center justify-content-between mt-4 mb-0">
-            <button type="submit" class="btn btn-primary" *ngIf="!cadastrando">
+            <button type="submit" class="btn btn-secondary" *ngIf="!cadastrando">
                 Enviar
             </button>
 
-            <button type="button" class="btn btn-success" 
+            <button type="button" class="btn btn-secondary"
                     (click)="incluir()"
                     *ngIf="cadastrando">
                 Cadastrar
             </button>
 
             <button type="button" (click)="cancelaCadastro()"
-                    class="btn btn-danger ml-1" *ngIf="cadastrando">
+            class="btn btn-secondary" *ngIf="cadastrando">
                 Cancelar
             </button>
         </div>

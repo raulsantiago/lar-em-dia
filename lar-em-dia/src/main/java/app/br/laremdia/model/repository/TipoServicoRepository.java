@@ -12,4 +12,10 @@ public interface TipoServicoRepository extends JpaRepository<TipoServicoEntity, 
             + "ORDER BY servico_profissional.nome ASC, tipo_servico.nome ASC", nativeQuery=true)
     List<TipoServicoEntity> listar();
 
+    //List<TipoServicoEntity> listarPorUmServico();
+
+    List<TipoServicoEntity> findAllByServicoProfissional_IdServicoOrderByNome(Integer IdServico);
+
+
+
 }

@@ -22,6 +22,11 @@ public class TipoServicoController {
         return  ResponseEntity.ok(tipoServicoService.listar());
     }
 
+    @GetMapping("/{id}/servico")
+    public ResponseEntity listarPorUmServico(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(tipoServicoService.listarPorUmServico(id));
+    }
+
     @GetMapping("/{id}")
     public  ResponseEntity consultar(@PathVariable("id") Integer id){
         return ResponseEntity.ok(tipoServicoService.consultar(id));

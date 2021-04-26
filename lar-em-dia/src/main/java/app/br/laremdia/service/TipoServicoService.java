@@ -30,6 +30,10 @@ public class TipoServicoService {
         return  tipoServicoRepository.listar().stream().map(TipoServicoDTO::new).collect(Collectors.toList());
     }
 
+    public List<TipoServicoDTO> listarPorUmServico(Integer id){
+        return  tipoServicoRepository.findAllByServicoProfissional_IdServicoOrderByNome(id).stream().map(TipoServicoDTO::new).collect(Collectors.toList());
+    }
+
     public TipoServicoDTO consultar(Integer id){
         Optional< TipoServicoEntity > tipoServicoEntity = tipoServicoRepository.findById(id);
         return tipoServicoEntity.map(TipoServicoDTO::new).orElseThrow(() -> new BusinessException("Tipo serviço não encontrado."));

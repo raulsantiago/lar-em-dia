@@ -19,6 +19,10 @@ export class TipoServicoProfissionalService {
     return this.http.get<TipoServicoProfissionalDTO[]>(`${this.apiURL}`);
   }
 
+  listarPorUmServico(id: number): Observable<TipoServicoProfissionalDTO[]>{
+    return this.http.get<TipoServicoProfissionalDTO[]>(`${this.apiURL}/${id}/servico`);
+  }
+
   consultar(id: number): Observable<TipoServicoProfissionalDTO>{
     return this.http.get<TipoServicoProfissionalDTO>(`${this.apiURL}/${id}`);
   }

@@ -36,6 +36,7 @@ import { LoginClienteService } from './services/login-cliente.service';
 import { IncluirServicoComponent } from './components/servico-profissional/incluir-servico/incluir-servico.component';
 import { ListarServicoComponent } from './components/servico-profissional/listar-servico/listar-servico.component';
 import { AlterarServicoComponent } from './components/servico-profissional/alterar-servico/alterar-servico.component';
+import { IncluirTipoServicoComponent } from './components/servico-profissional/incluir-tipo-servico/incluir-tipo-servico.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AlterarServicoComponent } from './components/servico-profissional/alter
     GerenciarLoginClienteComponent,
     IncluirServicoComponent,
     ListarServicoComponent,
-    AlterarServicoComponent
+    AlterarServicoComponent,
+    IncluirTipoServicoComponent
   ],
   imports: [
     CommonModule,

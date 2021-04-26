@@ -8,6 +8,7 @@ import { LoginClienteComponent } from './components/login-cliente/login-cliente/
 import { IncluirServicoComponent } from './components/servico-profissional/incluir-servico/incluir-servico.component';
 import { ListarServicoComponent } from './components/servico-profissional/listar-servico/listar-servico.component';
 import { AlterarServicoComponent } from './components/servico-profissional/alterar-servico/alterar-servico.component';
+import { IncluirTipoServicoComponent } from './components/servico-profissional/incluir-tipo-servico/incluir-tipo-servico.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,9 @@ const routes: Routes = [
   { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
   { path: 'cadastrarservico', component: IncluirServicoComponent },
   { path: 'listarservico', component: ListarServicoComponent },
-  { path: 'alterarservico/:id', component: AlterarServicoComponent }
+  { path: 'alterarservico/:id', component: AlterarServicoComponent },
+  { path: 'cadastrartiposervico/:id', component: IncluirTipoServicoComponent }
+  
 ];
 
 @NgModule({

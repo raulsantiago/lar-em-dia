@@ -21,7 +21,7 @@ export class ListarServicoComponent implements OnInit {
   ngOnInit(): void {
     let listarServicosPromise: Promise<TipoServicoProfissionalDTO[]> = this.tipoServicoProfissionalService.listar().toPromise();
     Promise.all([listarServicosPromise]).then(data => {
-      this.listaTipoServicoProfissionalDTO = data[0];
+      this.listaTipoServicoProfissionalDTO = data[0];      
     });
 
   }   
@@ -29,6 +29,13 @@ export class ListarServicoComponent implements OnInit {
   alterarServicoTipo(id:number) {
     this.router.navigate(['alterarservico', id], {
       relativeTo: this.route['alterarservico'],
+    });
+  }
+
+
+  incluirServicoTipo(id:number) {
+    this.router.navigate(['cadastrartiposervico', id], {
+      relativeTo: this.route['cadastrartiposervico'],
     });
   }
     

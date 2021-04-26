@@ -11,21 +11,19 @@
         {{ erro }}
     </div>
 
-        <div class="custom-file mb-3">
-            <div *ngIf="gerenciarProfissionalDTO?.foto != null || gerenciarProfissionalDTO?.foto != undefined" >
-                <img width="50" height="50" src="data:image/jpg;base64,{{gerenciarProfissionalDTO.foto}}"  />
-            </div>
-            <div *ngIf="gerenciarProfissionalDTO?.foto == null || gerenciarProfissionalDTO?.foto == undefined" >
-                <input type="file" class="custom-file-input" id="validatedCustomFile" 
-                name="foto" (change)="uploadFoto($event)" >
-                <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
-            </div>
+    <div class="row no-gutters">
+        <div class="col-6 col-md-4" *ngIf="gerenciarProfissionalDTO?.foto != null || gerenciarProfissionalDTO?.foto != undefined" >
+            <img width="60" height="50" src="data:image/jpg;base64,{{gerenciarProfissionalDTO.foto}}"  />
         </div>
+        <div class="col-sm-6 col-md-8">
+            <input type="file" class="custom-file-input" id="validatedCustomFile" 
+            name="foto" (change)="uploadFoto($event)" >
+            <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
+        </div>        
+    </div>
+    
     <div  *ngIf="gerenciarProfissionalDTO" >
     <form   #cadForm="ngForm" (submit)="alterar()">
-
-            <!-- <input type="text" id="id" 
-            name="idProfissional" [(ngModel)]="gerenciarProfissionalDTO.idProfissional" hidden > -->
 
         <div >
             <label for="exampleDropdownFormEmailnome">Nome</label>
@@ -66,8 +64,8 @@
             </div>
         </div>
         <br>
-        <button [routerLink]="['']" type="reset" >Voltar</button>
-        <button type="submit" >Salvar</button>
+        <button [routerLink]="['/listarservico']" type="reset" class="btn btn-secondary" >Serviços</button>
+        <button type="submit" class="btn btn-secondary" >Salvar</button>
     </form>
 </div>
 </div>

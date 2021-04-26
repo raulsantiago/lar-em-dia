@@ -21,13 +21,13 @@ public class TipoServicoEntity {
     private Integer idTipo;
 
     @Column(nullable = false, length = 100)
-    @NotEmpty(message = "{campo.nome.obrigatorio}")
+    @NotEmpty(message = "O campo tipo de servico é obrigatorio.")
     private String nome;
 
     @Column(nullable = false)
-    @Digits(integer = 6, fraction = 2, message = "valor numérico fora do limite esperado de <6 dígitos>.<2 dígitos>")
+    @Digits(integer = 6, fraction = 2, message = "o preço está fora do limite esperado de <6 dígitos>.<2 dígitos>")
     @DecimalMin(value = "0.0", inclusive = false)
-    @NotNull(message = "{campo.preco.obrigatorio}")
+    @NotNull(message = "O campo preco é obrigatorio.")
     private BigDecimal preco;
 
     @ManyToOne

@@ -19,7 +19,7 @@ public class ServicoProfissionalEntity {
     private Integer idServico;
 
     @Column(nullable = false, length = 100)
-    @NotEmpty(message = "{campo.nome.obrigatorio}")
+    @NotEmpty(message = "O campo onde será o serviço é obrigatorio.")
     private String nome;
 
     @Column(nullable = false)

@@ -2,7 +2,6 @@
 <div class="container">
     <h1>Gerenciar Acesso do Cliente</h1>    
     
-    
     <div class="alert alert-success" *ngIf="mensagemSucesso">
         {{ mensagemSucesso }}
     </div>
@@ -11,24 +10,20 @@
         {{ erro }}
     </div>
 
-
-    <div class="custom-file mb-3">
-        <div *ngIf="gerenciarClienteDTO?.foto != null || gerenciarClienteDTO?.foto != undefined" >
-            <img width="50" height="50" src="data:image/jpg;base64,{{gerenciarClienteDTO.foto}}"  />
+    <div class="row no-gutters">
+        <div class="col-6 col-md-4" *ngIf="gerenciarClienteDTO?.foto != null || gerenciarClienteDTO?.foto != undefined" >
+            <img width="60" height="50" src="data:image/jpg;base64,{{gerenciarClienteDTO.foto}}"  />
         </div>
-        <div *ngIf="gerenciarClienteDTO?.foto == null || gerenciarClienteDTO?.foto == undefined" >
+        <div class="col-sm-6 col-md-8">
             <input type="file" class="custom-file-input" id="validatedCustomFile" 
             name="foto" (change)="uploadFoto($event)" >
             <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
-        </div>
+        </div>        
     </div>
     
     <div  *ngIf="gerenciarClienteDTO" >
 
         <form   #cadForm="ngForm" (submit)="alterar()">
-            
-            <!-- <input type="text" id="id" 
-            name="idCliente" [(ngModel)]="gerenciarClienteDTO.idCliente" hidden > -->
             
             <div >
                 <label for="exampleDropdownFormEmailnome">Nome</label>
@@ -110,8 +105,8 @@
                 </div>
             </div>
             <br>        
-            <button [routerLink]="['']" type="reset" >Voltar</button>
-            <button type="submit" >Salvar</button>
+            <button [routerLink]="['']" type="reset" class="btn btn-secondary" >Voltar</button>
+            <button type="submit" class="btn btn-secondary" >Salvar</button>
         </form> 
     </div>
 </div>

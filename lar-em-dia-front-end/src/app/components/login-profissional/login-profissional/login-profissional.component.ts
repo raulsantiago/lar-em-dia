@@ -39,7 +39,8 @@ export class LoginProfissionalComponent implements OnInit {
       localStorage.setItem('access_token', access_token);
       this.router.navigate(['/gerenciarprofissional']);
     }, errorResponse => {
-      this.errors = ['Usuário e/ou senha incorreto(s).']
+      this.errors = ['Usuário e/ou senha incorreto(s).'];
+      setInterval( res => { this.errors = null; }, 5000);
     })
   }
 
@@ -63,13 +64,15 @@ export class LoginProfissionalComponent implements OnInit {
     this.authService.incluirProfissional(loginProfissionalDTO)
     .subscribe( response => {      
       this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";
+      setInterval( res => { this.mensagemSucesso = ''; }, 5000);
       this.cadastrando = false;
-            this.email = '';
-            this.senha = '';            
-            this.errors = []      
+      this.email = '';
+      this.senha = '';
+      this.errors = null;
       }, errorResponse => {
-            this.mensagemSucesso = null;
-            this.errors = errorResponse.error.errors;
+        this.mensagemSucesso = null;
+        this.errors = errorResponse.error.errors;
+        setInterval( res => { this.errors = null; }, 5000);
     })
   }
 
