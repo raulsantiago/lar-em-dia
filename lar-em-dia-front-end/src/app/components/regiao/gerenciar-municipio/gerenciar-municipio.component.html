@@ -1,0 +1,104 @@
+<br>
+<div class="container">
+  <h1>Configurar Região dos Serviços Profissionais</h1>
+  <br>
+  <div class="alert alert-success" *ngIf="mensagemSucesso">
+      {{ mensagemSucesso }}
+  </div>
+  <div class="alert alert-danger" *ngFor="let erro of errors">
+      {{ erro }}
+  </div>
+  <br>
+
+  <form  #cadForm="ngForm" (submit)="inserir()">
+  
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1 col-md-3 mb-3">
+        <label  for="inlineFormCustomSelect">UF</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+        [(ngModel)]="estado" name="estado"
+        (change)="tipoAcaoUf($event.target.value)"  
+        >
+          <option selected disabled>Selecione</option>
+          <option value="AC">AC - Acre</option>
+          <option value="AL">AL - Alagoas</option>
+          <option value="AP">AP - Amapá</option>
+          <option value="AM">AM - Amazonas</option>
+          <option value="BA">BA - Bahia</option>
+          <option value="CE">CE - Ceará</option>
+          <option value="DF">DF - Distrito Federal</option>
+          <option value="ES">ES - Espírito Santo</option>
+          <option value="GO">GO - Goiás</option>
+          <option value="MA">MA - Maranhão</option>
+          <option value="MT">MT - Mato Grosso</option>
+          <option value="MS">MS - Mato Grosso do Sul</option>
+          <option value="MG">MG - Minas Gerais</option>
+          <option value="PA">PA - Pará</option>
+          <option value="PB">PB - Paraíba</option>
+          <option value="PR">PR - Paraná</option>
+          <option value="PE">PE - Pernambuco</option>
+          <option value="PI">PI - Piauí</option>
+          <option value="RJ">RJ - Rio de Janeiro</option>
+          <option value="RN">RN - Rio Grande do Norte</option>
+          <option value="RS">RS - Rio Grande do Sul</option>
+          <option value="RO">RO - Rondônia</option>
+          <option value="RR">RR - Roraima</option>
+          <option value="SC">SC - Santa Catarina</option>
+          <option value="SP">SP - São Paulo</option>
+          <option value="SE">SE - Sergipe</option>
+          <option value="TO">TO - Tocantins</option>
+        </select>
+      </div>
+
+      <div class="col-auto my-1 col-md-5 mb-3">
+        <label  for="inlineFormCustomSelect">Município</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+        [(ngModel)]="municipio" name="municipio"
+        >
+          <option value="" selected disabled>Selecione</option>                    
+          <option *ngFor="let municipio of municipios" [value]="municipio.nome">
+              {{municipio.nome}}
+          </option>
+        </select>
+      </div>
+      
+      <div >
+        <button style="margin-top: 20px;" type="submit" class="btn btn-secondary">Incluir</button>
+      </div>
+    </div>
+      
+  </form>
+
+  <br>
+  <h5>Lista dos Municípios Atendidos pelo Profisisonal</h5>
+  <br>
+  <div class="table-responsive">
+      <table class="table">
+          <thead>
+              <tr>
+                <th scope="col">UF</th>
+                <th scope="col">Ativo - UF</th>
+                <th scope="col">Município</th>
+                <th scope="col">Ativo - Município</th>
+                <th scope="col">Disponível ao Cliente</th>
+                <th scope="col">Configuração</th>
+              </tr>
+          </thead>
+          <tbody *ngFor="let dado of listaMunicipioAtendidoDTO" >
+              <tr>
+                <td>{{ dado.estadoAtendidoDTO?.uf }}</td>
+                <td>{{ dado.estadoAtendidoDTO?.ativo ? 'Sim' : 'Não' }}</td>
+                <td>{{ dado.municipio }}</td>
+                <td>{{ dado.ativo ? 'Sim' : 'Não' }}</td>
+                <td>{{ dado.estadoAtendidoDTO?.ativo && dado.ativo ? 'Sim' : 'Não' }}</td>
+                <td>
+                  <a href="" style="padding-left: 10px;" onclick="return false;" 
+                  (click)="configUfMunicipio(dado.idMunicipio)">Configurar</a>
+                </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+  <br>
+  <button style="margin: 5px;" [routerLink]="['/gerenciarprofissional']" type="reset" class="btn btn-secondary" >Voltar</button>
+</div>

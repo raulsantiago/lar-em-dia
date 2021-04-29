@@ -64,18 +64,21 @@
         <div class="form-group" *ngIf="cadastrando">
             <label for="exampleFormControlSelect1">Estado</label>
             <select class="form-control" id="exampleFormControlSelect1"
-            [(ngModel)]="estado" name="estado">
-                <option value="" selected>Selecione</option>
-                <option value="RJ" >RJ</option>
+            [(ngModel)]="estado" name="estado"
+            (change)="tipoAcaoUf($event.target.value)"               
+            >
+                <option value="" selected disabled>Selecione</option>
+                <option *ngFor="let tipoUf of estadoAtendidoDTO" [value]="tipoUf.idEstado">{{tipoUf.uf}}</option>
             </select>
         </div>
+
         <div class="form-group" *ngIf="cadastrando">
             <label for="exampleFormControlSelect2">Município</label>
             <select class="form-control" id="exampleFormControlSelect2"
-            [(ngModel)]="municipio" name="municipio" >
-                <option value="" selected>Selecione</option>
-                <option value="Nova Iguaçu" >Nova Iguaçu</option>
-                <option value="São João de Meriti" >São João de Meriti</option>
+            [(ngModel)]="municipio" name="municipio"             
+            >
+                <option value="" selected disabled>Selecione</option>
+                <option *ngFor="let municipio of municipioAtendidoDTO" [value]="municipio.idMunicipio">{{municipio.municipio}}</option>
             </select>
         </div>
         <div  *ngIf="cadastrando">
@@ -99,17 +102,17 @@
         <br>    
         
         <div class="form-group align-items-center justify-content-between mt-4 mb-0">
-            <button type="submit" class="btn btn-secondary" *ngIf="!cadastrando">
+            <button style="margin: 5px;" type="submit" class="btn btn-secondary" *ngIf="!cadastrando">
                 Enviar
             </button>
 
-            <button type="button" class="btn btn-secondary"
+            <button style="margin: 5px;" type="button" class="btn btn-secondary"
                     (click)="incluir()"
                     *ngIf="cadastrando">
                 Cadastrar
             </button>
 
-            <button type="button" (click)="cancelaCadastro()"
+            <button style="margin: 5px;" type="button" (click)="cancelaCadastro()"
             class="btn btn-secondary" *ngIf="cadastrando">
                 Cancelar
             </button>

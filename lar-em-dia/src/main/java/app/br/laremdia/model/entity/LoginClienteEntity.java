@@ -54,14 +54,6 @@ public class LoginClienteEntity {
     @Column(nullable = true, length = 30)
     private String complemento;
 
-    @Column(nullable = false, length = 2)
-    @NotEmpty(message = "{campo.estado.obrigatorio}")
-    private String estado;
-
-    @Column(nullable = false, length = 30)
-    @NotEmpty(message = "{campo.municipio.obrigatorio}")
-    private String municipio;
-
     @Column(nullable = true)
     private String referencia;
 
@@ -80,5 +72,13 @@ public class LoginClienteEntity {
     public void prePersist(){
         setDataCadastro(LocalDate.now());
     }
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente_id_estado")
+    private EstadoAtendidoEntity estadoAtendido;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente_id_municipio")
+    private MunicipioAtendidoEntity municipioAtendido;
 
 }

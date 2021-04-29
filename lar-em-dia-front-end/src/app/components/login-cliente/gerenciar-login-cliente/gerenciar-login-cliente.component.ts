@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GerenciarClienteDTO } from 'src/app/dto/login-cliente/gerenciar-clienteDTO';
+import { EstadoAtendidoDTO } from 'src/app/dto/regiao/estado-atendidoDTO';
+import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginClienteService } from 'src/app/services/login-cliente.service';
+import { RegiaoService } from 'src/app/services/regiao.service';
 
 @Component({
   selector: 'app-gerenciar-login-cliente',
@@ -14,7 +17,8 @@ export class GerenciarLoginClienteComponent implements OnInit {
   constructor(
     private loginClienteService: LoginClienteService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private regiaoService: RegiaoService
     ) { }
 
   idCliente: number;
@@ -27,68 +31,50 @@ export class GerenciarLoginClienteComponent implements OnInit {
   numero: string;
   bairro: string;
   complemento: string;
-  estado: string;
-  municipio: string;
+  estado: EstadoAtendidoDTO;
+  municipio: MunicipioAtendidoDTO;
   referencia: string;
   foto: any = null;
   ativo: boolean = true;
 
   gerenciarClienteDTO: GerenciarClienteDTO
+  estadoAtendidoDTO: EstadoAtendidoDTO[];
+  municipioAtendidoDTO: MunicipioAtendidoDTO[];
 
   usuarioLogado: string;
   mensagemSucesso: string;  
   errors: String[];
+
+  exibeSelection: boolean = true;
  
 
-  ngOnInit(): void {
-
-    /*
-    this.usuarioLogado = this.authService.getUsuarioAutenticado();    
-    console.log(this.usuarioLogado);
-    this.loginProfissionalService.consultarEmail(this.usuarioLogado).subscribe( dado =>{
-      this.gerenciarProfissionalDTO = dado;
-    });
-
-
-    */
+  ngOnInit(): void {    
+    this.exibeSelection = true;
     this.usuarioLogado = this.authService.getUsuarioAutenticado();
     this.loginClienteService.consultarEmail(this.usuarioLogado).subscribe( dado =>{
       this.gerenciarClienteDTO = dado;
-      // console.log(dado) ;
-      // this.idCliente = dado.idCliente;
-      // this.ativo = dado.ativo;
-      // this.celular = dado.celular;
-      // this.cpf = dado.cpf;
-      // this.email = dado.email;
-      // this.foto = dado.foto;      
-      // this.nome = dado.nome;
-      // this.senha = dado.senha;
-      // this.endereco = dado.endereco;
-      // this.numero = dado.numero;
-      // this.bairro = dado.bairro;
-      // this.complemento = dado.complemento;
-      // this.estado = dado.estado;
-      // this.municipio = dado.municipio;
-      // this.referencia = dado.referencia;
+      console.log(dado);  
+    });
+    console.log(this.gerenciarClienteDTO);
+    
+  }
+
+
+  onClick(event){
+    this.exibeSelection = false;
+    this.regiaoService.listarUfAtivo().subscribe( dado => {
+      this.estadoAtendidoDTO = dado;
+    });
+    
+  }
+
+  tipoAcaoUf(idEstado: number){
+    this.regiaoService.listarMunicipioAtivoPorUfAtivo(idEstado).subscribe( dado =>{
+      this.municipioAtendidoDTO = dado;
     });
   }
 
   alterar(){
-    // let gerenciarClienteDTO: GerenciarClienteDTO = new GerenciarClienteDTO();
-    // gerenciarClienteDTO.referencia = this.referencia
-    // gerenciarClienteDTO.ativo = this.ativo   
-    // gerenciarClienteDTO.celular = this.celular
-    // gerenciarClienteDTO.cpf = this.cpf
-    // gerenciarClienteDTO.email = this.email
-    // gerenciarClienteDTO.foto = this.foto
-    // gerenciarClienteDTO.nome = this.nome
-    // gerenciarClienteDTO.senha = this.senha
-    // gerenciarClienteDTO.endereco = this.endereco
-    // gerenciarClienteDTO.numero = this.numero
-    // gerenciarClienteDTO.bairro = this.bairro
-    // gerenciarClienteDTO.complemento = this.complemento
-    // gerenciarClienteDTO.estado = this.estado
-    // gerenciarClienteDTO.municipio = this.municipio
     this.loginClienteService.alterar(this.gerenciarClienteDTO.idCliente, this.gerenciarClienteDTO).subscribe( response => {      
       this.mensagemSucesso = "Cadastro alterado com sucesso!";
       setInterval( res => { this.mensagemSucesso = ''; }, 5000);

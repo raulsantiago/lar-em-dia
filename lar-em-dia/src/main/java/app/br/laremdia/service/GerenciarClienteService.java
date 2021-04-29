@@ -18,7 +18,7 @@ public class GerenciarClienteService {
 
     public LoginClienteDTO consultarEmail(String email) {
         Optional<LoginClienteEntity> loginClienteEntity = loginClienteRepository.findByEmail(email);
-        return loginClienteEntity.map(LoginClienteDTO::create).orElseThrow(() -> new BusinessException("Cliente não encontrado."));
+        return loginClienteEntity.map(LoginClienteDTO::new).orElseThrow(() -> new BusinessException("Cliente não encontrado."));
     }
 
     public LoginClienteDTO alterar(LoginClienteEntity loginClienteEntity, Integer id){
@@ -35,13 +35,15 @@ public class GerenciarClienteService {
             loginCliente.setNumero(loginClienteEntity.getNumero());
             loginCliente.setBairro(loginClienteEntity.getBairro());
             loginCliente.setComplemento(loginClienteEntity.getComplemento());
-            loginCliente.setEstado(loginClienteEntity.getEstado());
-            loginCliente.setMunicipio(loginClienteEntity.getMunicipio());
+            loginCliente.setEstadoAtendido(loginClienteEntity.getEstadoAtendido());
+            loginCliente.setMunicipioAtendido(loginClienteEntity.getMunicipioAtendido());
+//            loginCliente.setEstado(loginClienteEntity.getEstado());
+//            loginCliente.setMunicipio(loginClienteEntity.getMunicipio());
             loginCliente.setReferencia(loginClienteEntity.getReferencia());
             loginCliente.setFoto(loginClienteEntity.getFoto());
             loginCliente.setAtivo(loginClienteEntity.getAtivo());
             loginClienteRepository.save(loginCliente);
-            return LoginClienteDTO.create(loginCliente);
+            return new LoginClienteDTO(loginCliente);
         } else {
             return null;
         }

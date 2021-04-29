@@ -37,6 +37,8 @@ import { IncluirServicoComponent } from './components/servico-profissional/inclu
 import { ListarServicoComponent } from './components/servico-profissional/listar-servico/listar-servico.component';
 import { AlterarServicoComponent } from './components/servico-profissional/alterar-servico/alterar-servico.component';
 import { IncluirTipoServicoComponent } from './components/servico-profissional/incluir-tipo-servico/incluir-tipo-servico.component';
+import { GerenciarMunicipioComponent } from './components/regiao/gerenciar-municipio/gerenciar-municipio.component';
+import { ConfigurarMunicipioEstadoComponent } from './components/regiao/configurar-municipio-estado/configurar-municipio-estado.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { IncluirTipoServicoComponent } from './components/servico-profissional/i
     IncluirServicoComponent,
     ListarServicoComponent,
     AlterarServicoComponent,
-    IncluirTipoServicoComponent
+    IncluirTipoServicoComponent,
+    GerenciarMunicipioComponent,
+    ConfigurarMunicipioEstadoComponent
   ],
   imports: [
     CommonModule,

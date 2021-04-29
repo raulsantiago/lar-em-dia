@@ -69,23 +69,33 @@
                 name="complemento" [(ngModel)]="gerenciarClienteDTO.complemento" >
             </div>
 
+
             <div class="form-group" >
                 <label for="exampleFormControlSelect1">Estado</label>
                 <select class="form-control" id="exampleFormControlSelect1"
-                [(ngModel)]="gerenciarClienteDTO.estado" name="estado">
-                    <option value="" selected>Selecione</option>
-                    <option value="RJ" >RJ</option>
+                [(ngModel)]="estado" name="estado"
+                (change)="tipoAcaoUf($event.target.value)"  
+                (click)="onClick($event.click)"
+                >
+                    <option value="" selected disabled>Selecione</option>
+                    <option *ngFor="let tipoUf of estadoAtendidoDTO" [value]="tipoUf.idEstado">
+                        {{ tipoUf.uf }}
+                    </option>
                 </select>
             </div>
+    
             <div class="form-group" >
                 <label for="exampleFormControlSelect2">Município</label>
                 <select class="form-control" id="exampleFormControlSelect2"
-                [(ngModel)]="gerenciarClienteDTO.municipio" name="municipio" >
-                    <option value="" selected>Selecione</option>
-                    <option value="Nova Iguaçu" >Nova Iguaçu</option>
-                    <option value="São João de Meriti" >São João de Meriti</option>
+                [(ngModel)]="municipio" name="municipio"
+                >
+                    <option value="" selected disabled>Selecione</option>                    
+                    <option *ngFor="let municipio of municipioAtendidoDTO" [value]="municipio.idMunicipio">
+                        {{municipio.municipio}}
+                    </option>
                 </select>
             </div>
+
             <div >
                 <label for="Refe">Referência</label>
                 <input type="text" id="Refe" 
@@ -105,8 +115,8 @@
                 </div>
             </div>
             <br>        
-            <button [routerLink]="['']" type="reset" class="btn btn-secondary" >Voltar</button>
-            <button type="submit" class="btn btn-secondary" >Salvar</button>
+            <button style="margin: 5px;" [routerLink]="['']" type="reset" class="btn btn-secondary" >Voltar</button>
+            <button style="margin: 5px;" type="submit" class="btn btn-secondary" >Salvar</button>
         </form> 
     </div>
 </div>

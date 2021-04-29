@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginClienteDTO } from 'src/app/dto/login-cliente/login-clienteDTO';
+import { EstadoAtendidoDTO } from 'src/app/dto/regiao/estado-atendidoDTO';
+import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegiaoService } from 'src/app/services/regiao.service';
 
 @Component({
   selector: 'app-login-cliente',
@@ -12,7 +15,8 @@ export class LoginClienteComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private regiaoService: RegiaoService
     ) { }
   
   nome: string;
@@ -24,16 +28,22 @@ export class LoginClienteComponent implements OnInit {
   numero: string;
   bairro: string;
   complemento: string;
-  estado: string;
-  municipio: string;
+  estado: EstadoAtendidoDTO;
+  municipio: MunicipioAtendidoDTO;
   referencia: string;  
   ativo: boolean = true;
+
+  estadoAtendidoDTO: EstadoAtendidoDTO[];
+  municipioAtendidoDTO: MunicipioAtendidoDTO[];
   
   cadastrando: boolean;
   mensagemSucesso: string;  
   errors: String[];
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
+    this.regiaoService.listarUfAtivo().subscribe( dado => {
+      this.estadoAtendidoDTO = dado;
+    });
   }
 
   preparaCadastrar(event){
@@ -58,6 +68,12 @@ export class LoginClienteComponent implements OnInit {
     })
   }
 
+  tipoAcaoUf(idEstado: number){
+    this.regiaoService.listarMunicipioAtivoPorUfAtivo(idEstado).subscribe( dado =>{
+      this.municipioAtendidoDTO = dado;
+    });
+  }
+
   incluir(){
     const loginClienteDTO: LoginClienteDTO = new LoginClienteDTO();
     loginClienteDTO.ativo = this.ativo;
@@ -67,8 +83,8 @@ export class LoginClienteComponent implements OnInit {
     loginClienteDTO.cpf = this.cpf;
     loginClienteDTO.email = this.email;
     loginClienteDTO.endereco = this.endereco;
-    loginClienteDTO.estado = this.estado;    
-    loginClienteDTO.municipio = this.municipio;
+    loginClienteDTO.estadoAtendidoDTO = this.estado;    
+    loginClienteDTO.MunicipioAtendidoDTO = this.municipio;
     loginClienteDTO.nome = this.nome;
     loginClienteDTO.numero = this.numero;
     loginClienteDTO.referencia = this.referencia;
