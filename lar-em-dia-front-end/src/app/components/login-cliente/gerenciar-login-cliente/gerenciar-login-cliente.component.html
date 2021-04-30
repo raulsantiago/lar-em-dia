@@ -1,138 +1,154 @@
 <br>
 <div class="container">
     <h1>Gerenciar Acesso do Cliente</h1>    
-    
+    <br>    
     <div class="alert alert-success" *ngIf="mensagemSucesso">
         {{ mensagemSucesso }}
     </div>
-
     <div class="alert alert-danger" *ngFor="let erro of errors">
         {{ erro }}
     </div>
 
-    <div class="row no-gutters">
-        <div class="col-6 col-md-4" *ngIf="gerenciarClienteDTO?.foto != null || gerenciarClienteDTO?.foto != undefined" >
-            <img width="60" height="50" src="data:image/jpg;base64,{{gerenciarClienteDTO.foto}}"  />
+    <div class="form-row">
+        <div class="form-group col-md-2" *ngIf="gerenciarClienteDTO?.foto != null || gerenciarClienteDTO?.foto != undefined" >
+            <img width="70" height="70" src="data:image/jpg;base64,{{gerenciarClienteDTO.foto}}"  />
         </div>
-        <div class="col-sm-6 col-md-8">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
             <input type="file" class="custom-file-input" id="validatedCustomFile" 
             name="foto" (change)="uploadFoto($event)" >
             <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
+        </div>
+    </div>
+
+
+    <form   #cadForm="ngForm" (submit)="alterar()">
+        <div  *ngIf="gerenciarClienteDTO" >
+            <div class="form-row">        
+                <div class="form-group col-md-6" >
+                    <label for="exampleDropdownFormEmailnome">Nome</label>
+                    <input  class="form-control" type="text" id="exampleDropdownFormEmailnome" 
+                    name="nome" [(ngModel)]="gerenciarClienteDTO.nome" >            
+                </div>
+            
+                <div class="form-group col-md-4" >
+                    <label for="exampleDropdownFormEmailcpf">CPF</label>
+                    <input  class="form-control" type="text" id="exampleDropdownFormEmailcpf" 
+                    name="cpf" [(ngModel)]="gerenciarClienteDTO.cpf" >
+                </div>
+                
+                <div class="form-group col-md-6">
+                    <label for="exampleDropdownFormEmail1">Email</label>
+                    <input class="form-control"  type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
+                    name="email" [(ngModel)]="gerenciarClienteDTO.email" >
+                </div>
+                <div class="form-group col-md-4" >
+                    <label for="exampleDropdownFormEmailcelular">Celular</label>
+                    <input  class="form-control" type="text" id="exampleDropdownFormEmailcelular" 
+                    name="celular" [(ngModel)]="gerenciarClienteDTO.celular" >
+                </div>
+                
+            </div>
+
+            <div class="form-row">                
+                <div class="form-group col-md-6" >
+                    <label for="Ender">Endereço</label>
+                    <input  class="form-control" type="text" id="Ender"                     
+                    name="endereco" [(ngModel)]="gerenciarClienteDTO.endereco" >
+                </div>
+                <div class="form-group col-md-2" >
+                    <label for="Number">Número</label>
+                    <input  class="form-control" type="text" id="Number"
+                    name="numero" [(ngModel)]="gerenciarClienteDTO.numero" >                        
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4" >
+                    <label for="Bairro">Bairro</label>
+                    <input  class="form-control" type="text" id="Bairro" 
+                    name="bairro" [(ngModel)]="gerenciarClienteDTO.bairro" >
+                </div>
+                <div class="form-group col-md-6" >
+                    <label for="Complement">Complemento</label>
+                    <input  class="form-control" type="text" id="Complement" 
+                    name="complemento" [(ngModel)]="gerenciarClienteDTO.complemento" >
+                </div>
+            </div>
+
+            <div class="form-row">            
+                <div class="form-group col-md-2" >
+                    <label for="exampleFormControlSelect1">Estado</label>
+                    <select class="form-control" id="exampleFormControlSelect1"
+                    [(ngModel)]="estado" name="estado"
+                    (change)="tipoAcaoUf($event.target.value)"  
+                    (click)="onClick($event.click)"
+                    >
+                        <option value="" selected disabled>Selecione</option>
+                        <option *ngFor="let tipoUf of estadoAtendidoDTO" [value]="tipoUf.idEstado">
+                            {{ tipoUf.uf }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6" >
+                    <label for="exampleFormControlSelect2">Município</label>
+                    <select class="form-control" id="exampleFormControlSelect2"
+                    [(ngModel)]="municipio" name="municipio"
+                    >
+                        <option value="" selected disabled>Selecione</option>                    
+                        <option *ngFor="let municipio of municipioAtendidoDTO" [value]="municipio.idMunicipio">
+                            {{municipio.municipio}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">            
+                <div class="form-group col-md-6" >          
+                    <label for="Refe">Referência</label>
+                    <input  class="form-control" type="text" id="Refe" 
+                    name="referencia" [(ngModel)]="gerenciarClienteDTO.referencia" >          
+                </div>            
+            </div>
+
+            <div class="form-row">            
+                <div class="form-group col-md-6" >
+                    <label for="exampleDropdownFormPassword1">Senha</label>
+                    <input  class="form-control" type="password"  id="exampleDropdownFormPassword1"            
+                    name="senha" [(ngModel)]="gerenciarClienteDTO.senha" >
+                </div>            
+            </div>
+            
+            
+            <p>Cancelar acesso</p>
+            <div class="custom-control custom-radio custom-control-inline">                
+                <input type="radio" id="customRadioInline1" name="customRadioInline"  class="custom-control-input"
+                [(ngModel)]="gerenciarClienteDTO.ativo" [value]=true value="true" checked>
+                <label class="custom-control-label" for="customRadioInline1">Não</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline"  class="custom-control-input form-control"
+                [(ngModel)]="gerenciarClienteDTO.ativo" [value]=false value="false">
+                <label class="custom-control-label" for="customRadioInline2">Sim</label>
+            </div>
+
+            <button style="margin: 5px;" [routerLink]="['']" type="reset" class="btn btn-secondary" >Voltar</button>
+            <button style="margin: 5px;" type="submit" class="btn btn-secondary" >Salvar</button>
+        </div>
+    </form> 
+    <br>
+
+    <div class="form-row">
+        <div class="form-group col-md-2" >
+            <label for="exampleDropdownFormPassword1">Logout -> </label>
+                <a href="#" (click)="logout()"><strong> Sair</strong></a>
+        </div>
+        <div class="form-group col-md-6" >
+            <label for="exampleDropdownFormPassword2">Usuário(a) Logado(a): </label>
+            <strong> {{usuarioLogado}}</strong>
         </div>        
     </div>
     
-    <div  *ngIf="gerenciarClienteDTO" >
-
-        <form   #cadForm="ngForm" (submit)="alterar()">
-            
-            <div >
-                <label for="exampleDropdownFormEmailnome">Nome</label>
-                <input type="text" id="exampleDropdownFormEmailnome" 
-                name="nome" [(ngModel)]="gerenciarClienteDTO.nome" >            
-            </div>
-            <div>
-                <label for="exampleDropdownFormEmailcpf">CPF</label>
-                <input type="text" id="exampleDropdownFormEmailcpf" 
-                name="cpf" [(ngModel)]="gerenciarClienteDTO.cpf" >
-            </div>
-            <div>
-                <label for="exampleDropdownFormEmail1">Email</label>
-                <input type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
-                name="email" [(ngModel)]="gerenciarClienteDTO.email" >
-            </div>
-            <div>
-                <label for="exampleDropdownFormEmailcelular">Celular</label>
-                <input type="text" id="exampleDropdownFormEmailcelular" 
-                name="celular" [(ngModel)]="gerenciarClienteDTO.celular" >
-            </div>
-            <div>
-                <label for="exampleDropdownFormPassword1">Senha</label>
-                <input type="password"  id="exampleDropdownFormPassword1"            
-                name="senha" [(ngModel)]="gerenciarClienteDTO.senha" >
-            </div>
-            <div>
-                <label for="Ender">Endereço</label>
-                <input type="text" id="Ender" 
-                name="endereco" [(ngModel)]="gerenciarClienteDTO.endereco" >
-
-                <label for="Number">Número</label>
-                <input type="text" id="Number"
-                name="numero" [(ngModel)]="gerenciarClienteDTO.numero" >
-            </div>
-            <div>
-                <label for="Bairro">Bairro</label>
-                <input type="text" id="Bairro" 
-                name="bairro" [(ngModel)]="gerenciarClienteDTO.bairro" >
-
-                <label for="Complement">Complemento</label>
-                <input type="text" id="Complement" 
-                name="complemento" [(ngModel)]="gerenciarClienteDTO.complemento" >
-            </div>
-
-
-            <div class="form-group" >
-                <label for="exampleFormControlSelect1">Estado</label>
-                <select class="form-control" id="exampleFormControlSelect1"
-                [(ngModel)]="estado" name="estado"
-                (change)="tipoAcaoUf($event.target.value)"  
-                (click)="onClick($event.click)"
-                >
-                    <option value="" selected disabled>Selecione</option>
-                    <option *ngFor="let tipoUf of estadoAtendidoDTO" [value]="tipoUf.idEstado">
-                        {{ tipoUf.uf }}
-                    </option>
-                </select>
-            </div>
-    
-            <div class="form-group" >
-                <label for="exampleFormControlSelect2">Município</label>
-                <select class="form-control" id="exampleFormControlSelect2"
-                [(ngModel)]="municipio" name="municipio"
-                >
-                    <option value="" selected disabled>Selecione</option>                    
-                    <option *ngFor="let municipio of municipioAtendidoDTO" [value]="municipio.idMunicipio">
-                        {{municipio.municipio}}
-                    </option>
-                </select>
-            </div>
-
-            <div >
-                <label for="Refe">Referência</label>
-                <input type="text" id="Refe" 
-                name="referencia" [(ngModel)]="gerenciarClienteDTO.referencia" >
-            </div>          
-            <div>
-                <p>Cancelar acesso</p>
-                <div class="custom-control custom-radio custom-control-inline">                
-                    <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input"
-                    [(ngModel)]="gerenciarClienteDTO.ativo" [value]=true value="true" >
-                    <label class="custom-control-label" for="customRadioInline1">Não</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input"
-                    [(ngModel)]="gerenciarClienteDTO.ativo" [value]=false value="false">
-                    <label class="custom-control-label" for="customRadioInline2">Sim</label>
-                </div>
-            </div>
-            <br>        
-            <button style="margin: 5px;" [routerLink]="['']" type="reset" class="btn btn-secondary" >Voltar</button>
-            <button style="margin: 5px;" type="submit" class="btn btn-secondary" >Salvar</button>
-        </form> 
-    </div>
-</div>
-<div>
-    <div>Logout</div>
-    <div class="card-footer text-center">
-        <div class="small">
-            <a href="#" (click)="logout()" >
-                Sair
-            </a>
-        </div>    
-    </div>
-    <div>Usuário Logado</div>
-    <div class="card-footer text-center">
-        <div class="small">
-            {{usuarioLogado}}
-        </div>    
-    </div>
 </div>

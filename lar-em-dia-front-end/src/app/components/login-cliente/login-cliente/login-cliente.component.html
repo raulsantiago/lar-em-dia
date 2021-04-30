@@ -1,100 +1,118 @@
 <br>
 <div class="container">
-    <h1>Bem vindo Cliente</h1>    
-
-    <div class="card-header">
-        <h3 class="text-center font-weight-light my-4">
+    <h1>Bem vindo Cliente</h1>  
+    <br>    
+    <div class="card-body">
+        <h3 class="card-title">
             {{ cadastrando ? 'Cadastro de Novo Cliente' : 'Entre com seu login' }}
         </h3>
     </div>
     <div class="alert alert-success" *ngIf="mensagemSucesso">
         {{ mensagemSucesso }}
     </div>
-
     <div class="alert alert-danger" *ngFor="let erro of errors">
         {{ erro }}
     </div>
 
     <form #loginForm="ngForm" (submit)="onSubmit();">
-    
-        <div *ngIf="cadastrando">
-            <label for="exampleDropdownFormEmailnome">Nome</label>
-            <input type="text" id="exampleDropdownFormEmailnome" 
-            name="nome" [(ngModel)]="nome" >            
-        </div>
-        <div *ngIf="cadastrando">
-            <label for="exampleDropdownFormEmailcpf">CPF</label>
-            <input type="text" id="exampleDropdownFormEmailcpf" 
-            name="cpf" [(ngModel)]="cpf" >
-        </div>
-        <div >
-            <label for="exampleDropdownFormEmail1">Email</label>
-            <input type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
-            name="email" [(ngModel)]="email" >
-        </div>
-        <div *ngIf="cadastrando">
-            <label for="exampleDropdownFormEmailcelular">Celular</label>
-            <input type="text" id="exampleDropdownFormEmailcelular" 
-            name="celular" [(ngModel)]="celular" >
-        </div>
-        <div>
-            <label for="exampleDropdownFormPassword1">Senha</label>
-            <input type="password"  id="exampleDropdownFormPassword1"            
-            name="senha" [(ngModel)]="senha" >
-        </div>
-        <div *ngIf="cadastrando">
-            <label for="Ender">Endereço</label>
-            <input type="text" id="Ender" 
-            name="endereco" [(ngModel)]="endereco" >
-
-            <label for="Number">Número</label>
-            <input type="text" id="Number"
-            name="numero" [(ngModel)]="numero" >
-        </div>
-        <div *ngIf="cadastrando">
-            <label for="Bairro">Bairro</label>
-            <input type="text" id="Bairro" 
-            name="bairro" [(ngModel)]="bairro" >
-
-            <label for="Complement">Complemento</label>
-            <input type="text" id="Complement" 
-            name="complemento" [(ngModel)]="complemento" >
+        <div class="form-row">    
+            <div class="form-group col-md-6" *ngIf="cadastrando">
+                <label for="exampleDropdownFormEmailnome">Nome</label>
+                <input class="form-control" type="text" id="exampleDropdownFormEmailnome" 
+                name="nome" [(ngModel)]="nome" >            
+            </div>
+            <div class="form-group col-md-4" *ngIf="cadastrando">
+                <label for="exampleDropdownFormEmailcpf">CPF</label>
+                <input  class="form-control" type="text" id="exampleDropdownFormEmailcpf" 
+                name="cpf" [(ngModel)]="cpf" >
+            </div>
+            <div class="form-group col-md-6" >
+                <label for="exampleDropdownFormEmail1">Email</label>
+                <input  class="form-control" type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
+                name="email" [(ngModel)]="email" >
+            </div>
+            <div class="form-group col-md-4" *ngIf="cadastrando">
+                <label for="exampleDropdownFormEmailcelular">Celular</label>
+                <input  class="form-control" type="text" id="exampleDropdownFormEmailcelular" 
+                name="celular" [(ngModel)]="celular" >
+            </div>
         </div>
 
-        <div class="form-group" *ngIf="cadastrando">
-            <label for="exampleFormControlSelect1">Estado</label>
-            <select class="form-control" id="exampleFormControlSelect1"
-            [(ngModel)]="estado" name="estado"
-            (change)="tipoAcaoUf($event.target.value)"               
-            >
-                <option value="" selected disabled>Selecione</option>
-                <option *ngFor="let tipoUf of estadoAtendidoDTO" [value]="tipoUf.idEstado">{{tipoUf.uf}}</option>
-            </select>
+        <div class="form-row" *ngIf="cadastrando">
+            <div class="form-group col-md-6" >
+                <label for="Ender">Endereço</label>
+                <input class="form-control"  type="text" id="Ender" 
+                name="endereco" [(ngModel)]="endereco" >
+            </div>
+            <div class="form-group col-md-2" >
+                <label for="Number">Número</label>
+                <input class="form-control"  type="text" id="Number"
+                name="numero" [(ngModel)]="numero" >
+            </div>
         </div>
 
-        <div class="form-group" *ngIf="cadastrando">
-            <label for="exampleFormControlSelect2">Município</label>
-            <select class="form-control" id="exampleFormControlSelect2"
-            [(ngModel)]="municipio" name="municipio"             
-            >
-                <option value="" selected disabled>Selecione</option>
-                <option *ngFor="let municipio of municipioAtendidoDTO" [value]="municipio.idMunicipio">{{municipio.municipio}}</option>
-            </select>
+        <div class="form-row" *ngIf="cadastrando" >
+            <div  class="form-group col-md-4"  >
+                <label for="Bairro">Bairro</label>
+                <input class="form-control"  type="text" id="Bairro" 
+                name="bairro" [(ngModel)]="bairro" >
+            </div>
+            <div class="form-group col-md-6" >
+                <label for="Complement">Complemento</label>
+                <input class="form-control"  type="text" id="Complement" 
+                name="complemento" [(ngModel)]="complemento" >
+            </div>
         </div>
-        <div  *ngIf="cadastrando">
-            <label for="Refe">Referência</label>
-            <input type="text" id="Refe" 
-            name="referencia" [(ngModel)]="referencia" >
-        </div>          
+
+        <div class="form-row" *ngIf="cadastrando">
+
+            <div class="form-group col-md-2" >
+                <label for="exampleFormControlSelect1">Estado</label>
+                <select class="form-control" id="exampleFormControlSelect1"
+                [(ngModel)]="estado" name="estado"
+                (change)="tipoAcaoUf($event.target.value)"               
+                >
+                    <option value="" selected disabled>Selecione</option>
+                    <option *ngFor="let tipoUf of estadoAtendidoDTO" [value]="tipoUf.idEstado">{{tipoUf.uf}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-6" >
+                <label for="exampleFormControlSelect2">Município</label>
+                <select class="form-control" id="exampleFormControlSelect2"
+                [(ngModel)]="municipio" name="municipio"             
+                >
+                    <option value="" selected disabled>Selecione</option>
+                    <option *ngFor="let municipio of municipioAtendidoDTO" [value]="municipio.idMunicipio">{{municipio.municipio}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row" *ngIf="cadastrando"> 
+            <div class="form-group col-md-6" >
+                <label for="Refe">Referência</label>
+                <input  class="form-control" type="text" id="Refe" 
+                name="referencia" [(ngModel)]="referencia" >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6" >
+                <label for="exampleDropdownFormPassword1">Senha</label>
+                <input  class="form-control" type="password"  id="exampleDropdownFormPassword1"            
+                name="senha" [(ngModel)]="senha" >
+            </div>
+        </div>
+
         <div  *ngIf="cadastrando">            
             <p>Cancelar acesso</p>
             <div class="custom-control custom-radio custom-control-inline">                
-                <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input"
-                [(ngModel)]="ativo" [value]=true value="true" >
+                <input type="radio" id="customRadioInline1" name="customRadioInline"  class="custom-control-input"
+                [(ngModel)]="ativo" [value]=true value="true" checked>
                 <label class="custom-control-label" for="customRadioInline1">Não</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input"
+                <input type="radio" id="customRadioInline2" name="customRadioInline"  class="custom-control-input"
                 [(ngModel)]="ativo" [value]=false value="false">
                 <label class="custom-control-label" for="customRadioInline2">Sim</label>
             </div>
@@ -120,14 +138,16 @@
         
         
     </form> 
-    <div></div>   
+    <br>
     <div class="card-footer text-center">
-        <div class="small">
+        <div >
             <a href="#" (click)="preparaCadastrar($event)" >
                 Não possui Usuário? Cadastre-se!
             </a>
         </div>
-        <a href="#">Esqueceu a senha?</a>
+        <div>
+            <a href="#">  Esqueceu a senha?</a>
+        </div>        
     </div>
     
 </div>

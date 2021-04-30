@@ -1,7 +1,7 @@
 <br>
 <div class="container">
     <h1>Cadastro do Serviço Profissional</h1>        
-
+    <br>
     <div class="alert alert-success" *ngIf="mensagemSucesso">
         {{ mensagemSucesso }}
     </div>
@@ -10,20 +10,27 @@
     </div>
 
     <form   #cadForm="ngForm" (submit)="inserir()">
-        <div >
-            <label for="exampleDropdownFormEmailnome">Onde será o serviço</label>
-            <input type="text" id="exampleDropdownFormEmailnome" 
-            name="nomeServico" [(ngModel)]="nomeServico" >
+        <div class="form-row">
+            <div class="form-group col-md-6"  >
+                <label for="exampleDropdownFormEmailnome">Onde será o serviço</label>
+                <input  class="form-control" type="text" id="exampleDropdownFormEmailnome" 
+                name="nomeServico" [(ngModel)]="nomeServico" >
+            </div>
         </div>
-        <div >
-            <label for="exampleDropdownFormEmailcpf">Tipo do serviço</label>
-            <input type="text" id="exampleDropdownFormEmailcpf" 
-            name="nomeTipo" [(ngModel)]="nomeTipo" >
+
+        <div class="form-row">
+            <div class="form-group col-md-6"  >
+                <label for="exampleDropdownFormEmailcpf">Tipo do serviço</label>
+                <input  class="form-control" type="text" id="exampleDropdownFormEmailcpf" 
+                name="nomeTipo" [(ngModel)]="nomeTipo" >
+            </div>        
         </div>        
-        <div>
-            <label for="exampleDropdownFormEmailcelular">Preço</label>
-            <input type="text" id="exampleDropdownFormEmailcelular" 
-            name="preco" [(ngModel)]="preco" >
+        <div class="form-row">
+            <div class="form-group col-md-2"  >
+                <label for="exampleDropdownFormEmailcelular">Preço</label>
+                <input class="form-control" type="text" id="exampleDropdownFormEmailcelular" 
+                name="preco" [(ngModel)]="preco" >
+            </div>
         </div>
         <br>
         <button style="margin: 5px;" [routerLink]="['/listarservico']" type="reset"class="btn btn-secondary" >Voltar</button>

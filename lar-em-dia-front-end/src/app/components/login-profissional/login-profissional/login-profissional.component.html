@@ -1,57 +1,63 @@
 <br>
 <div class="container">
     <h1>Bem vindo Profissional</h1>    
-
-    <div class="card-header">
-        <h3 class="text-center font-weight-light my-4">
+    <br>  
+    <div class="card-body">
+        <h3 class="card-title">
             {{ cadastrando ? 'Cadastro de Novo Profissional' : 'Entre com seu login' }}
         </h3>
     </div>
     <div class="alert alert-success" *ngIf="mensagemSucesso">
         {{ mensagemSucesso }}
     </div>
-
     <div class="alert alert-danger" *ngFor="let erro of errors">
         {{ erro }}
     </div>
 
     <form #loginForm="ngForm" (submit)="onSubmit();">
+        <div class="form-row">
         
-        <div  *ngIf="cadastrando">
-            <label for="exampleDropdownFormEmailnome">Nome</label>
-            <input type="text" id="exampleDropdownFormEmailnome" 
-            name="nome" [(ngModel)]="nome" />
+            <div class="form-group col-md-6"  *ngIf="cadastrando">
+                <label for="exampleDropdownFormEmailnome">Nome</label>
+                <input class="form-control"  type="text" id="exampleDropdownFormEmailnome" 
+                name="nome" [(ngModel)]="nome" >
+            </div>
+            <div class="form-group col-md-4" *ngIf="cadastrando">
+                <label for="exampleDropdownFormEmailcpf">CPF</label>
+                <input  class="form-control" type="text" id="exampleDropdownFormEmailcpf" 
+                name="cpf" [(ngModel)]="cpf" >
+            </div>
+            <div class="form-group col-md-6" >
+                <label for="exampleDropdownFormEmail1">Email</label>
+                <input class="form-control" type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
+                name="email" [(ngModel)]="email" >
+            </div>
+            <div class="form-group col-md-4" *ngIf="cadastrando">
+                <label for="exampleDropdownFormEmailcelular">Celular</label>
+                <input  class="form-control" type="text" id="exampleDropdownFormEmailcelular" 
+                name="celular" [(ngModel)]="celular" >
+            </div>
         </div>
-        <div  *ngIf="cadastrando">
-            <label for="exampleDropdownFormEmailcpf">CPF</label>
-            <input type="text" id="exampleDropdownFormEmailcpf" 
-            name="cpf" [(ngModel)]="cpf" />
+
+        <div class="form-row">
+            <div class="form-group col-md-6" >
+                <label for="exampleDropdownFormPassword1">Senha</label>
+                <input  class="form-control" type="password"  id="exampleDropdownFormPassword1"
+                name="senha"   [(ngModel)]="senha" >
+            </div>
         </div>
-        <div>
-            <label for="exampleDropdownFormEmail1">Email</label>
-            <input type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
-            name="email" [(ngModel)]="email" />
-        </div>
-        <div  *ngIf="cadastrando">
-            <label for="exampleDropdownFormEmailcelular">Celular</label>
-            <input type="text" id="exampleDropdownFormEmailcelular" 
-            name="celular" [(ngModel)]="celular" />
-        </div>
-        <div>
-            <label for="exampleDropdownFormPassword1">Senha</label>
-            <input type="password"  id="exampleDropdownFormPassword1"
-            name="senha"   [(ngModel)]="senha" />
-        </div>
+
+        
         <div  *ngIf="cadastrando">
             <p>Cancelar acesso</p>
             <div class="custom-control custom-radio custom-control-inline">                
-                <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input"
-                [(ngModel)]="ativo" [value]=true />
+                <input type="radio" id="customRadioInline1" name="customRadioInline"  class="custom-control-input"
+                [(ngModel)]="ativo" [value]=true checked>
                 <label class="custom-control-label" for="customRadioInline1">Não</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline2" name="customRadioInline" class="custom-control-input"
-                [(ngModel)]="ativo" [value]=false />
+                <input type="radio" id="customRadioInline2" name="customRadioInline"   class="custom-control-input"
+                [(ngModel)]="ativo" [value]=false >
                 <label class="custom-control-label" for="customRadioInline2">Sim</label>
             </div>
         </div>
@@ -78,15 +84,16 @@
 
     </form>
 
-    <div></div>   
+    <br>
     <div class="card-footer text-center">
-        <div class="small">
+        <div >
             <a href="#" (click)="preparaCadastrar($event)" >
                 Não possui Usuário? Cadastre-se!
             </a>
         </div>
-        <a href="#">Esqueceu a senha?</a>
+        <div>
+            <a href="#">  Esqueceu a senha?</a>
+        </div>        
     </div>
-
     
 </div>

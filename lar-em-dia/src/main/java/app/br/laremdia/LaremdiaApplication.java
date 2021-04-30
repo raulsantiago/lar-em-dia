@@ -66,25 +66,25 @@ public class LaremdiaApplication {
             municipioAtendidoRepository.save(municipioAtendidoEntity);
 
             MunicipioAtendidoEntity municipioAtendidoEntity2 = new MunicipioAtendidoEntity();
-            municipioAtendidoEntity2.setMunicipio("Teste 1");
+            municipioAtendidoEntity2.setMunicipio("São João de Meriti");
             municipioAtendidoEntity2.setAtivo(true);
             municipioAtendidoEntity2.setEstado(estadoAtendidoEntity);
             municipioAtendidoRepository.save(municipioAtendidoEntity2);
 
             MunicipioAtendidoEntity municipioAtendidoEntity3 = new MunicipioAtendidoEntity();
-            municipioAtendidoEntity3.setMunicipio("Teste 2");
+            municipioAtendidoEntity3.setMunicipio("Rio de Janeiro");
             municipioAtendidoEntity3.setAtivo(false);
             municipioAtendidoEntity3.setEstado(estadoAtendidoEntity);
             municipioAtendidoRepository.save(municipioAtendidoEntity3);
 
             MunicipioAtendidoEntity municipioAtendidoEntity4 = new MunicipioAtendidoEntity();
-            municipioAtendidoEntity4.setMunicipio("Teste 3");
+            municipioAtendidoEntity4.setMunicipio("São Paulo");
             municipioAtendidoEntity4.setAtivo(true);
             municipioAtendidoEntity4.setEstado(estadoAtendidoEntity2);
             municipioAtendidoRepository.save(municipioAtendidoEntity4);
 
             MunicipioAtendidoEntity municipioAtendidoEntity5 = new MunicipioAtendidoEntity();
-            municipioAtendidoEntity5.setMunicipio("Teste 4");
+            municipioAtendidoEntity5.setMunicipio("Campos dos Jordão");
             municipioAtendidoEntity5.setAtivo(false);
             municipioAtendidoEntity5.setEstado(estadoAtendidoEntity2);
             municipioAtendidoRepository.save(municipioAtendidoEntity5);
@@ -98,12 +98,10 @@ public class LaremdiaApplication {
             loginCliente.setEndereco("Rua Rafa Audax");
             loginCliente.setNumero("1005");
             loginCliente.setBairro("Laranjeiras");
-            loginCliente.setComplemento("próximo a coca-cola");
+            loginCliente.setComplemento("Bloco 9 Apto 101");
             loginCliente.setMunicipioAtendido(municipioAtendidoEntity);
             loginCliente.setEstadoAtendido(estadoAtendidoEntity);
-//            loginCliente.setEstado("RJ");
-//            loginCliente.setMunicipio("Nova Iguaçu");
-            loginCliente.setReferencia("próximo a coca-cola");
+            loginCliente.setReferencia("Próximo a coca-cola");
             loginCliente.setAtivo(true);
             repositoryCliente.save(loginCliente);
 

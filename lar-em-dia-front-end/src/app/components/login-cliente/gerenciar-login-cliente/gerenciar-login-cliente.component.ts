@@ -52,10 +52,8 @@ export class GerenciarLoginClienteComponent implements OnInit {
     this.exibeSelection = true;
     this.usuarioLogado = this.authService.getUsuarioAutenticado();
     this.loginClienteService.consultarEmail(this.usuarioLogado).subscribe( dado =>{
-      this.gerenciarClienteDTO = dado;
-      console.log(dado);  
-    });
-    console.log(this.gerenciarClienteDTO);
+      this.gerenciarClienteDTO = dado;      
+    });    
     
   }
 
