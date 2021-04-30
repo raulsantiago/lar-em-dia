@@ -9,9 +9,7 @@
       {{ erro }}
   </div>
   <br>
-
-  <form  #cadForm="ngForm" (submit)="inserir()">
-  
+  <form  #cadForm="ngForm" (submit)="inserir()">  
     <div class="form-row align-items-center">
       <div class="col-auto my-1 col-md-3 mb-3">
         <label  for="inlineFormCustomSelect">UF</label>
@@ -49,7 +47,6 @@
           <option value="TO">TO - Tocantins</option>
         </select>
       </div>
-
       <div class="col-auto my-1 col-md-5 mb-3">
         <label  for="inlineFormCustomSelect">Município</label>
         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
@@ -60,15 +57,12 @@
               {{municipio.nome}}
           </option>
         </select>
-      </div>
-      
+      </div>      
       <div >
         <button style="margin-top: 20px;" type="submit" class="btn btn-secondary">Incluir</button>
       </div>
     </div>
-      
   </form>
-
   <br>
   <h5>Lista dos Municípios Atendidos pelo Profisisonal</h5>
   <br>

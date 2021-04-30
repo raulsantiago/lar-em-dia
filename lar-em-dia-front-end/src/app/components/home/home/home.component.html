@@ -21,20 +21,14 @@
     </div>
     </div>        
 </div>
-
-<div>
-    <div>Logout</div>
-    <div class="card-footer text-center">
-        <div class="small">
-            <a href="#" (click)="logout()" >
-                Sair
-            </a>
-        </div>    
+<br>
+<div class="d-flex justify-content-center" >
+    <div  >
+        <label for="exampleDropdownFormPassword1">Logout -> </label>
+            <a href="#" (click)="logout()"><strong> Sair&nbsp;&nbsp;</strong></a>
     </div>
-    <div>Usuário Logado</div>
-    <div class="card-footer text-center">
-        <div class="small">
-            {{usuarioLogado}}
-        </div>    
-    </div>
+    <div  >
+        <label for="exampleDropdownFormPassword2">  Usuário(a) Logado(a):</label>
+        <strong>&nbsp;&nbsp;{{usuarioLogado}}</strong>
+    </div>        
 </div>

@@ -9,15 +9,11 @@
       {{ erro }}
   </div>
   <br>
-
     <form   #cadForm="ngForm" (submit)="alterar()">
-
         <div class="form-row align-items-center">
-
             <div class="col-auto my-1">
                 <h3>UF - Estado: {{ municipioAtendidoDTO?.estadoAtendidoDTO?.uf }}</h3>
             </div>
-
             <div class="col-auto my-1">
               <div class="custom-control custom-checkbox mr-sm-2">
                 <p>Ativo - UF</p>
@@ -35,7 +31,6 @@
             </div>           
         </div>        
         <br>
-
         <div class="form-row align-items-center">
             <div class="col-auto my-1">
                 <h3>Município: {{ municipioAtendidoDTO?.municipio }}</h3>
@@ -55,13 +50,8 @@
                 </div>
               </div>
             </div>           
-        </div> 
-
-        <br>
-        <br> 
-        <br>
+        </div>                 
         <button style="margin: 5px;" [routerLink]="['/regiao']" type="reset" class="btn btn-secondary" >Voltar</button>
         <button style="margin: 5px;" type="submit" class="btn btn-secondary" >Salvar</button>
-    </form>
-    
+    </form>    
 </div>
