@@ -45,6 +45,11 @@ public class RegiaoAtendidaService {
         return municipioAtendidoEntity.map(MunicipioAtendidoDTO::new).orElseThrow(() -> new BusinessException("Município não encontrado."));
     }
 
+    public EstadoAtendidoDTO consultarUf(Integer idUf){
+        Optional<EstadoAtendidoEntity> estadoAtendidoEntity =  estadoAtendidoRepository.findById(idUf);
+        return estadoAtendidoEntity.map(EstadoAtendidoDTO::create).orElseThrow(() -> new BusinessException("Estado não encontrado."));
+    }
+
 
     public IncluirMunicipioAtendidoDTO inserir(IncluirMunicipioAtendidoDTO incluirMunicipioAtendidoDTO){
         Optional< EstadoAtendidoEntity > entityUf = estadoAtendidoRepository.findByUf(incluirMunicipioAtendidoDTO.getUf());

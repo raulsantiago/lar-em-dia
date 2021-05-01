@@ -1,8 +1,13 @@
 package app.br.laremdia.service;
 
+import app.br.laremdia.model.dto.IncluirLoginClienteDTO;
 import app.br.laremdia.model.dto.LoginClienteDTO;
+import app.br.laremdia.model.entity.EstadoAtendidoEntity;
 import app.br.laremdia.model.entity.LoginClienteEntity;
+import app.br.laremdia.model.entity.MunicipioAtendidoEntity;
+import app.br.laremdia.model.repository.EstadoAtendidoRepository;
 import app.br.laremdia.model.repository.LoginClienteRepository;
+import app.br.laremdia.model.repository.MunicipioAtendidoRepository;
 import app.br.laremdia.rest.exception.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,34 +21,38 @@ public class GerenciarClienteService {
     @Autowired
     private LoginClienteRepository loginClienteRepository;
 
+    @Autowired
+    private EstadoAtendidoRepository estadoAtendidoRepository;
+
+    @Autowired
+    private MunicipioAtendidoRepository municipioAtendidoRepository;
+
     public LoginClienteDTO consultarEmail(String email) {
         Optional<LoginClienteEntity> loginClienteEntity = loginClienteRepository.findByEmail(email);
         return loginClienteEntity.map(LoginClienteDTO::new).orElseThrow(() -> new BusinessException("Cliente não encontrado."));
     }
 
-    public LoginClienteDTO alterar(LoginClienteEntity loginClienteEntity, Integer id){
+    public IncluirLoginClienteDTO alterar(IncluirLoginClienteDTO incluirLoginClienteDTO, Integer id){
         Assert.notNull(id, "Não foi possível atualizar o registro");
         Optional<LoginClienteEntity> cliente = loginClienteRepository.findById(id);
         if(cliente.isPresent()){
             LoginClienteEntity loginCliente = cliente.get();
-            loginCliente.setNome(loginClienteEntity.getNome());
-            loginCliente.setCpf(loginClienteEntity.getCpf());
-            loginCliente.setEmail(loginClienteEntity.getEmail());
-            loginCliente.setCelular(loginClienteEntity.getCelular());
-            loginCliente.setSenha(loginClienteEntity.getSenha());
-            loginCliente.setEndereco(loginClienteEntity.getEndereco());
-            loginCliente.setNumero(loginClienteEntity.getNumero());
-            loginCliente.setBairro(loginClienteEntity.getBairro());
-            loginCliente.setComplemento(loginClienteEntity.getComplemento());
-            loginCliente.setEstadoAtendido(loginClienteEntity.getEstadoAtendido());
-            loginCliente.setMunicipioAtendido(loginClienteEntity.getMunicipioAtendido());
-//            loginCliente.setEstado(loginClienteEntity.getEstado());
-//            loginCliente.setMunicipio(loginClienteEntity.getMunicipio());
-            loginCliente.setReferencia(loginClienteEntity.getReferencia());
-            loginCliente.setFoto(loginClienteEntity.getFoto());
-            loginCliente.setAtivo(loginClienteEntity.getAtivo());
-            loginClienteRepository.save(loginCliente);
-            return new LoginClienteDTO(loginCliente);
+            loginCliente.setNome(incluirLoginClienteDTO.getNome());
+            loginCliente.setCpf(incluirLoginClienteDTO.getCpf());
+            loginCliente.setEmail(incluirLoginClienteDTO.getEmail());
+            loginCliente.setCelular(incluirLoginClienteDTO.getCelular());
+            loginCliente.setSenha(incluirLoginClienteDTO.getSenha());
+            loginCliente.setEndereco(incluirLoginClienteDTO.getEndereco());
+            loginCliente.setNumero(incluirLoginClienteDTO.getNumero());
+            loginCliente.setBairro(incluirLoginClienteDTO.getBairro());
+            loginCliente.setComplemento(incluirLoginClienteDTO.getComplemento());
+            loginCliente.setReferencia(incluirLoginClienteDTO.getReferencia());
+            loginCliente.setAtivo(incluirLoginClienteDTO.getAtivo());
+            Optional< EstadoAtendidoEntity > entityEstado = estadoAtendidoRepository.findById(incluirLoginClienteDTO.getIdEstado());
+            Optional< MunicipioAtendidoEntity > entityMunicipio = municipioAtendidoRepository.findById(incluirLoginClienteDTO.getIdMunicipio());
+            loginCliente.setEstadoAtendido(entityEstado.get());
+            loginCliente.setMunicipioAtendido(entityMunicipio.get());
+            return IncluirLoginClienteDTO.create(loginClienteRepository.save(loginCliente));
         } else {
             return null;
         }

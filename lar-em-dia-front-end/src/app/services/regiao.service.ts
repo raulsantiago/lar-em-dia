@@ -41,6 +41,10 @@ export class RegiaoService {
     return this.http.get<MunicipioAtendidoDTO>(`${this.apiURL}/${id}`);
   }
 
+  consultarUf(id: number): Observable<EstadoAtendidoDTO>{
+    return this.http.get<EstadoAtendidoDTO>(`${this.apiURL}/${id}/estado`);
+  }
+
   alterarMunicipio(municipioAtendidoDTO: AlterarMunicipioAtendidoDTO, id: number):  Observable<AlterarMunicipioAtendidoDTO>{
     return this.http.put<AlterarMunicipioAtendidoDTO>(`${this.apiURL}/${id}/municipio`, municipioAtendidoDTO);
   }

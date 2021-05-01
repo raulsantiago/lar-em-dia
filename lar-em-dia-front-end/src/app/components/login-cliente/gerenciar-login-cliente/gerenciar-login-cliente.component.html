@@ -82,13 +82,10 @@
                     <label for="exampleFormControlSelect1">Estado</label>
                     <select class="form-control" id="exampleFormControlSelect1"
                     [(ngModel)]="estado" name="estado"
-                    (change)="tipoAcaoUf($event.target.value)"  
-                    (click)="onClick($event.click)"
+                    (change)="tipoAcaoUf($event.target.value)"                      
                     >
                         <option value="" selected disabled>Selecione</option>
-                        <option *ngFor="let tipoUf of estadoAtendidoDTO" [value]="tipoUf.idEstado">
-                            {{ tipoUf.uf }}
-                        </option>
+                        <option *ngFor="let estado of listaEstadoAtendidoDTO" [value]="estado.idEstado" >{{ estado.uf }}</option>
                     </select>
                 </div>
 
@@ -98,9 +95,7 @@
                     [(ngModel)]="municipio" name="municipio"
                     >
                         <option value="" selected disabled>Selecione</option>                    
-                        <option *ngFor="let municipio of municipioAtendidoDTO" [value]="municipio.idMunicipio">
-                            {{municipio.municipio}}
-                        </option>
+                        <option *ngFor="let municipio of listaMunicipioAtendidoDTO" [value]="municipio.idMunicipio">{{municipio.municipio}}</option>
                     </select>
                 </div>
             </div>

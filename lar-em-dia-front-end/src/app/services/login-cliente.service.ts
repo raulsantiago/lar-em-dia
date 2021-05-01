@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { GerenciarClienteDTO } from '../dto/login-cliente/gerenciar-clienteDTO';
+import { IncluirLoginClienteDTO } from '../dto/login-cliente/incluir-login-clienteDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class LoginClienteService {
     return this.http.get<GerenciarClienteDTO>(`${this.apiURL}/${email}/email`);
   }
 
-  alterar(id: number, gerenciarClienteDTO: GerenciarClienteDTO): Observable<GerenciarClienteDTO> {
-    return this.http.put<GerenciarClienteDTO>(`${this.apiURL}/${id}`, gerenciarClienteDTO);
+  alterar(gerenciarClienteDTO: IncluirLoginClienteDTO, id: number): Observable<IncluirLoginClienteDTO> {
+    return this.http.put<IncluirLoginClienteDTO>(`${this.apiURL}/${id}`, gerenciarClienteDTO);
   }
   
   addFoto(gerenciarClienteDTO: GerenciarClienteDTO, formData: FormData) : Observable<any> {

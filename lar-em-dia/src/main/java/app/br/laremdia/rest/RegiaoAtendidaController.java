@@ -42,6 +42,11 @@ public class RegiaoAtendidaController {
         return ResponseEntity.ok(regiaoAtendidaService.consultar(id));
     }
 
+    @GetMapping("/{idUf}/estado")
+    public  ResponseEntity consultarUf(@PathVariable("idUf") Integer idUf){
+        return ResponseEntity.ok(regiaoAtendidaService.consultarUf(idUf));
+    }
+
     @PostMapping()
     public ResponseEntity inserir(@RequestBody @Valid IncluirMunicipioAtendidoDTO incluirMunicipioAtendidoDTO){
         return ResponseEntity.ok(regiaoAtendidaService.inserir(incluirMunicipioAtendidoDTO));

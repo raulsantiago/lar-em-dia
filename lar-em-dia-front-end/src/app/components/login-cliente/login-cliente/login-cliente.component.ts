@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IncluirLoginClienteDTO } from 'src/app/dto/login-cliente/incluir-login-clienteDTO';
 import { LoginClienteDTO } from 'src/app/dto/login-cliente/login-clienteDTO';
 import { EstadoAtendidoDTO } from 'src/app/dto/regiao/estado-atendidoDTO';
 import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
@@ -28,13 +29,14 @@ export class LoginClienteComponent implements OnInit {
   numero: string;
   bairro: string;
   complemento: string;
-  estado: EstadoAtendidoDTO;
-  municipio: MunicipioAtendidoDTO;
+  estado: number;
+  municipio: number;
   referencia: string;  
   ativo: boolean = true;
 
-  estadoAtendidoDTO: EstadoAtendidoDTO[];
-  municipioAtendidoDTO: MunicipioAtendidoDTO[];
+  estadoAtendidoDTO: EstadoAtendidoDTO;
+  listaEstadoAtendidoDTO: EstadoAtendidoDTO[];
+  listaMunicipioAtendidoDTO: MunicipioAtendidoDTO[];
   
   cadastrando: boolean;
   mensagemSucesso: string;  
@@ -42,7 +44,7 @@ export class LoginClienteComponent implements OnInit {
 
   ngOnInit(): void {   
     this.regiaoService.listarUfAtivo().subscribe( dado => {
-      this.estadoAtendidoDTO = dado;
+      this.listaEstadoAtendidoDTO = dado;
     });
   }
 
@@ -70,12 +72,12 @@ export class LoginClienteComponent implements OnInit {
 
   tipoAcaoUf(idEstado: number){
     this.regiaoService.listarMunicipioAtivoPorUfAtivo(idEstado).subscribe( dado =>{
-      this.municipioAtendidoDTO = dado;
+      this.listaMunicipioAtendidoDTO = dado;      
     });
   }
 
   incluir(){
-    const loginClienteDTO: LoginClienteDTO = new LoginClienteDTO();
+    const loginClienteDTO: IncluirLoginClienteDTO = new IncluirLoginClienteDTO();
     loginClienteDTO.ativo = this.ativo;
     loginClienteDTO.bairro = this.bairro;
     loginClienteDTO.celular = this.celular;
@@ -83,12 +85,12 @@ export class LoginClienteComponent implements OnInit {
     loginClienteDTO.cpf = this.cpf;
     loginClienteDTO.email = this.email;
     loginClienteDTO.endereco = this.endereco;
-    loginClienteDTO.estadoAtendidoDTO = this.estado;    
-    loginClienteDTO.MunicipioAtendidoDTO = this.municipio;
+    loginClienteDTO.idEstado = this.estado;    
+    loginClienteDTO.idMunicipio = this.municipio;
     loginClienteDTO.nome = this.nome;
     loginClienteDTO.numero = this.numero;
     loginClienteDTO.referencia = this.referencia;
-    loginClienteDTO.senha = this.senha;
+    loginClienteDTO.senha = this.senha;    
     this.authService.incluirCliente(loginClienteDTO)
     .subscribe( response => {      
       this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";

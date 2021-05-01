@@ -18,6 +18,6 @@ export class GerenciarClienteDTO {
     ativo: boolean;
 
     estadoAtendidoDTO: EstadoAtendidoDTO;
-    MunicipioAtendidoDTO: MunicipioAtendidoDTO;
+    municipioAtendidoDTO: MunicipioAtendidoDTO;
 
 }

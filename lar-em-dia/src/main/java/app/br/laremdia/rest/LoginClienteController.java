@@ -1,10 +1,12 @@
 package app.br.laremdia.rest;
 
+import app.br.laremdia.model.dto.IncluirLoginClienteDTO;
 import app.br.laremdia.model.entity.LoginClienteEntity;
 import app.br.laremdia.rest.exception.UsuarioException;
 import app.br.laremdia.service.LoginClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -19,9 +21,9 @@ public class LoginClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LoginClienteEntity incluir(@RequestBody @Valid LoginClienteEntity loginClienteEntity){
+    public ResponseEntity incluir(@RequestBody @Valid IncluirLoginClienteDTO incluirLoginClienteDTO){
         try{
-            return loginClienteService.incluir(loginClienteEntity);
+            return ResponseEntity.ok(loginClienteService.incluir(incluirLoginClienteDTO));
         }catch (UsuarioException e){
             e.printStackTrace();
             throw new ResponseStatusException( HttpStatus.BAD_REQUEST, e.getMessage() );

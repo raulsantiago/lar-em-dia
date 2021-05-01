@@ -6,6 +6,7 @@ import { environmentToken } from 'src/environments/environment.token';
 import { LoginProfissionalDTO } from '../dto/login-profissional/login-profissionalDTO';
 import { JwtHelperService } from '@auth0/angular-jwt'  
 import { LoginClienteDTO } from '../dto/login-cliente/login-clienteDTO';
+import { IncluirLoginClienteDTO } from '../dto/login-cliente/incluir-login-clienteDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -71,8 +72,8 @@ export class AuthService {
     return this.http.post<LoginProfissionalDTO>(this.apiURLProfissional, loginProfissionalDTO);
   }
 
-  incluirCliente(loginClienteDTO: LoginClienteDTO) : Observable<LoginClienteDTO> {
-    return this.http.post<LoginClienteDTO>(this.apiURLCliente, loginClienteDTO);
+  incluirCliente(loginClienteDTO: IncluirLoginClienteDTO) : Observable<IncluirLoginClienteDTO> {
+    return this.http.post<IncluirLoginClienteDTO>(this.apiURLCliente, loginClienteDTO);
   }
 
 

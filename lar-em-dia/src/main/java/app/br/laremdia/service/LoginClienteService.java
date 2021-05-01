@@ -1,7 +1,12 @@
 package app.br.laremdia.service;
 
+import app.br.laremdia.model.dto.IncluirLoginClienteDTO;
+import app.br.laremdia.model.entity.EstadoAtendidoEntity;
 import app.br.laremdia.model.entity.LoginClienteEntity;
+import app.br.laremdia.model.entity.MunicipioAtendidoEntity;
+import app.br.laremdia.model.repository.EstadoAtendidoRepository;
 import app.br.laremdia.model.repository.LoginClienteRepository;
+import app.br.laremdia.model.repository.MunicipioAtendidoRepository;
 import app.br.laremdia.rest.exception.UsuarioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -10,18 +15,42 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LoginClienteService implements UserDetailsService  {
 
     @Autowired
     private LoginClienteRepository loginClienteRepository;
 
-    public LoginClienteEntity incluir(LoginClienteEntity loginClienteEntity){
-        boolean exists = loginClienteRepository.existsByEmail(loginClienteEntity.getEmail());
+    @Autowired
+    private EstadoAtendidoRepository estadoAtendidoRepository;
+
+    @Autowired
+    private MunicipioAtendidoRepository municipioAtendidoRepository;
+
+    public IncluirLoginClienteDTO incluir(IncluirLoginClienteDTO incluirLoginClienteDTO){
+        boolean exists = loginClienteRepository.existsByEmail(incluirLoginClienteDTO.getEmail());
         if(exists){
-            throw new UsuarioException(loginClienteEntity.getEmail());
+            throw new UsuarioException(incluirLoginClienteDTO.getEmail());
         }
-        return loginClienteRepository.save(loginClienteEntity);
+        LoginClienteEntity clienteEntity = new LoginClienteEntity();
+        clienteEntity.setAtivo(incluirLoginClienteDTO.getAtivo());
+        clienteEntity.setBairro(incluirLoginClienteDTO.getBairro());
+        clienteEntity.setCelular(incluirLoginClienteDTO.getCelular());
+        clienteEntity.setComplemento(incluirLoginClienteDTO.getComplemento());
+        clienteEntity.setCpf(incluirLoginClienteDTO.getCpf());
+        clienteEntity.setEmail(incluirLoginClienteDTO.getEmail());
+        clienteEntity.setEndereco(incluirLoginClienteDTO.getEndereco());
+        clienteEntity.setNome(incluirLoginClienteDTO.getNome());
+        clienteEntity.setNumero(incluirLoginClienteDTO.getNumero());
+        clienteEntity.setReferencia(incluirLoginClienteDTO.getReferencia());
+        clienteEntity.setSenha(incluirLoginClienteDTO.getSenha());
+        Optional< EstadoAtendidoEntity > entityEstado = estadoAtendidoRepository.findById(incluirLoginClienteDTO.getIdEstado());
+        Optional< MunicipioAtendidoEntity > entityMunicipio = municipioAtendidoRepository.findById(incluirLoginClienteDTO.getIdMunicipio());
+        clienteEntity.setEstadoAtendido(entityEstado.get());
+        clienteEntity.setMunicipioAtendido(entityMunicipio.get());
+        return IncluirLoginClienteDTO.create(loginClienteRepository.save(clienteEntity));
     }
 
     @Override

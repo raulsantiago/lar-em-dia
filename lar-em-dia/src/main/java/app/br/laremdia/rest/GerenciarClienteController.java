@@ -1,5 +1,6 @@
 package app.br.laremdia.rest;
 
+import app.br.laremdia.model.dto.IncluirLoginClienteDTO;
 import app.br.laremdia.model.dto.LoginClienteDTO;
 import app.br.laremdia.model.entity.LoginClienteEntity;
 import app.br.laremdia.model.entity.LoginProfissionalEntity;
@@ -30,9 +31,9 @@ public class GerenciarClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity alterar(@PathVariable("id") Integer id, @RequestBody @Valid LoginClienteEntity loginClienteEntity){
-        loginClienteEntity.setIdCliente(id);
-        LoginClienteDTO loginClienteDTO = gerenciarClienteService.alterar(loginClienteEntity, id);
+    public ResponseEntity alterar(@PathVariable("id") Integer id, @RequestBody @Valid IncluirLoginClienteDTO incluirLoginClienteDTO){
+        //loginClienteEntity.setIdCliente(id);
+        IncluirLoginClienteDTO loginClienteDTO = gerenciarClienteService.alterar(incluirLoginClienteDTO, id);
         return loginClienteDTO != null ? ResponseEntity.ok(loginClienteDTO) : ResponseEntity.notFound().build();
     }
 
