@@ -1,11 +1,6 @@
 package app.br.laremdia;
 
-import app.br.laremdia.model.entity.LoginClienteEntity;
-import app.br.laremdia.model.entity.LoginProfissionalEntity;
-import app.br.laremdia.model.entity.ServicoProfissionalEntity;
-import app.br.laremdia.model.entity.TipoServicoEntity;
-import app.br.laremdia.model.entity.EstadoAtendidoEntity;
-import app.br.laremdia.model.entity.MunicipioAtendidoEntity;
+import app.br.laremdia.model.entity.*;
 import app.br.laremdia.model.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 @SpringBootApplication
 public class LaremdiaApplication {
@@ -21,7 +19,8 @@ public class LaremdiaApplication {
     public CommandLineRunner commandLineRunner(
             @Autowired LoginProfissionalRepository repository, LoginClienteRepository repositoryCliente,
             TipoServicoRepository tipoServicoRepository, ServicoProfissionalRepository servicoProfissionalRepository,
-            EstadoAtendidoRepository estadoAtendidoRepository, MunicipioAtendidoRepository municipioAtendidoRepository){
+            EstadoAtendidoRepository estadoAtendidoRepository, MunicipioAtendidoRepository municipioAtendidoRepository,
+            PedidoContratadoRepository pedidoContratadoRepository, AgendaRepository agendaRepository){
         return args -> {
             LoginProfissionalEntity loginProfissional = new LoginProfissionalEntity();
             loginProfissional.setNome("Jaque");
@@ -45,7 +44,7 @@ public class LaremdiaApplication {
 
             TipoServicoEntity tipoServico2 = new TipoServicoEntity();
             tipoServico2.setNome("Instalação");
-            tipoServico2.setPreco(new BigDecimal("0.01"));
+            tipoServico2.setPreco(new BigDecimal("10.01"));
             tipoServico2.setServicoProfissional(servicoProfissional);
             tipoServicoRepository.save(tipoServico2);
 
@@ -105,6 +104,53 @@ public class LaremdiaApplication {
             loginCliente.setAtivo(true);
             repositoryCliente.save(loginCliente);
 
+            AgendaEntity agendaEntity = new AgendaEntity();
+            agendaEntity.setDia(LocalDate.of(2021,5,1));
+            agendaEntity.setDisponivel(true);
+            agendaEntity.setTurno("Manhã");
+            agendaRepository.save(agendaEntity);
+
+            AgendaEntity agendaEntity2 = new AgendaEntity();
+            agendaEntity2.setDia(LocalDate.of(2021,5,1));
+            agendaEntity2.setDisponivel(true);
+            agendaEntity2.setTurno("Tarde");
+            agendaRepository.save(agendaEntity2);
+
+            AgendaEntity agendaEntity3 = new AgendaEntity();
+            agendaEntity3.setDia(LocalDate.of(2021,5,2));
+            agendaEntity3.setDisponivel(true);
+            agendaEntity3.setTurno("Manhã");
+            agendaRepository.save(agendaEntity3);
+
+            PedidoContratadoEntity pedidoContratadoEntity = new PedidoContratadoEntity();
+            pedidoContratadoEntity.setDescricao("Casa alta");
+            pedidoContratadoEntity.setLocal("Casa");
+            pedidoContratadoEntity.setDataHoraInicio(ZonedDateTime.of(2021,5,1,10,20, 00, 00, ZoneId.of("Brazil/East")));
+            pedidoContratadoEntity.setDataHoraFim(ZonedDateTime.of(2021,5,1,12,05, 00, 00, ZoneId.of("Brazil/East")));
+            pedidoContratadoEntity.setDespesas(new BigDecimal("150.55"));
+            pedidoContratadoEntity.setSituacao(false);
+            pedidoContratadoEntity.setTipoServico(tipoServico);
+            pedidoContratadoEntity.setAgenda(agendaEntity);
+            pedidoContratadoEntity.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity);
+
+            PedidoContratadoEntity pedidoContratadoEntity2 = new PedidoContratadoEntity();
+            pedidoContratadoEntity2.setDescricao("Apartamento de um quarto");
+            pedidoContratadoEntity2.setLocal("Apartamento");
+            pedidoContratadoEntity2.setSituacao(true);
+            pedidoContratadoEntity2.setTipoServico(tipoServico2);
+            pedidoContratadoEntity2.setAgenda(agendaEntity2);
+            pedidoContratadoEntity2.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity2);
+
+            PedidoContratadoEntity pedidoContratadoEntity3 = new PedidoContratadoEntity();
+            pedidoContratadoEntity3.setDescricao("Sala com um banheiro");
+            pedidoContratadoEntity3.setLocal("Sala comercial");
+            pedidoContratadoEntity3.setSituacao(true);
+            pedidoContratadoEntity3.setTipoServico(tipoServico2);
+            pedidoContratadoEntity3.setAgenda(agendaEntity3);
+            pedidoContratadoEntity3.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity3);
 
         };
     }

@@ -29,6 +29,9 @@ public class LoginClienteService implements UserDetailsService  {
     @Autowired
     private MunicipioAtendidoRepository municipioAtendidoRepository;
 
+    public LoginClienteService() {
+    }
+
     public IncluirLoginClienteDTO incluir(IncluirLoginClienteDTO incluirLoginClienteDTO){
         boolean exists = loginClienteRepository.existsByEmail(incluirLoginClienteDTO.getEmail());
         if(exists){

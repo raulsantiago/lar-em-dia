@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -80,5 +81,8 @@ public class LoginClienteEntity {
     @ManyToOne
     @JoinColumn(name = "id_cliente_id_municipio")
     private MunicipioAtendidoEntity municipioAtendido;
+
+    @OneToMany(mappedBy = "loginCliente", fetch = FetchType.LAZY)
+    private List<PedidoContratadoEntity> pedidoContratados;
 
 }

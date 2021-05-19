@@ -1,9 +1,7 @@
 package app.br.laremdia.model.dto;
 
 import app.br.laremdia.model.entity.LoginClienteEntity;
-import app.br.laremdia.model.entity.MunicipioAtendidoEntity;
 import lombok.Data;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 
 @Data
@@ -22,8 +20,9 @@ public class LoginClienteDTO {
     private String  referencia;
     private byte[]  foto;
     private Boolean ativo;
-    private EstadoAtendidoDTO estadoAtendidoDTO;
+    private EstadoAtendidoDTO    estadoAtendidoDTO;
     private MunicipioAtendidoDTO municipioAtendidoDTO;
+    private PedidoContratadoDTO  pedidoContratadoDTO;
 
     public LoginClienteDTO(LoginClienteEntity loginClienteEntity){
         BeanUtils.copyProperties(loginClienteEntity, this);
@@ -38,7 +37,14 @@ public class LoginClienteDTO {
             BeanUtils.copyProperties(loginClienteEntity.getMunicipioAtendido(), municipioAtendidoDTO);
         }
 
+        if(loginClienteEntity.getPedidoContratados() != null){
+            pedidoContratadoDTO = new PedidoContratadoDTO();
+            BeanUtils.copyProperties(loginClienteEntity.getPedidoContratados(), pedidoContratadoDTO);
+        }
+
     }
+
+    public LoginClienteDTO(){}
 
     public Integer getIdCliente() {
         return idCliente;
@@ -158,5 +164,13 @@ public class LoginClienteDTO {
 
     public void setMunicipioAtendidoDTO(MunicipioAtendidoDTO municipioAtendidoDTO) {
         this.municipioAtendidoDTO = municipioAtendidoDTO;
+    }
+
+    public PedidoContratadoDTO getPedidoContratadoDTO() {
+        return pedidoContratadoDTO;
+    }
+
+    public void setPedidoContratadoDTO(PedidoContratadoDTO pedidoContratadoDTO) {
+        this.pedidoContratadoDTO = pedidoContratadoDTO;
     }
 }

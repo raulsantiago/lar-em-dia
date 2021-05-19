@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginProfissionalDTO } from 'src/app/dto/login-profissional/login-profissionalDTO';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login-profissional',
@@ -24,12 +26,26 @@ export class LoginProfissionalComponent implements OnInit {
   senha: string;  
   ativo: boolean = true;
 
+  textoEncriptado: string;
+  textoDesencriptado: string;
+
   cadastrando: boolean;
   mensagemSucesso: string;  
   errors: String[];
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    //this.converterSenha;    
   }
+
+  // converterSenha(conversion: string) {
+  //   if (conversion === 'encriptar') {
+  //     this.textoEncriptado = CryptoJS.AES.encrypt(this.senha.trim(), environment.key.trim()).toString();
+  //     console.log(this.textoEncriptado);
+  //   } else {
+  //     this.textoDesencriptado = CryptoJS.AES.decrypt(this.senha.trim(), environment.key.trim()).toString(CryptoJS.enc.Utf8);
+  //     console.log(this.textoDesencriptado);
+  //   }
+  // }
 
   onSubmit(){
     this.authService

@@ -13,6 +13,7 @@ public class TipoServicoDTO {
     private String                 nome;
     private BigDecimal             preco;
     private ServicoProfissionalDTO servicoProfissionalDTO;
+    private PedidoContratadoDTO    pedidoContratadoDTO;
 
     public TipoServicoDTO(TipoServicoEntity tipoServicoEntity){
         BeanUtils.copyProperties(tipoServicoEntity, this);
@@ -20,6 +21,11 @@ public class TipoServicoDTO {
         if(tipoServicoEntity.getServicoProfissional() != null){
             servicoProfissionalDTO = new ServicoProfissionalDTO();
             BeanUtils.copyProperties(tipoServicoEntity.getServicoProfissional(), servicoProfissionalDTO);
+        }
+
+        if(tipoServicoEntity.getPedidoContratados() != null){
+            pedidoContratadoDTO = new PedidoContratadoDTO();
+            BeanUtils.copyProperties(tipoServicoEntity.getPedidoContratados(), pedidoContratadoDTO);
         }
     }
 
@@ -57,4 +63,13 @@ public class TipoServicoDTO {
     public void setServicoProfissionalDTO(ServicoProfissionalDTO servicoProfissionalDTO) {
         this.servicoProfissionalDTO = servicoProfissionalDTO;
     }
+
+    public PedidoContratadoDTO getPedidoContratadoDTO() {
+        return pedidoContratadoDTO;
+    }
+
+    public void setPedidoContratadoDTO(PedidoContratadoDTO pedidoContratadoDTO) {
+        this.pedidoContratadoDTO = pedidoContratadoDTO;
+    }
+
 }

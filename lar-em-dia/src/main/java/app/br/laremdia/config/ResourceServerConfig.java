@@ -13,7 +13,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //     .permitAll() - permite a todos os usuário e não usuários, não necessita de autenticação
 //     .hasAnyRole() - permite varios usuários especificando criados na classe SecurityConfig
 //     .hasRole() - permite um usuário criados na classe SecurityConfig
-//     API coringa aceita tudo depois do **  "/api/clientes/**"
+//     API coringa aceita tudo depois do /**  "/api/clientes/**"
 //     .authenticated() - só para usuário autenticados.
 //     .anyRequest().denyAll() - negae acesso a todas as outras sem configiração
 
@@ -22,7 +22,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/loginprofissional", "/gerenciarprofissional/**", "/logincliente",
-                        "/gerenciarcliente/**", "/servico/**", "/tiposervico/**", "/regiao/**").permitAll()
+                        "/gerenciarcliente/**", "/servico/**", "/tiposervico/**", "/regiao/**",
+                        "/agenda/**").permitAll()
                 //.antMatchers("/gerenciarprofissional/**").authenticated()
                 .anyRequest().denyAll();
         ;

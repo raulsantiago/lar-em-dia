@@ -8,6 +8,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,5 +34,8 @@ public class TipoServicoEntity {
     @ManyToOne
     @JoinColumn(name = "id_tipo_id_servico")
     private ServicoProfissionalEntity servicoProfissional;
+
+    @OneToMany(mappedBy = "tipoServico", fetch = FetchType.LAZY)
+    private List<PedidoContratadoEntity> pedidoContratados;
 
 }

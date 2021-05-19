@@ -4,7 +4,8 @@
 
 export const environment = {  
   production: false,
-  api: '/rest'  
+  api: '/rest',
+  key: 'auvaverdeemelhorqueauvavermelha'  
 };
 
 /*
