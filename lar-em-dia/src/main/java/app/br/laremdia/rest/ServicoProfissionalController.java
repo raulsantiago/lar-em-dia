@@ -21,6 +21,11 @@ public class ServicoProfissionalController {
         return  ResponseEntity.ok(servicoProfissionalService.listar());
     }
 
+    @GetMapping("/ativos")
+    public ResponseEntity listarAtivos(){
+        return  ResponseEntity.ok(servicoProfissionalService.listarAtivos());
+    }
+
     @GetMapping("/{id}")
     public  ResponseEntity consultar(@PathVariable("id") Integer id){
         return ResponseEntity.ok(servicoProfissionalService.consultar(id));

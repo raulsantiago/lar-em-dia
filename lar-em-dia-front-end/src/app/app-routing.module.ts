@@ -12,6 +12,9 @@ import { IncluirTipoServicoComponent } from './components/servico-profissional/i
 import { GerenciarMunicipioComponent } from './components/regiao/gerenciar-municipio/gerenciar-municipio.component';
 import { ConfigurarMunicipioEstadoComponent } from './components/regiao/configurar-municipio-estado/configurar-municipio-estado.component';
 import { AgendaComponent } from './components/agenda/agenda/agenda.component';
+import { ListarServicoSolicitacaoComponent } from './components/pedido/listar-servico-solicitacao/listar-servico-solicitacao.component';
+import { ListarTipoServicoComponent } from './components/pedido/listar-tipo-servico/listar-tipo-servico.component';
+import { AgendarServicoComponent } from './components/pedido/agendar-servico/agendar-servico.component';
 
 
 
@@ -27,7 +30,10 @@ const routes: Routes = [
   { path: 'cadastrartiposervico/:id', component: IncluirTipoServicoComponent },
   { path: 'regiao', component: GerenciarMunicipioComponent },
   { path: 'regiao/:id', component: ConfigurarMunicipioEstadoComponent },
-  { path: 'agenda', component: AgendaComponent }
+  { path: 'agenda', component: AgendaComponent },
+  { path: 'solicitar', component: ListarServicoSolicitacaoComponent },
+  { path: 'solicitar/:id', component: ListarTipoServicoComponent },
+  { path: 'agendar/:id', component: AgendarServicoComponent }
   
 ];
 

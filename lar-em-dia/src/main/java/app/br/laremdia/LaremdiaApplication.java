@@ -106,7 +106,7 @@ public class LaremdiaApplication {
 
             AgendaEntity agendaEntity = new AgendaEntity();
             agendaEntity.setDia(LocalDate.of(2021,5,1));
-            agendaEntity.setDisponivel(true);
+            agendaEntity.setDisponivel(false);
             agendaEntity.setTurno("Manhã");
             agendaRepository.save(agendaEntity);
 

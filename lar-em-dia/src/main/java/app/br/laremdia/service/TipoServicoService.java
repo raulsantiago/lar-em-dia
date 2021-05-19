@@ -31,7 +31,7 @@ public class TipoServicoService {
     }
 
     public List<TipoServicoDTO> listarPorUmServico(Integer id){
-        return  tipoServicoRepository.findAllByServicoProfissional_IdServicoOrderByNome(id).stream().map(TipoServicoDTO::new).collect(Collectors.toList());
+        return  tipoServicoRepository.findAllByServicoProfissional_IdServicoOrderByNomeAsc(id).stream().map(TipoServicoDTO::new).collect(Collectors.toList());
     }
 
     public TipoServicoDTO consultar(Integer id){

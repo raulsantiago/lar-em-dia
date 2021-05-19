@@ -1,0 +1,93 @@
+<br>
+<div class="container">
+  <h1>Contratar o Serviço</h1>
+  <br>
+  <div class="alert alert-success" *ngIf="mensagemSucesso">
+      {{ mensagemSucesso }}
+  </div>
+  <div class="alert alert-danger" *ngFor="let erro of errors">
+      {{ erro }}
+  </div>
+  <br>
+  <h4>Serviço: {{tipoServicoProfissionalDTO.servicoProfissionalDTO.nome}}</h4>
+  <h4>Tipo: {{tipoServicoProfissionalDTO.nome}}  Valor: {{tipoServicoProfissionalDTO.preco}}</h4>
+  <br>
+  <form  #cadForm="ngForm" (submit)="inserir()">  
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1 col-md-4 mb-3">
+        <label  for="inlineFormCustomSelect">Local</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+        [(ngModel)]="local" name="local"  >
+          <option selected disabled>Selecione</option>
+          <option value="Apartamento">Apartamento</option>
+          <option value="Casa de um pavimento">Casa de um pavimento</option>
+          <option value="Casa de dois pavimentos">Casa de dois pavimentos</option>
+          <option value="Casa de mais de dois pavimentos">Casa de mais de dois pavimentos</option>          
+          <option value="Sala comercial">Sala comercial</option>
+        </select>
+      </div>
+      <div class="col-auto my-1 col-md-3 mb-3">
+        <label  for="inlineFormCustomSelect">Data e turno</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+        [(ngModel)]="data" name="data"
+        >
+          <option value="" selected disabled>Selecione</option>                    
+          <option *ngFor="let data of listarAgendaDTO" [value]="data.idAgenda">
+              {{data.dia | date: 'dd/MM/yyyy' }} - {{data.turno}}
+          </option>
+        </select>
+      </div>
+      <br>
+      <div class="col my-1 col-md-7">
+        <label for="exampleFormControlTextarea1">Descrição detalhada da situação do local onde o serviço será executado</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Exemplo: O ar condicionado está dentro do telhado" 
+        [(ngModel)]="descricao" name="descricao" ></textarea>
+      </div>      
+      <div class="form-group">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1"
+            (click)="habilitar()" >
+            <label class="form-check-label" for="exampleCheck1">Aceite no terno de compromisso.   
+                <a href="" onclick="return false;" data-toggle="modal" data-target="#exampleModal" >  
+                    Click aqui para visualizar o termo!</a></label>
+        </div>      
+      </div>      
+    </div>
+    <div>
+        <button style="margin: 5px;" (click)="backClicked()" type="reset" class="btn btn-secondary" >Voltar</button>
+        <button style="margin: 5px;" type="submit" class="btn btn-secondary" [hidden]="!ativar" >Confirmar</button>
+    </div>
+  </form>
+  
+  
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Termo de Compromisso do Serviço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis fringilla ligula, et accumsan lacus. Proin lobortis ligula quis felis suscipit fermentum. Curabitur in sagittis mauris. Etiam tristique felis et urna accumsan, id sagittis velit egestas. Praesent mattis magna quis ligula mollis suscipit. Nullam et hendrerit lorem, vitae hendrerit mi. Nulla facilisi. Cras eu magna sit amet enim lobortis pharetra quis non purus. Duis sit amet magna et ligula accumsan tincidunt sed nec eros. Donec facilisis orci ac dolor mollis, non gravida turpis vulputate. Aliquam erat volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc nec dictum sapien. Aenean finibus, nisi nec posuere viverra, mauris nisl pulvinar diam, at accumsan est erat volutpat metus. Suspendisse sed eleifend nulla. Pellentesque eu metus lectus.
+
+            Vivamus ut velit vitae nunc sollicitudin efficitur nec id mi. Sed a erat vitae magna fermentum gravida. Sed suscipit egestas semper. Proin lacinia eleifend nibh, sed venenatis neque sodales eget. Nam eu mauris placerat, lacinia ipsum in, dignissim ex. Ut sodales metus et augue gravida faucibus. Nulla at elit arcu. Etiam quis nunc id nunc suscipit iaculis ac vitae turpis. Donec porttitor tincidunt mollis. Quisque semper justo mauris, nec interdum ante maximus gravida. Duis eget hendrerit metus, non porttitor magna. Fusce vel sodales est. Curabitur et laoreet purus. Vestibulum vitae ultricies ante, sed convallis sem. Quisque dolor metus, suscipit id commodo ac, sodales vel justo.
+            
+            Pellentesque a hendrerit ex. Nunc mi purus, gravida at imperdiet sit amet, commodo sed purus. Pellentesque gravida dui a nunc congue, et hendrerit nisi congue. Maecenas eu mattis tellus. In varius elit id imperdiet mollis. Suspendisse aliquam felis quis magna mollis volutpat. Morbi ullamcorper suscipit leo, in tincidunt nulla vestibulum eget. Fusce nec leo et dui dapibus tempus. Aliquam erat volutpat. Nam tristique tristique ipsum, a fringilla orci dapibus non. Donec aliquet nunc sit amet purus tempus sodales. Sed rhoncus turpis vel viverra sagittis. Curabitur nec dolor tristique, suscipit lacus non, convallis dui. In suscipit vitae sem in accumsan. Phasellus nec enim blandit, lacinia leo et, mollis risus.
+            
+            Duis vulputate dapibus dignissim. Etiam eget nisl in sem eleifend aliquam in ut arcu. Sed ipsum risus, posuere sit amet nunc nec, vehicula blandit dui. Praesent laoreet eros ut massa tempus rutrum. Suspendisse a lectus at ante tempus sagittis sit amet nec ligula. In ultrices orci in luctus egestas. Pellentesque ultrices orci risus, quis faucibus felis vehicula sit amet. Suspendisse lobortis suscipit erat eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+            
+            Integer in iaculis justo. Cras cursus elit et quam ullamcorper, a posuere risus mattis. Integer dapibus urna sit amet ex consequat mollis. Suspendisse sit amet eleifend nisl, ac faucibus tortor. Aenean luctus nisi posuere diam euismod dictum. Donec ac leo libero. Suspendisse porta orci arcu, et congue justo consectetur vel. Donec non nisi dolor. Vivamus felis enim, bibendum at quam ut, sodales porttitor nisl. Integer tincidunt non est quis euismod.
+            
+            Generated 5 paragraphs, 483 words, 3175 bytes of Lorem Ipsum
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>          
+        </div>
+      </div>
+    </div>
+  </div>

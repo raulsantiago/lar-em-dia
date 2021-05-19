@@ -25,7 +25,7 @@ public class PedidoContratadoEntity {
     @Column(nullable = true)
     private String descricao;
 
-    @Column(nullable = false, length = 28)
+    @Column(nullable = false, length = 31)
     @NotEmpty()
     private String local;
 

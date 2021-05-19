@@ -1,0 +1,32 @@
+<br>
+<div class="container">
+    <h1>Serviços Disponíveis</h1>
+    <div class="alert alert-success" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+    </div>
+    <div class="alert alert-danger" *ngFor="let erro of errors">
+        {{ erro }}
+    </div>
+    <br>    
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>                        
+                    <th scope="col">Serviços</th>                    
+                    <th scope="col">Listar Tipos</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let dado of listarServicoProfissionalDTO" >
+                <tr>                                            
+                    <td>{{ dado.nome }}</td>
+                    <td>
+                        <a href="" style="padding-left: 10px;" onclick="return false;" 
+                        (click)="listarTipos(dado.idServico)">Tipos</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <button style="margin: 5px;" [routerLink]="['/gerenciarcliente']" type="reset"  class="btn btn-secondary" >Voltar</button>
+</div>

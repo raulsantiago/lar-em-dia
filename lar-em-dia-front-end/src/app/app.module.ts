@@ -40,6 +40,9 @@ import { IncluirTipoServicoComponent } from './components/servico-profissional/i
 import { GerenciarMunicipioComponent } from './components/regiao/gerenciar-municipio/gerenciar-municipio.component';
 import { ConfigurarMunicipioEstadoComponent } from './components/regiao/configurar-municipio-estado/configurar-municipio-estado.component';
 import { AgendaComponent } from './components/agenda/agenda/agenda.component';
+import { ListarTipoServicoComponent } from './components/pedido/listar-tipo-servico/listar-tipo-servico.component';
+import { ListarServicoSolicitacaoComponent } from './components/pedido/listar-servico-solicitacao/listar-servico-solicitacao.component';
+import { AgendarServicoComponent } from './components/pedido/agendar-servico/agendar-servico.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { AgendaComponent } from './components/agenda/agenda/agenda.component';
     IncluirTipoServicoComponent,
     GerenciarMunicipioComponent,
     ConfigurarMunicipioEstadoComponent,
-    AgendaComponent
+    AgendaComponent,
+    ListarTipoServicoComponent,
+    ListarServicoSolicitacaoComponent,
+    AgendarServicoComponent
   ],
   imports: [
     CommonModule,

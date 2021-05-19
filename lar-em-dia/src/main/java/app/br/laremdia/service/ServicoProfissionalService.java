@@ -23,6 +23,10 @@ public class ServicoProfissionalService {
         return servicoProfissionalRepository.findAll(Sort.by(Sort.Direction.ASC, "nome")).stream().map(ServicoProfissionalDTO::create).collect(Collectors.toList());
     }
 
+    public List< ServicoProfissionalDTO > listarAtivos(){
+        return servicoProfissionalRepository.findAllByAtivoOrderByNomeAsc(true).stream().map(ServicoProfissionalDTO::create).collect(Collectors.toList());
+    }
+
     public ServicoProfissionalDTO consultar(Integer id){
         Optional< ServicoProfissionalEntity > servicoProfissionalEntity =  servicoProfissionalRepository.findById(id);
         return servicoProfissionalEntity.map(ServicoProfissionalDTO::create).orElseThrow(() -> new BusinessException("Serviço profissional não encontrado."));

@@ -1,0 +1,36 @@
+<br>
+<div class="container">
+    <h1>Tipo de Serviços Disponíveis</h1>
+    <div class="alert alert-success" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+    </div>
+    <div class="alert alert-danger" *ngFor="let erro of errors">
+        {{ erro }}
+    </div>
+    <br>    
+    <h4>Serviço: {{ servicoProfissionalDTO?.nome }}</h4>
+    <br>    
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>                        
+                    <th scope="col">Tipos</th>
+                    <th scope="col">Valor do Serviço</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let dado of listarTipoServicoProfissionalDTO" >
+                <tr>                                            
+                    <td>{{ dado.nome }}</td>
+                    <td>{{ dado.preco }}</td>
+                    <td>
+                        <a href="" style="padding-left: 10px;" onclick="return false;" 
+                        (click)="agendar(dado.idTipo)">Agendar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <button style="margin: 5px;" [routerLink]="['/solicitar']" type="reset"  class="btn btn-secondary" >Voltar</button>
+</div>

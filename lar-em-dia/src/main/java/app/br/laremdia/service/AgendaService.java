@@ -20,7 +20,7 @@ public class AgendaService {
     private AgendaRepository agendaRepository;
 
     public List<AgendaDTO> listar(){
-        return agendaRepository.findAll().stream().map(AgendaDTO::create).collect(Collectors.toList());
+        return agendaRepository.findAllByDisponivelOrderByDiaAscTurnoAsc(true).stream().map(AgendaDTO::create).collect(Collectors.toList());
     }
 
     public AgendaDTO consultar(Integer id) {

@@ -14,13 +14,16 @@ export class ServicoProfissionalService {
   
   constructor(protected http: HttpClient) { }
 
-
   consultarNome(nome: String): Observable<ServicoProfissionalDTO>{
     return this.http.get<ServicoProfissionalDTO>(`${this.apiURL}/${nome}/nome`);
   }
 
   consultar(id: number): Observable<ServicoProfissionalDTO>{
     return this.http.get<ServicoProfissionalDTO>(`${this.apiURL}/${id}`);
+  }
+
+  listarAtivos(): Observable<ServicoProfissionalDTO[]>{
+    return this.http.get<ServicoProfissionalDTO[]>(`${this.apiURL}/ativos`);
   }
 
   inserir(incluirServicoProfissionalDTO: IncluirServicoProfissionalDTO): Observable<IncluirServicoProfissionalDTO>{
