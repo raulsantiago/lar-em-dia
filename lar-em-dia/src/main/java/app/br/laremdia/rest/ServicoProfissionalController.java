@@ -4,6 +4,7 @@ import app.br.laremdia.model.dto.ServicoProfissionalDTO;
 import app.br.laremdia.model.entity.ServicoProfissionalEntity;
 import app.br.laremdia.service.ServicoProfissionalService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,7 @@ public class ServicoProfissionalController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity inserir(@RequestBody @Valid ServicoProfissionalEntity servicoProfissionalEntity){
         return ResponseEntity.ok(servicoProfissionalService.inserir(servicoProfissionalEntity));
     }

@@ -2,9 +2,9 @@ package app.br.laremdia.rest;
 
 import app.br.laremdia.model.dto.AlterarTipoServicoDTO;
 import app.br.laremdia.model.dto.IncluirTipoServicoDTO;
-import app.br.laremdia.model.dto.TipoServicoDTO;
 import app.br.laremdia.service.TipoServicoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +33,7 @@ public class TipoServicoController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity inserir(@RequestBody @Valid IncluirTipoServicoDTO tipoServicoDTO){
         return  ResponseEntity.ok(tipoServicoService.inserir(tipoServicoDTO));
     }

@@ -17,6 +17,7 @@ public class PedidoContratadoDTO {
     private ZonedDateTime   dataHoraFim;
     private BigDecimal      despesas;
     private Boolean         situacao;
+    private BigDecimal      precoContratado;
     private AgendaDTO       agendaDTO;
     private TipoServicoDTO  tipoServicoDTO;
     private LoginClienteDTO loginClienteDTO;
@@ -118,6 +119,14 @@ public class PedidoContratadoDTO {
 
     public void setSituacao(Boolean situacao) {
         this.situacao = situacao;
+    }
+
+    public BigDecimal getPrecoContratado() {
+        return precoContratado;
+    }
+
+    public void setPrecoContratado(BigDecimal precoContratado) {
+        this.precoContratado = precoContratado;
     }
 
     public AgendaDTO getAgendaDTO() {

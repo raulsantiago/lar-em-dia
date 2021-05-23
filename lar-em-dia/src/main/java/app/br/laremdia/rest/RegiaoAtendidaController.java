@@ -5,6 +5,7 @@ import app.br.laremdia.model.entity.EstadoAtendidoEntity;
 import app.br.laremdia.model.entity.MunicipioAtendidoEntity;
 import app.br.laremdia.service.RegiaoAtendidaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,7 @@ public class RegiaoAtendidaController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity inserir(@RequestBody @Valid IncluirMunicipioAtendidoDTO incluirMunicipioAtendidoDTO){
         return ResponseEntity.ok(regiaoAtendidaService.inserir(incluirMunicipioAtendidoDTO));
     }

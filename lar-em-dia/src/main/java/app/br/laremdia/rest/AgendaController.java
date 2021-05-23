@@ -1,8 +1,10 @@
 package app.br.laremdia.rest;
 
+import app.br.laremdia.model.dto.AlterarAgendaDTO;
 import app.br.laremdia.model.entity.AgendaEntity;
 import app.br.laremdia.service.AgendaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,7 @@ public class AgendaController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity inserir(@RequestBody @Valid AgendaEntity agendaEntity){
         return ResponseEntity.ok(agendaService.inserir(agendaEntity));
     }
@@ -34,6 +37,12 @@ public class AgendaController {
     public ResponseEntity excluir(@PathVariable("id") Integer id){
         agendaService.excluir(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity alterar(@PathVariable("id") Integer id, @RequestBody @Valid AlterarAgendaDTO alterarAgendaDTO){
+        AlterarAgendaDTO alterarAgenda =  agendaService.alterar(id, alterarAgendaDTO);
+        return alterarAgendaDTO != null ? ResponseEntity.ok(alterarAgenda) :  ResponseEntity.notFound().build();
     }
 
 }

@@ -9,8 +9,8 @@
       {{ erro }}
   </div>
   <br>
-  <h4>Serviço: {{tipoServicoProfissionalDTO.servicoProfissionalDTO.nome}}</h4>
-  <h4>Tipo: {{tipoServicoProfissionalDTO.nome}}  Valor: {{tipoServicoProfissionalDTO.preco}}</h4>
+  <h4>Serviço: {{tipoServicoProfissionalDTO?.servicoProfissionalDTO?.nome}}</h4>
+  <h4>Tipo: {{tipoServicoProfissionalDTO?.nome}}  Valor: {{tipoServicoProfissionalDTO?.preco}}</h4>
   <br>
   <form  #cadForm="ngForm" (submit)="inserir()">  
     <div class="form-row align-items-center">
@@ -73,20 +73,10 @@
           </button>
         </div>
         <div class="modal-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis fringilla ligula, et accumsan lacus. Proin lobortis ligula quis felis suscipit fermentum. Curabitur in sagittis mauris. Etiam tristique felis et urna accumsan, id sagittis velit egestas. Praesent mattis magna quis ligula mollis suscipit. Nullam et hendrerit lorem, vitae hendrerit mi. Nulla facilisi. Cras eu magna sit amet enim lobortis pharetra quis non purus. Duis sit amet magna et ligula accumsan tincidunt sed nec eros. Donec facilisis orci ac dolor mollis, non gravida turpis vulputate. Aliquam erat volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc nec dictum sapien. Aenean finibus, nisi nec posuere viverra, mauris nisl pulvinar diam, at accumsan est erat volutpat metus. Suspendisse sed eleifend nulla. Pellentesque eu metus lectus.
-
-            Vivamus ut velit vitae nunc sollicitudin efficitur nec id mi. Sed a erat vitae magna fermentum gravida. Sed suscipit egestas semper. Proin lacinia eleifend nibh, sed venenatis neque sodales eget. Nam eu mauris placerat, lacinia ipsum in, dignissim ex. Ut sodales metus et augue gravida faucibus. Nulla at elit arcu. Etiam quis nunc id nunc suscipit iaculis ac vitae turpis. Donec porttitor tincidunt mollis. Quisque semper justo mauris, nec interdum ante maximus gravida. Duis eget hendrerit metus, non porttitor magna. Fusce vel sodales est. Curabitur et laoreet purus. Vestibulum vitae ultricies ante, sed convallis sem. Quisque dolor metus, suscipit id commodo ac, sodales vel justo.
-            
-            Pellentesque a hendrerit ex. Nunc mi purus, gravida at imperdiet sit amet, commodo sed purus. Pellentesque gravida dui a nunc congue, et hendrerit nisi congue. Maecenas eu mattis tellus. In varius elit id imperdiet mollis. Suspendisse aliquam felis quis magna mollis volutpat. Morbi ullamcorper suscipit leo, in tincidunt nulla vestibulum eget. Fusce nec leo et dui dapibus tempus. Aliquam erat volutpat. Nam tristique tristique ipsum, a fringilla orci dapibus non. Donec aliquet nunc sit amet purus tempus sodales. Sed rhoncus turpis vel viverra sagittis. Curabitur nec dolor tristique, suscipit lacus non, convallis dui. In suscipit vitae sem in accumsan. Phasellus nec enim blandit, lacinia leo et, mollis risus.
-            
-            Duis vulputate dapibus dignissim. Etiam eget nisl in sem eleifend aliquam in ut arcu. Sed ipsum risus, posuere sit amet nunc nec, vehicula blandit dui. Praesent laoreet eros ut massa tempus rutrum. Suspendisse a lectus at ante tempus sagittis sit amet nec ligula. In ultrices orci in luctus egestas. Pellentesque ultrices orci risus, quis faucibus felis vehicula sit amet. Suspendisse lobortis suscipit erat eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            
-            Integer in iaculis justo. Cras cursus elit et quam ullamcorper, a posuere risus mattis. Integer dapibus urna sit amet ex consequat mollis. Suspendisse sit amet eleifend nisl, ac faucibus tortor. Aenean luctus nisi posuere diam euismod dictum. Donec ac leo libero. Suspendisse porta orci arcu, et congue justo consectetur vel. Donec non nisi dolor. Vivamus felis enim, bibendum at quam ut, sodales porttitor nisl. Integer tincidunt non est quis euismod.
-            
-            Generated 5 paragraphs, 483 words, 3175 bytes of Lorem Ipsum
+          Eu <strong>{{gerenciarClienteDTO?.nome}}</strong>, declaro ter ciência do compromisso assumido quanto ao serviço contratado através do site <strong>Lar em Dia</strong>, que promove a integração entre o cliente e o prestador de serviço, ainda, possuir capacidade financeira suficiente para honrar o serviço contratado desde concluído, sendo o pagamento efetuado diretamente ao profissional que prestará o serviço.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>          
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>

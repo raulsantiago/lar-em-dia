@@ -44,6 +44,11 @@ public class PedidoContratadoEntity {
     @NotNull()
     private Boolean situacao;
 
+    @Column(name="preco_contratado", nullable = false)
+    @Digits(integer = 6, fraction = 2, message = "o preço está fora do limite esperado de <6 dígitos>.<2 dígitos>")
+    @DecimalMin(value = "0.0", inclusive = false)
+    private BigDecimal precoContratado;
+
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "agenda_id_agenda", referencedColumnName = "id_agenda")
 //    private AgendaEntity agenda;
@@ -58,8 +63,5 @@ public class PedidoContratadoEntity {
     @ManyToOne
     @JoinColumn(name = "id_pedido_id_cliente")
     private LoginClienteEntity loginCliente;
-
-
-
 
 }

@@ -6,6 +6,7 @@ import app.br.laremdia.model.repository.LoginProfissionalRepository;
 import app.br.laremdia.service.GerenciarProfissionalService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,7 @@ public class GerenciarProfissionalController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity inserir(@RequestBody @Valid LoginProfissionalEntity loginProfissionalEntity){
         return ResponseEntity.ok(gerenciarProfissionalService.inserir(loginProfissionalEntity));
     }
