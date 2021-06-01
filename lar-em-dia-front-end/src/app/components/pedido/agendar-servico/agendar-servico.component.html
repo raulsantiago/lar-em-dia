@@ -10,7 +10,7 @@
   </div>
   <br>
   <h4>Serviço: {{tipoServicoProfissionalDTO?.servicoProfissionalDTO?.nome}}</h4>
-  <h4>Tipo: {{tipoServicoProfissionalDTO?.nome}}  Valor: {{tipoServicoProfissionalDTO?.preco}}</h4>
+  <h4>Tipo: {{tipoServicoProfissionalDTO?.nome}}  Valor: {{tipoServicoProfissionalDTO?.preco | currency}}</h4>
   <br>
   <form  #cadForm="ngForm" (submit)="inserir()">  
     <div class="form-row align-items-center">
@@ -47,7 +47,7 @@
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1"
             (click)="habilitar()" >
-            <label class="form-check-label" for="exampleCheck1">Aceite no terno de compromisso.   
+            <label class="form-check-label" for="exampleCheck1">Aceite no termo de compromisso.
                 <a href="" onclick="return false;" data-toggle="modal" data-target="#exampleModal" >  
                     Click aqui para visualizar o termo!</a></label>
         </div>      
@@ -73,7 +73,8 @@
           </button>
         </div>
         <div class="modal-body">
-          Eu <strong>{{gerenciarClienteDTO?.nome}}</strong>, declaro ter ciência do compromisso assumido quanto ao serviço contratado através do site <strong>Lar em Dia</strong>, que promove a integração entre o cliente e o prestador de serviço, ainda, possuir capacidade financeira suficiente para honrar o serviço contratado desde concluído, sendo o pagamento efetuado diretamente ao profissional que prestará o serviço.
+          <p>Eu <strong>{{gerenciarClienteDTO?.nome}}</strong>, declaro ter ciência do compromisso assumido quanto ao serviço contratado através do site <strong>Lar em Dia</strong>, que promove a integração entre o cliente e o prestador de serviço, ainda, possuir capacidade financeira suficiente para honrar o serviço contratado desde que concluído, sendo o pagamento efetuado diretamente ao profissional que prestará o serviço.</p>
+          <p>Resaltamos que o profissional poderá cancelar o serviço já agendado pelo cliente a qualquer momento, por quaisquer motivos sendo-lhe respeitado a sua vontade no presente compromisso.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

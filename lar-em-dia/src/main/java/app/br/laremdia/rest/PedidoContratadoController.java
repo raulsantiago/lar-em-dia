@@ -1,13 +1,11 @@
 package app.br.laremdia.rest;
 
 import app.br.laremdia.model.dto.IncluirPedidoContratadoDTO;
-import app.br.laremdia.model.entity.PedidoContratadoEntity;
 import app.br.laremdia.service.PedidoContratadoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 @RestController
@@ -16,6 +14,11 @@ import javax.validation.Valid;
 public class PedidoContratadoController {
 
     private final PedidoContratadoService pedidoContratadoService;
+
+    @GetMapping("/{id}/cliente")
+    public ResponseEntity pedidosPorIdCliente(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(pedidoContratadoService.pedidosPorIdCliente(id));
+    }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)

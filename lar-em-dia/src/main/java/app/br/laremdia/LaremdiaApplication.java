@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -125,8 +126,8 @@ public class LaremdiaApplication {
             PedidoContratadoEntity pedidoContratadoEntity = new PedidoContratadoEntity();
             pedidoContratadoEntity.setDescricao("Casa alta");
             pedidoContratadoEntity.setLocal("Casa");
-            pedidoContratadoEntity.setDataHoraInicio(ZonedDateTime.of(2021,5,1,10,20, 00, 00, ZoneId.of("Brazil/East")));
-            pedidoContratadoEntity.setDataHoraFim(ZonedDateTime.of(2021,5,1,12,05, 00, 00, ZoneId.of("Brazil/East")));
+            pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.of(2021,5,1,10,20));
+            pedidoContratadoEntity.setDataHoraFim(LocalDateTime.of(2021,5,1,12,05));
             pedidoContratadoEntity.setDespesas(new BigDecimal("50.55"));
             pedidoContratadoEntity.setSituacao(false);
             pedidoContratadoEntity.setTipoServico(tipoServico);

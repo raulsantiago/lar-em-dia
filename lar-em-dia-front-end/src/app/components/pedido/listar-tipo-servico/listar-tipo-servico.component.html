@@ -22,7 +22,7 @@
             <tbody *ngFor="let dado of listarTipoServicoProfissionalDTO" >
                 <tr>                                            
                     <td>{{ dado.nome }}</td>
-                    <td>{{ dado.preco }}</td>
+                    <td>{{ dado.preco | currency }}</td>
                     <td>
                         <a href="" style="padding-left: 10px;" onclick="return false;" 
                         (click)="agendar(dado.idTipo)">Agendar</a>

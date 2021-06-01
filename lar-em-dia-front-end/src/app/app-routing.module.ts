@@ -15,6 +15,7 @@ import { AgendaComponent } from './components/agenda/agenda/agenda.component';
 import { ListarServicoSolicitacaoComponent } from './components/pedido/listar-servico-solicitacao/listar-servico-solicitacao.component';
 import { ListarTipoServicoComponent } from './components/pedido/listar-tipo-servico/listar-tipo-servico.component';
 import { AgendarServicoComponent } from './components/pedido/agendar-servico/agendar-servico.component';
+import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
 
 
 
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'agenda', component: AgendaComponent },
   { path: 'solicitar', component: ListarServicoSolicitacaoComponent },
   { path: 'solicitar/:id', component: ListarTipoServicoComponent },
-  { path: 'agendar/:id', component: AgendarServicoComponent }
+  { path: 'agendar/:id', component: AgendarServicoComponent },
+  { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent }  
   
 ];
 

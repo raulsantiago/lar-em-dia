@@ -45,7 +45,7 @@
             <tbody *ngFor="let dado of listaTipoServicoProfissionalDTO" >
                 <tr>                        
                     <td>{{ dado.nome }}</td>
-                    <td>{{ dado.preco }}</td>                        
+                    <td>{{ dado.preco | currency }}</td>                        
                 </tr>
             </tbody>
         </table>

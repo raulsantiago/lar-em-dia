@@ -23,12 +23,13 @@ export class AgendarServicoComponent implements OnInit {
   constructor(
     private tipoServicoProfissionalService: TipoServicoProfissionalService,
     private activatedRoute:                 ActivatedRoute,
+    private router:                         Router,
     private agendaService:                  AgendaService,    
     private authService:                    AuthService,
     private _location:                      Location,
     private loginClienteService:            LoginClienteService,
     private pedidoService:                  PedidoService,
-    public datepipe:                        DatePipe
+    public  datepipe:                       DatePipe
   ) { }
 
   tipoServicoProfissionalDTO: TipoServicoProfissionalDTO;
@@ -85,9 +86,9 @@ export class AgendarServicoComponent implements OnInit {
               setInterval( res => { this.mensagemSucesso = ''; }, 3000);
               this.errors = null;
               setInterval( res => { 
-                // this.router.navigate([''], {
-                //   relativeTo: this.activatedRoute[''],
-                // });
+                 this.router.navigate(['listarpedidoscliente'], {
+                   relativeTo: this.activatedRoute['listarpedidoscliente'],
+                 });
               }, 3500);
             }, errorResponse => {
               this.mensagemSucesso = null;

@@ -1,10 +1,12 @@
 // Angular
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DatePipe, CurrencyPipe, CommonModule } from  '@angular/common';
+import { registerLocaleData, DatePipe, CurrencyPipe, CommonModule } from  '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 // Boostrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -43,6 +45,7 @@ import { AgendaComponent } from './components/agenda/agenda/agenda.component';
 import { ListarTipoServicoComponent } from './components/pedido/listar-tipo-servico/listar-tipo-servico.component';
 import { ListarServicoSolicitacaoComponent } from './components/pedido/listar-servico-solicitacao/listar-servico-solicitacao.component';
 import { AgendarServicoComponent } from './components/pedido/agendar-servico/agendar-servico.component';
+import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,8 @@ import { AgendarServicoComponent } from './components/pedido/agendar-servico/age
     AgendaComponent,
     ListarTipoServicoComponent,
     ListarServicoSolicitacaoComponent,
-    AgendarServicoComponent
+    AgendarServicoComponent,
+    ListarPedidoClientesComponent
   ],
   imports: [
     CommonModule,
@@ -88,7 +92,15 @@ import { AgendarServicoComponent } from './components/pedido/agendar-servico/age
     CurrencyPipe,
     LoginProfissionalService,
     LoginClienteService,
-    AuthService,
+    AuthService,    
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    },
+    {
+      provide:  DEFAULT_CURRENCY_CODE,
+      useValue: 'BRL'
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

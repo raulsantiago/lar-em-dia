@@ -3,7 +3,6 @@ package app.br.laremdia.model.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -31,8 +30,5 @@ public class AgendaEntity {
     @Column(nullable = false)
     @NotNull()
     private Boolean disponivel;
-
-//    @OneToOne(mappedBy = "agenda")
-//    private PedidoContratadoEntity pedidoContratado;
 
 }

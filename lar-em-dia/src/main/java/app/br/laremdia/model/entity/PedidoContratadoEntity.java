@@ -1,15 +1,15 @@
 package app.br.laremdia.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -30,10 +30,12 @@ public class PedidoContratadoEntity {
     private String local;
 
     @Column(name="data_hora_inicio", nullable = true)
-    private ZonedDateTime dataHoraInicio;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataHoraInicio;
 
     @Column(name="data_hora_fim", nullable = true)
-    private ZonedDateTime dataHoraFim;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime dataHoraFim;
 
     @Column(nullable = true)
     @Digits(integer = 6, fraction = 2, message = "o preço está fora do limite esperado de <6 dígitos>.<2 dígitos>")
@@ -48,10 +50,6 @@ public class PedidoContratadoEntity {
     @Digits(integer = 6, fraction = 2, message = "o preço está fora do limite esperado de <6 dígitos>.<2 dígitos>")
     @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal precoContratado;
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "agenda_id_agenda", referencedColumnName = "id_agenda")
-//    private AgendaEntity agenda;
 
     @OneToOne
     private AgendaEntity agenda;

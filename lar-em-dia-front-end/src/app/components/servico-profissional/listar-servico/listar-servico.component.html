@@ -19,7 +19,7 @@
                     <tr>
                       <td>{{ dado.servicoProfissionalDTO?.nome }}</td>
                       <td>{{ dado.nome }}</td>
-                      <td>{{ dado.preco }}</td>
+                      <td>{{ dado.preco | currency }}</td>
                       <td>{{ dado.servicoProfissionalDTO?.ativo ? 'Sim' : 'Não' }}</td>
                       <td>
                         <a href="" style="padding-left: 10px;" onclick="return false;" (click)="alterarServicoTipo(dado.idTipo)">Alterar</a>

@@ -1,0 +1,40 @@
+<br>
+<div class="container">
+    <h1>Acompanhar Pedidos Realizados</h1>
+    <div class="alert alert-success" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+    </div>
+    <div class="alert alert-danger" *ngFor="let erro of errors">
+        {{ erro }}
+    </div>
+    <br>    
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>                        
+                    <th scope="col">Onde será o serviço</th>
+                    <th scope="col">Tipo do serviço</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Serviço agendado em</th>
+                    <th scope="col">Finalizado</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let dado of listaPedidosClienteDTO" >
+                <tr>                                            
+                    <td>{{ dado.nomeServico }}</td>
+                    <td>{{ dado.nomeTipoServico }}</td>
+                    <td>{{ dado.precoContratado | currency }}</td>
+                    <td>{{ dado.dia | date: 'dd/MM/yyyy'  }} - {{ dado.turno }}</td>
+                    <td>{{ dado.dataFim == null || dado.dataFim == undefined ? 'Aguardando' : dado.dataFim | date: 'dd/MM/yyyy HH:mm' }}</td>
+                    <td>
+                        <a href="" style="padding-left: 10px;" onclick="return false;" 
+                        (click)="cancelar()"> {{ dado.dataFim == null || dado.dataFim == undefined ? 'Cancelar' : '' }} </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <button style="margin: 5px;" [routerLink]="['/gerenciarcliente']" type="reset"  class="btn btn-secondary" >Voltar</button>
+</div>

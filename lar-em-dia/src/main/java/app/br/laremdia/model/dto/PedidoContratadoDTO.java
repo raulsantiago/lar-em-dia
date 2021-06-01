@@ -1,11 +1,11 @@
 package app.br.laremdia.model.dto;
 
 import app.br.laremdia.model.entity.PedidoContratadoEntity;
+import app.br.laremdia.model.projection.PedidoContratadoProjection;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
-
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Data
 public class PedidoContratadoDTO {
@@ -13,14 +13,38 @@ public class PedidoContratadoDTO {
     private Integer         idPedido;
     private String          descricao;
     private String          local;
-    private ZonedDateTime   dataHoraInicio;
-    private ZonedDateTime   dataHoraFim;
+    private LocalDateTime   dataHoraInicio;
+    private LocalDateTime   dataHoraFim;
     private BigDecimal      despesas;
     private Boolean         situacao;
     private BigDecimal      precoContratado;
     private AgendaDTO       agendaDTO;
     private TipoServicoDTO  tipoServicoDTO;
     private LoginClienteDTO loginClienteDTO;
+
+    public PedidoContratadoDTO(PedidoContratadoProjection pedidoContratadoProjection){
+        this.idPedido = pedidoContratadoProjection.getIdPedido();
+        this.dataHoraFim = pedidoContratadoProjection.getDataFim();
+        this.precoContratado = pedidoContratadoProjection.getPrecoContratado();
+
+        LoginClienteDTO loginClienteDTO = new LoginClienteDTO();
+        loginClienteDTO.setIdCliente(pedidoContratadoProjection.getIdCliente());
+
+        ServicoProfissionalDTO servicoProfissionalDTO = new ServicoProfissionalDTO();
+        servicoProfissionalDTO.setIdServico(pedidoContratadoProjection.getIdServico());
+        servicoProfissionalDTO.setNome(pedidoContratadoProjection.getNomeServico());
+
+        TipoServicoDTO tipoServicoDTO = new TipoServicoDTO();
+        tipoServicoDTO.setIdTipo(pedidoContratadoProjection.getIdTipoServico());
+        tipoServicoDTO.setNome(pedidoContratadoProjection.getNomeTipoServico());
+        tipoServicoDTO.setServicoProfissionalDTO(servicoProfissionalDTO);
+
+        AgendaDTO agendaDTO = new AgendaDTO();
+        agendaDTO.setIdAgenda(pedidoContratadoProjection.getIdAgenda());
+        agendaDTO.setDia(pedidoContratadoProjection.getDia());
+        agendaDTO.setTurno(pedidoContratadoProjection.getTurno());
+
+    }
 
     public PedidoContratadoDTO(PedidoContratadoEntity pedidoContratadoEntity){
         BeanUtils.copyProperties(pedidoContratadoEntity, this);
@@ -89,19 +113,19 @@ public class PedidoContratadoDTO {
         this.local = local;
     }
 
-    public ZonedDateTime getDataHoraInicio() {
+    public LocalDateTime getDataHoraInicio() {
         return dataHoraInicio;
     }
 
-    public void setDataHoraInicio(ZonedDateTime dataHoraInicio) {
+    public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
         this.dataHoraInicio = dataHoraInicio;
     }
 
-    public ZonedDateTime getDataHoraFim() {
+    public LocalDateTime getDataHoraFim() {
         return dataHoraFim;
     }
 
-    public void setDataHoraFim(ZonedDateTime dataHoraFim) {
+    public void setDataHoraFim(LocalDateTime dataHoraFim) {
         this.dataHoraFim = dataHoraFim;
     }
 
