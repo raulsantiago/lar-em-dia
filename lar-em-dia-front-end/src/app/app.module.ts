@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData, DatePipe, CurrencyPipe, CommonModule } from  '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
@@ -22,6 +22,20 @@ import { CalendarModule } from 'primeng/calendar';
 import { DataViewModule } from 'primeng/dataview';
 import { PaginatorModule } from 'primeng/paginator';
 import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { TooltipModule } from 'primeng/tooltip';
+import { MenubarModule } from 'primeng/menubar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputMaskModule } from 'primeng/inputmask';
+import { TreeTableModule } from 'primeng/treetable';
+import { NgxCurrencyModule } from "ngx-currency";
+import { InputNumberModule } from 'primeng/inputnumber';
+import { PickListModule } from 'primeng/picklist';
+import { TableModule, Table, TableService } from 'primeng/table';
+
 
 // Componentes
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +60,7 @@ import { ListarTipoServicoComponent } from './components/pedido/listar-tipo-serv
 import { ListarServicoSolicitacaoComponent } from './components/pedido/listar-servico-solicitacao/listar-servico-solicitacao.component';
 import { AgendarServicoComponent } from './components/pedido/agendar-servico/agendar-servico.component';
 import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
+import { ModalContatoComponent } from './components/pedido/listar-pedido-clientes/modal-contato/modal-contato.component';
 
 @NgModule({
   declarations: [
@@ -65,9 +80,24 @@ import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido
     ListarTipoServicoComponent,
     ListarServicoSolicitacaoComponent,
     AgendarServicoComponent,
-    ListarPedidoClientesComponent
+    ListarPedidoClientesComponent,
+    ModalContatoComponent
   ],
-  imports: [
+  imports: [    
+    MenubarModule,
+    ConfirmDialogModule,
+    ToastModule,    
+    InputMaskModule,
+    InputNumberModule,        
+    InputNumberModule,
+    PickListModule,
+    TableModule,
+    NgxCurrencyModule,    
+    TreeTableModule,
+    FileUploadModule,    
+    TooltipModule,
+    DialogModule,
+    NgxMaskModule.forRoot(),
     CommonModule,
     HttpClientModule,
     DataViewModule,
@@ -78,8 +108,7 @@ import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,    
-    NgxMaskModule,
+    BrowserAnimationsModule,        
     InputTextModule,
 		CheckboxModule,
 		ButtonModule,
@@ -88,6 +117,11 @@ import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido
     AppRoutingModule
   ],
   providers: [
+    ConfirmationService,
+    MessageService,
+    TableService,    
+    Table,
+    HttpClient,
     DatePipe,
     CurrencyPipe,
     LoginProfissionalService,

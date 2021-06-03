@@ -83,9 +83,9 @@ export class AgendarServicoComponent implements OnInit {
             this.agendaService.alterar(parseInt(this.data), agenda)
             .subscribe( response => {
               this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-              setInterval( res => { this.mensagemSucesso = ''; }, 3000);
+              setTimeout( res => { this.mensagemSucesso = ''; }, 3000);
               this.errors = null;
-              setInterval( res => { 
+              setTimeout( res => { 
                  this.router.navigate(['listarpedidoscliente'], {
                    relativeTo: this.activatedRoute['listarpedidoscliente'],
                  });
@@ -93,17 +93,17 @@ export class AgendarServicoComponent implements OnInit {
             }, errorResponse => {
               this.mensagemSucesso = null;
               this.errors = errorResponse.error.errors;
-              setInterval( res => { this.errors = null; }, 15000);
+              setTimeout( res => { this.errors = null; }, 15000);
             });   
           }, errorResponse => {
             this.mensagemSucesso = null;
             this.errors = errorResponse.error.errors;
-            setInterval( res => { this.errors = null; }, 15000);
+            setTimeout( res => { this.errors = null; }, 15000);
           });
       }, errorResponse => {
         this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setInterval( res => { this.errors = null; }, 15000);
+        setTimeout( res => { this.errors = null; }, 15000);
       });
 
   }

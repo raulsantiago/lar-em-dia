@@ -9,6 +9,11 @@
     </div>
     <br>    
     <div class="table-responsive">
+
+        <!-- Modal de Contato com profisisonal -->
+        <app-modal-contato [(visible)]="exibirDetalhar" ></app-modal-contato>
+
+
         <table class="table">
             <thead>
                 <tr>                        
@@ -29,12 +34,12 @@
                     <td>{{ dado.dataFim == null || dado.dataFim == undefined ? 'Aguardando' : dado.dataFim | date: 'dd/MM/yyyy HH:mm' }}</td>
                     <td>
                         <a href="" style="padding-left: 10px;" onclick="return false;" 
-                        (click)="cancelar()"> {{ dado.dataFim == null || dado.dataFim == undefined ? 'Cancelar' : '' }} </a>
+                        (click)="cancelar(dado.idPedido, dado.idAgenda)"> {{ dado.dataFim == null || dado.dataFim == undefined ? 'Cancelar' : '' }} </a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <br>
-    <button style="margin: 5px;" [routerLink]="['/gerenciarcliente']" type="reset"  class="btn btn-secondary" >Voltar</button>
+    <button style="margin: 5px;" (click)="voltar()" type="reset"  class="btn btn-secondary" >Voltar</button>
 </div>

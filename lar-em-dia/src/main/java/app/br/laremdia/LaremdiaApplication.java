@@ -106,22 +106,28 @@ public class LaremdiaApplication {
             repositoryCliente.save(loginCliente);
 
             AgendaEntity agendaEntity = new AgendaEntity();
-            agendaEntity.setDia(LocalDate.of(2021,5,1));
+            agendaEntity.setDia(LocalDate.of(2021,6,2));
             agendaEntity.setDisponivel(false);
             agendaEntity.setTurno("Manhã");
             agendaRepository.save(agendaEntity);
 
             AgendaEntity agendaEntity2 = new AgendaEntity();
-            agendaEntity2.setDia(LocalDate.of(2021,5,1));
-            agendaEntity2.setDisponivel(true);
+            agendaEntity2.setDia(LocalDate.of(2021,6,3));
+            agendaEntity2.setDisponivel(false);
             agendaEntity2.setTurno("Tarde");
             agendaRepository.save(agendaEntity2);
 
             AgendaEntity agendaEntity3 = new AgendaEntity();
-            agendaEntity3.setDia(LocalDate.of(2021,5,2));
-            agendaEntity3.setDisponivel(true);
+            agendaEntity3.setDia(LocalDate.of(2021,6,4));
+            agendaEntity3.setDisponivel(false);
             agendaEntity3.setTurno("Manhã");
             agendaRepository.save(agendaEntity3);
+
+            AgendaEntity agendaEntity4 = new AgendaEntity();
+            agendaEntity4.setDia(LocalDate.of(2021,6,5));
+            agendaEntity4.setDisponivel(true);
+            agendaEntity4.setTurno("Tarde");
+            agendaRepository.save(agendaEntity4);
 
             PedidoContratadoEntity pedidoContratadoEntity = new PedidoContratadoEntity();
             pedidoContratadoEntity.setDescricao("Casa alta");

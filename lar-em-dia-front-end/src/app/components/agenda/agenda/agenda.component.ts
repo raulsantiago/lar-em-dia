@@ -43,19 +43,19 @@ export class AgendaComponent implements OnInit {
         this.agendaService.inserir(incluirAgendaDTO2)
           .subscribe( response => {
             this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-            setInterval( res => { this.mensagemSucesso = ''; }, 3000);
+            setTimeout( res => { this.mensagemSucesso = ''; }, 3000);
             this.errors = null;        
-            setInterval( res => { this.ngOnInit(); }, 3500);
+            setTimeout( res => { this.ngOnInit(); }, 3500);
           }
           , errorResponse => {
             this.mensagemSucesso = null;
             this.errors = errorResponse.error.errors;
-            setInterval( res => { this.errors = null; }, 15000);
+            setTimeout( res => { this.errors = null; }, 15000);
           });              
       }, errorResponse => {
         this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setInterval( res => { this.errors = null; }, 5000);
+        setTimeout( res => { this.errors = null; }, 5000);
       });
   }
 
@@ -63,13 +63,13 @@ export class AgendaComponent implements OnInit {
     this.agendaService.excluir(id)
       .subscribe( response => {
         this.mensagemSucesso = 'Cadastro excluído com sucesso!';
-        setInterval( res => { this.mensagemSucesso = ''; }, 5000);
+        setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
         this.errors = null;
-        setInterval( res => { this.ngOnInit(); }, 6000);        
+        setTimeout( res => { this.ngOnInit(); }, 6000);        
       }, errorResponse => {
         this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setInterval( res => { this.errors = null; }, 5000);
+        setTimeout( res => { this.errors = null; }, 5000);
       });
   }
 

@@ -5,6 +5,8 @@ import app.br.laremdia.model.projection.PedidoContratadoProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PedidoContratadoRepository extends JpaRepository< PedidoContratadoEntity, Integer> {
@@ -28,5 +30,9 @@ public interface PedidoContratadoRepository extends JpaRepository< PedidoContrat
     "WHERE ( lc.id_cliente = :idCliente ) ORDER BY ag.dia DESC, ag.turno DESC", nativeQuery = true)
     List< PedidoContratadoProjection > pedidosPorIdCliente(@Param("idCliente") Integer idCliente);
 
+    @Query(value = "select dia from pedido_contratado pc " +
+            " INNER JOIN agenda ag ON ag.id_agenda = pc.agenda_id_agenda " +
+            " WHERE ( pc.id_pedido = :idPedido ) ", nativeQuery = true)
+    LocalDate diaAgendado(@Param("idPedido") Integer idPedido);
 
 }

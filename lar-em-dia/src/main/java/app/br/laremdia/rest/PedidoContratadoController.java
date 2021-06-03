@@ -26,4 +26,10 @@ public class PedidoContratadoController {
         return ResponseEntity.ok(pedidoContratadoService.inserir(incluirPedidoContratadoDTO));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity excluir(@PathVariable("id") Integer id){
+        pedidoContratadoService.excluir(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

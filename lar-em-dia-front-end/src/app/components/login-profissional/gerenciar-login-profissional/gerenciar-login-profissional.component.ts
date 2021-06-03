@@ -34,12 +34,12 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
   alterar(){
     this.loginProfissionalService.alterar(this.gerenciarProfissionalDTO.idProfissional, this.gerenciarProfissionalDTO).subscribe( response => {
       this.mensagemSucesso = "Cadastro alterado com sucesso!";
-      setInterval( res => { this.mensagemSucesso = ''; }, 5000);
+      setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
       this.errors = null;
       }, errorResponse => {
         this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setInterval( res => { this.errors = null }, 5000);
+        setTimeout( res => { this.errors = null }, 5000);
     })
   }
 

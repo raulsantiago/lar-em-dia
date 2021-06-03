@@ -13,7 +13,4 @@ public interface TipoServicoRepository extends JpaRepository<TipoServicoEntity, 
     List<TipoServicoEntity> listar();
 
     List<TipoServicoEntity> findAllByServicoProfissional_IdServicoOrderByNomeAsc(Integer IdServico);
-
-
-
 }

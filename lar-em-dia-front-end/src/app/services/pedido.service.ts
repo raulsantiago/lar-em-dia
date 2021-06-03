@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IncluirPedidoContratadoDTO } from '../dto/pedido/incluir-pedido-contratadoDTO';
 import { ListaPedidosClienteDTO } from '../dto/pedido/lista-pedidos-clienteDTO';
+import { PedidoContratadoDTO } from '../dto/pedido/pedido-contratadoDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class PedidoService {
 
   inserir(incluirPedidoContratadoDTO: IncluirPedidoContratadoDTO): Observable<IncluirPedidoContratadoDTO>{
     return this.http.post<IncluirPedidoContratadoDTO>(`${this.apiURL}`, incluirPedidoContratadoDTO);
+  }
+
+  excluir(id: number): Observable<PedidoContratadoDTO>{
+    return this.http.delete<PedidoContratadoDTO>(`${this.apiURL}/${id}`);
   }
 
 }

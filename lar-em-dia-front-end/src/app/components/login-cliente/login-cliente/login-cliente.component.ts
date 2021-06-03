@@ -66,7 +66,7 @@ export class LoginClienteComponent implements OnInit {
       this.router.navigate(['/gerenciarcliente']);
     }, errorResponse => {
       this.errors = ['Usuário e/ou senha incorreto(s).'];
-      setInterval( res => { this.errors = null; }, 5000);
+      setTimeout( res => { this.errors = null; }, 5000);
     })
   }
 
@@ -94,7 +94,7 @@ export class LoginClienteComponent implements OnInit {
     this.authService.incluirCliente(loginClienteDTO)
     .subscribe( response => {      
       this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";
-      setInterval( res => { this.mensagemSucesso = ''; }, 5000);
+      setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
       this.cadastrando = false;
       this.email = '';
       this.senha = '';            
@@ -102,7 +102,7 @@ export class LoginClienteComponent implements OnInit {
       }, errorResponse => {
         this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setInterval( res => { this.errors = null; }, 10000);
+        setTimeout( res => { this.errors = null; }, 10000);
     })
   }
 
