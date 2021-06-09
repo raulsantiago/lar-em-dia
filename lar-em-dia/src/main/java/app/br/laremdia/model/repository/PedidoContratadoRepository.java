@@ -1,6 +1,7 @@
 package app.br.laremdia.model.repository;
 
 import app.br.laremdia.model.entity.PedidoContratadoEntity;
+import app.br.laremdia.model.projection.PedidoContratadoProfissionalProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,12 +28,32 @@ public interface PedidoContratadoRepository extends JpaRepository< PedidoContrat
     "INNER JOIN agenda ag               ON ag.id_agenda = pc.agenda_id_agenda " +
     "INNER JOIN login_cliente lc        ON lc.id_cliente = pc.id_pedido_id_cliente " +
     "INNER JOIN servico_profissional sp ON sp.id_servico = ts.id_tipo_id_servico " +
-    "WHERE ( lc.id_cliente = :idCliente ) ORDER BY ag.dia DESC, ag.turno DESC", nativeQuery = true)
+    "WHERE ( lc.id_cliente = :idCliente ) ORDER BY ag.dia DESC, ag.turno ASC", nativeQuery = true)
     List< PedidoContratadoProjection > pedidosPorIdCliente(@Param("idCliente") Integer idCliente);
 
     @Query(value = "select dia from pedido_contratado pc " +
             " INNER JOIN agenda ag ON ag.id_agenda = pc.agenda_id_agenda " +
             " WHERE ( pc.id_pedido = :idPedido ) ", nativeQuery = true)
     LocalDate diaAgendado(@Param("idPedido") Integer idPedido);
+
+    @Query(value = "SELECT pc.id_pedido   AS idPedido, " +
+                    " pc.despesas         AS despesas, " +
+                    " pc.descricao        AS descricao, " +
+                    " pc.preco_contratado AS precoContratado, " +
+                    " pc.local            AS local, " +
+                    " ts.nome             AS nomeTipoServico, " +
+                    " sp.nome             AS nomeServico, " +
+                    " lc.id_cliente       AS idCliente, " +
+                    " ag.dia              AS dia, " +
+                    " ag.turno            AS turno " +
+            "FROM pedido_contratado pc " +
+            "INNER JOIN tipo_servico ts         ON ts.id_tipo = pc.id_pedido_id_tipo " +
+            "INNER JOIN agenda ag               ON ag.id_agenda = pc.agenda_id_agenda " +
+            "INNER JOIN login_cliente lc        ON lc.id_cliente = pc.id_pedido_id_cliente " +
+            "INNER JOIN servico_profissional sp ON sp.id_servico = ts.id_tipo_id_servico " +
+            "ORDER BY ag.dia DESC, ag.turno ASC", nativeQuery = true)
+    List< PedidoContratadoProfissionalProjection > listaPedidosViewProfissional();
+
+
 
 }

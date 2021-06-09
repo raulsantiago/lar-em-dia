@@ -16,6 +16,7 @@ import { ListarServicoSolicitacaoComponent } from './components/pedido/listar-se
 import { ListarTipoServicoComponent } from './components/pedido/listar-tipo-servico/listar-tipo-servico.component';
 import { AgendarServicoComponent } from './components/pedido/agendar-servico/agendar-servico.component';
 import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
+import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
 
 
 
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'solicitar', component: ListarServicoSolicitacaoComponent },
   { path: 'solicitar/:id', component: ListarTipoServicoComponent },
   { path: 'agendar/:id', component: AgendarServicoComponent },
-  { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent }  
+  { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent },
+  { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent }
   
 ];
 

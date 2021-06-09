@@ -20,6 +20,11 @@ public class PedidoContratadoController {
         return ResponseEntity.ok(pedidoContratadoService.pedidosPorIdCliente(id));
     }
 
+    @GetMapping("/profissional")
+    public ResponseEntity listaPedidosViewProfissional() {
+        return ResponseEntity.ok(pedidoContratadoService.listaPedidosViewProfissional());
+    }
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity inserir(@RequestBody @Valid IncluirPedidoContratadoDTO incluirPedidoContratadoDTO){

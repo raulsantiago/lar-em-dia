@@ -25,6 +25,11 @@ public class GerenciarClienteController {
     private final GerenciarClienteService gerenciarClienteService;
     private final LoginClienteRepository loginClienteRepository;
 
+    @GetMapping("/{id}")
+    public ResponseEntity consultar(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(gerenciarClienteService.consultar(id));
+    }
+
     @GetMapping("/{email}/email")
     public ResponseEntity consultarEmail(@PathVariable("email") String email){
         return ResponseEntity.ok(gerenciarClienteService.consultarEmail(email));

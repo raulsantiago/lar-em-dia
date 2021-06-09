@@ -1,0 +1,90 @@
+<br>
+<div class="container">
+    <h1>Pedidos Solicitados pelos Clientes</h1>
+    <div class="alert alert-success" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+    </div>
+    <div class="alert alert-danger" *ngFor="let erro of errors">
+        {{ erro }}
+    </div>
+    <br>    
+    <div class="table-responsive">
+
+
+         <!-- Modal de Contato com profisisonal -->
+         <app-modal-fechar-pedido [(visible)]="exibirDetalhar" ></app-modal-fechar-pedido>
+
+        <table class="table">
+            <thead>
+                <tr>                        
+                    <th scope="col">Onde será o serviço</th>
+                    <th scope="col">Tipo do serviço</th>
+                    <th scope="col">Preço Contratado</th>
+                    <th scope="col">Serviço agendado em</th>
+                    <th scope="col">Tipo local</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Despesas</th>
+                    <th scope="col">Lucro</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let dado of listaPedidosProfissionalDTO" >
+                <tr>                                            
+                    <td>{{ dado.nomeServico }}</td>
+                    <td>{{ dado.nomeTipoServico }}</td>
+                    <td>{{ dado.precoContratado | currency }}</td>
+                    <td>{{ dado.dia | date: 'dd/MM/yyyy'  }} - {{ dado.turno }}</td>
+                    <td>
+                        <a href="" data-toggle="modal" data-target="#exampleModal" onclick="return false;" (click)="endereco(dado.idCliente)">{{ dado.local }}</a>
+                    </td>
+                    <td>{{ dado.descricao }}</td>
+                    <td>{{ dado.despesas | currency }}</td>
+                    <td>{{ dado.despesas === null || dado.despesas === undefined ? '' : dado.precoContratado - dado.despesas | currency }}</td>
+                    <td>
+                        <a href="" style="padding-left: 10px;" onclick="return false;" *ngIf="dado.despesas == null || dado.despesas == undefined"
+                        (click)="finalizar(dado.idPedido)"> Fechar pedido </a>
+
+                        <a href="" style="padding-left: 10px;" onclick="return false;" *ngIf="dado.despesas"
+                        (click)="detalhar(dado.idPedido)"><strong>Finalizado</strong></a>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <button style="margin: 5px;" [routerLink]="['/gerenciarprofissional']" type="reset"  class="btn btn-secondary" >Voltar</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cliente e Endereço do Serviço</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p><strong> Cliente: {{ gerenciarClienteDTO?.nome }}</strong> </p>
+            <p>Celular: {{ gerenciarClienteDTO?.celular }}</p>
+            <p>E-mail: <a href="mailto:{{gerenciarClienteDTO?.email}}" >{{ gerenciarClienteDTO?.email }}</a></p>  
+            <br>
+            <p>Endereço: {{ gerenciarClienteDTO?.endereco }},{{ gerenciarClienteDTO?.numero }}
+                <a href="https://www.google.com.br/maps/search/{{ gerenciarClienteDTO?.endereco }},{{ gerenciarClienteDTO?.numero }}" style="padding-left: 10px;"  target="_blank" >
+                    <i class="fa fa-map-marker fa-3x" aria-hidden="true"></i>
+                </a>
+            </p>
+            <p>Bairro: {{ gerenciarClienteDTO?.bairro }}</p>
+            <p>Estado: {{ gerenciarClienteDTO?.estadoAtendidoDTO.uf }} - Munipício: {{ gerenciarClienteDTO?.municipioAtendidoDTO.municipio }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

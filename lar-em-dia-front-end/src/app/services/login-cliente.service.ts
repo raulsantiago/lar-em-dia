@@ -14,6 +14,10 @@ export class LoginClienteService {
 
   constructor(protected http: HttpClient) { }
 
+  consultar(id: number) : Observable<GerenciarClienteDTO> {
+    return this.http.get<GerenciarClienteDTO>(`${this.apiURL}/${id}`);
+  }
+
   consultarEmail(email: string) : Observable<GerenciarClienteDTO> {
     return this.http.get<GerenciarClienteDTO>(`${this.apiURL}/${email}/email`);
   }

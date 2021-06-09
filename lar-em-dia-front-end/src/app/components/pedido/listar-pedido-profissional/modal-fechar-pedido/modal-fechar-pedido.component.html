@@ -1,0 +1,36 @@
+<p-dialog [(visible)]="visible"
+          [draggable]="false"
+          [modal]="true"
+          [resizable]="false"
+          [baseZIndex]="1020"
+          dismissableMask="true"
+          styleClass="modal-contato"
+          (onHide)="fechar()">
+    <p-header>
+        ATENÇÃO ENTRE EM CONTATO COM O PROFISSIONAL
+    </p-header>
+        <tbody>
+            <div class="modal-body">
+                <p style="text-align: justify;">
+                    Prezado Cliente,
+                </p>
+                <p style="text-align: justify;">
+                    Pela regra do site o cliente somente poderá cancelar um serviço agendado com antecedência de mais de (1)um dia.
+                </p>
+                <p style="text-align: justify;">
+                    Para tanto, o cliente poderá entrar em contato com o profissional para que o mesmo possa cancelar o serviço agendado.
+                </p>
+            </div>
+        </tbody>    
+    <p-footer> 
+        <div class="row">
+            <div class="col-12 linha-footer"></div>
+        </div>
+        <button (click)="fechar()"
+                class="btn btn-sm btn-warning pull-left theme-main-button"
+                aria-label="Fechar">
+            <span>Fechar</span> 
+        </button>
+    </p-footer>
+</p-dialog>
+

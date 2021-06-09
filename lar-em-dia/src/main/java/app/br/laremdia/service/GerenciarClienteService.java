@@ -1,7 +1,9 @@
 package app.br.laremdia.service;
 
+import app.br.laremdia.model.dto.AgendaDTO;
 import app.br.laremdia.model.dto.IncluirLoginClienteDTO;
 import app.br.laremdia.model.dto.LoginClienteDTO;
+import app.br.laremdia.model.entity.AgendaEntity;
 import app.br.laremdia.model.entity.EstadoAtendidoEntity;
 import app.br.laremdia.model.entity.LoginClienteEntity;
 import app.br.laremdia.model.entity.MunicipioAtendidoEntity;
@@ -29,6 +31,11 @@ public class GerenciarClienteService {
 
     public LoginClienteDTO consultarEmail(String email) {
         Optional<LoginClienteEntity> loginClienteEntity = loginClienteRepository.findByEmail(email);
+        return loginClienteEntity.map(LoginClienteDTO::new).orElseThrow(() -> new BusinessException("Cliente não encontrado."));
+    }
+
+    public LoginClienteDTO consultar(Integer id) {
+        Optional< LoginClienteEntity > loginClienteEntity = loginClienteRepository.findById(id);
         return loginClienteEntity.map(LoginClienteDTO::new).orElseThrow(() -> new BusinessException("Cliente não encontrado."));
     }
 
