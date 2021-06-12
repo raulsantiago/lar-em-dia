@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GerenciarClienteDTO } from 'src/app/dto/login-cliente/gerenciar-clienteDTO';
 import { IncluirLoginClienteDTO } from 'src/app/dto/login-cliente/incluir-login-clienteDTO';
 import { EstadoAtendidoDTO } from 'src/app/dto/regiao/estado-atendidoDTO';
 import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginClienteService } from 'src/app/services/login-cliente.service';
+import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
 import { RegiaoService } from 'src/app/services/regiao.service';
 
 @Component({
@@ -19,7 +20,9 @@ export class GerenciarLoginClienteComponent implements OnInit {
     private loginClienteService: LoginClienteService,
     private authService:         AuthService,
     private router:              Router,
-    private regiaoService:       RegiaoService
+    private regiaoService:       RegiaoService,
+    private loginProfissionalService: LoginProfissionalService,    
+    private route:                    ActivatedRoute,
     ) { }
 
   idCliente: number;
@@ -110,6 +113,23 @@ export class GerenciarLoginClienteComponent implements OnInit {
         .subscribe(response => this.ngOnInit() );
     }
   }
+  
+
+  solicitarServico(){
+    this.loginProfissionalService.consultarAtivo(true).subscribe( response => {
+      console.log(response);
+      if(response){
+        this.router.navigate(['/solicitar']);
+      }
+    }, errorResponse => {
+      this.mensagemSucesso = null;
+      this.errors = errorResponse.error.errors;
+      setTimeout( res => { this.errors = null; this.ngOnInit() }, 11000);
+    });
+    
+  }
+  
+  
 
 
 

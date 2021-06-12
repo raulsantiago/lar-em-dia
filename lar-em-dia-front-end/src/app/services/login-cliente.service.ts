@@ -10,7 +10,8 @@ import { IncluirLoginClienteDTO } from '../dto/login-cliente/incluir-login-clien
 })
 export class LoginClienteService {
 
-  apiURL: string = environment.api + "/gerenciarcliente";    
+  apiURL: string = environment.api + "/gerenciarcliente";
+  apiURLmail: string = environment.api + "/mail";
 
   constructor(protected http: HttpClient) { }
 
@@ -28,6 +29,10 @@ export class LoginClienteService {
   
   addFoto(gerenciarClienteDTO: GerenciarClienteDTO, formData: FormData) : Observable<any> {
     return this.http.put(`${this.apiURL}/${gerenciarClienteDTO.idCliente}/foto`, formData, { responseType: 'blob'} );
+  }
+
+  sendMail(email: string, not: any) : Observable<any> {
+    return this.http.post(`${this.apiURLmail}/${email}/send`, not);
   }
 
 }

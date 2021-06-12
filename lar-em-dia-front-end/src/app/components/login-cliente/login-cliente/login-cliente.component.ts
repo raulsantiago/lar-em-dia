@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IncluirLoginClienteDTO } from 'src/app/dto/login-cliente/incluir-login-clienteDTO';
-import { LoginClienteDTO } from 'src/app/dto/login-cliente/login-clienteDTO';
 import { EstadoAtendidoDTO } from 'src/app/dto/regiao/estado-atendidoDTO';
 import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoginClienteService } from 'src/app/services/login-cliente.service';
 import { RegiaoService } from 'src/app/services/regiao.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class LoginClienteComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private regiaoService: RegiaoService
+    private regiaoService: RegiaoService,
+    private loginClienteService: LoginClienteService
     ) { }
   
   nome: string;
@@ -34,6 +35,8 @@ export class LoginClienteComponent implements OnInit {
   referencia: string;  
   ativo: boolean = true;
 
+  emailRec: string;
+
   estadoAtendidoDTO: EstadoAtendidoDTO;
   listaEstadoAtendidoDTO: EstadoAtendidoDTO[];
   listaMunicipioAtendidoDTO: MunicipioAtendidoDTO[];
@@ -41,6 +44,10 @@ export class LoginClienteComponent implements OnInit {
   cadastrando: boolean;
   mensagemSucesso: string;  
   errors: String[];
+
+  mensagemSucesso2: string;  
+  errors2: String[];
+  not: any;
 
   ngOnInit(): void {   
     this.regiaoService.listarUfAtivo().subscribe( dado => {
@@ -104,6 +111,22 @@ export class LoginClienteComponent implements OnInit {
         this.errors = errorResponse.error.errors;
         setTimeout( res => { this.errors = null; }, 10000);
     })
+  }
+
+  esqueceuSenha(){
+    this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
+    this.loginClienteService.sendMail(this.emailRec, this.not).subscribe( response => {
+      this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
+      setTimeout( res => { this.mensagemSucesso2 = ''; }, 5000);      
+      this.emailRec = '';      
+      this.errors2 = null;      
+      }, errorResponse => {
+        this.mensagemSucesso2 = null;
+        this.errors2 = errorResponse.error.errors;
+        setTimeout( res => { this.errors2 = null; }, 10000);
+    });
+    
+    
   }
 
 

@@ -13,4 +13,6 @@ public interface LoginProfissionalRepository extends JpaRepository<LoginProfissi
 
     boolean existsById(Integer id);
 
+    boolean existsByAtivo(Boolean ativo);
+
 }

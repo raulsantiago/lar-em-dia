@@ -64,7 +64,6 @@ import { AgendarServicoComponent } from './components/pedido/agendar-servico/age
 import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
 import { ModalContatoComponent } from './components/pedido/listar-pedido-clientes/modal-contato/modal-contato.component';
 import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
-import { ModalFecharPedidoComponent } from './components/pedido/listar-pedido-profissional/modal-fechar-pedido/modal-fechar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -86,8 +85,8 @@ import { ModalFecharPedidoComponent } from './components/pedido/listar-pedido-pr
     AgendarServicoComponent,
     ListarPedidoClientesComponent,
     ModalContatoComponent,
-    ListarPedidoProfissionalComponent,
-    ModalFecharPedidoComponent
+    ListarPedidoProfissionalComponent
+    
   ],
   imports: [    
     MenubarModule,

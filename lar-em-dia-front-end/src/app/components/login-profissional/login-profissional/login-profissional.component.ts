@@ -5,6 +5,7 @@ import { LoginProfissionalDTO } from 'src/app/dto/login-profissional/login-profi
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
+import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
 
 @Component({
   selector: 'app-login-profissional',
@@ -15,7 +16,8 @@ export class LoginProfissionalComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private loginProfissionalService: LoginProfissionalService
     ) { }
 
   
@@ -32,6 +34,11 @@ export class LoginProfissionalComponent implements OnInit {
   cadastrando: boolean;
   mensagemSucesso: string;  
   errors: String[];
+
+  mensagemSucesso2: string;  
+  errors2: String[];
+  not: any;
+  emailRec: string;
 
   ngOnInit(): void {
     //this.converterSenha;    
@@ -90,6 +97,22 @@ export class LoginProfissionalComponent implements OnInit {
         this.errors = errorResponse.error.errors;
         setTimeout( res => { this.errors = null; }, 5000);
     })
+  }
+
+  esqueceuSenha(){
+    this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
+    this.loginProfissionalService.sendMailProf(this.emailRec, this.not).subscribe( response => {
+      this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
+      setTimeout( res => { this.mensagemSucesso2 = ''; }, 5000);      
+      this.emailRec = '';      
+      this.errors2 = null;      
+      }, errorResponse => {
+        this.mensagemSucesso2 = null;
+        this.errors2 = errorResponse.error.errors;
+        setTimeout( res => { this.errors2 = null; }, 10000);
+    });
+    
+    
   }
 
 }

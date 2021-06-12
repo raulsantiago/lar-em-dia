@@ -91,8 +91,50 @@
             </a>
         </div>
         <div>
-            <a href="#">  Esqueceu a senha?</a>
+            <a href="#" onclick="return false;" data-toggle="modal" data-target="#exampleModal" >Esqueceu a senha?</a>
         </div>        
     </div>
     
 </div>
+
+<!-- Modal senha -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recuperação de Senha</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-success" *ngIf="mensagemSucesso2">
+                {{ mensagemSucesso2 }}
+            </div>
+            <div class="alert alert-danger" *ngFor="let erro2 of errors2">
+                {{ erro2 }}
+            </div>
+            <br>
+            <h6>Digite seu e-mail para recuperar a sua senha, você receberá a mesma no seu e-mail !</h6>
+            <br>
+            <br>            
+            <form #senhaForm="ngForm" (submit)="esqueceuSenha();">
+                <div class="form-group col-md-6" >
+                    <label for="exampleDropdownFormEmail4">Email</label>
+                    <input  class="form-control" type="email" id="exampleDropdownFormEmail4" placeholder="email@exemplo.com.br"
+                    name="emailRec" [(ngModel)]="emailRec" >
+                </div>
+
+                <div class="form-group align-items-center justify-content-between mt-4 mb-0">
+                    <button style="margin: 5px;" type="submit" class="btn btn-secondary">
+                        Recuperar
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>

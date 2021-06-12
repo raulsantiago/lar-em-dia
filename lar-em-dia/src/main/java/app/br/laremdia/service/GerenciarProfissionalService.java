@@ -34,6 +34,15 @@ public class GerenciarProfissionalService {
         return loginProfissionalEntity.map(LoginProfissionalDTO::create).orElseThrow(() -> new BusinessException("Profissional não encontrado."));
     }
 
+    public Boolean consultarAtivo(Boolean ativo) {
+        if(loginProfissionalRepository.existsByAtivo(ativo)){
+            return true;
+        } else {
+            Assert.isNull(true, "Não existe profisisonal ativo no sistema no momento, portanto não pode contratar serviços");
+            return false;
+        }
+    }
+
     public LoginProfissionalDTO inserir(LoginProfissionalEntity loginProfissionalEntity){
         Assert.isNull(loginProfissionalEntity.getIdProfissional(), "Não foi possível encontrar o registro");
         return LoginProfissionalDTO.create(loginProfissionalRepository.save(loginProfissionalEntity));

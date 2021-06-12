@@ -9,12 +9,17 @@ import { environment } from '../../environments/environment';
 })
 export class LoginProfissionalService {
 
-  apiURL: string = environment.api + "/gerenciarprofissional";    
+  apiURL: string = environment.api + "/gerenciarprofissional";
+  apiURLmail: string = environment.api + "/mail";
 
   constructor(protected http: HttpClient) { }
 
   consultarEmail(email: string) : Observable<GerenciarProfissionalDTO> {
     return this.http.get<GerenciarProfissionalDTO>(`${this.apiURL}/${email}/email`);
+  }
+
+  consultarAtivo(ativo: boolean) : Observable<Boolean> {
+    return this.http.get<Boolean>(`${this.apiURL}/${ativo}/ativo`);
   }
 
   alterar(id: number, gerenciarProfissionalDTO: GerenciarProfissionalDTO): Observable<GerenciarProfissionalDTO> {
@@ -23,6 +28,10 @@ export class LoginProfissionalService {
 
   addFoto(gerenciarProfissionalDTO: GerenciarProfissionalDTO, formData: FormData) : Observable<any> {
     return this.http.put(`${this.apiURL}/${gerenciarProfissionalDTO.idProfissional}/foto`, formData, { responseType: 'blob'} );
+  }
+
+  sendMailProf(email: string, not: any) : Observable<any> {
+    return this.http.post(`${this.apiURLmail}/${email}/sendprof`, not);
   }
 
 }

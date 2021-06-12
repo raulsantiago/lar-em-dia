@@ -34,6 +34,11 @@ public class GerenciarProfissionalController {
         return ResponseEntity.ok(gerenciarProfissionalService.consultarEmail(email));
     }
 
+    @GetMapping("/{ativo}/ativo")
+    public Boolean consultarAtivo(@PathVariable("ativo") Boolean ativo){
+        return gerenciarProfissionalService.consultarAtivo(ativo);
+    }
+
     @GetMapping()
     public ResponseEntity listar(){
         return ResponseEntity.ok(gerenciarProfissionalService.listar());

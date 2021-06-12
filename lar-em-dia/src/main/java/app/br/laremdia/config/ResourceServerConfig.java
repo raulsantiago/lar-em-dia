@@ -23,7 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/loginprofissional", "/gerenciarprofissional/**", "/logincliente",
                         "/gerenciarcliente/**", "/servico/**", "/tiposervico/**", "/regiao/**",
-                        "/agenda/**", "/pedido/**").permitAll()
+                        "/agenda/**", "/pedido/**", "/mail/**").permitAll()
                 //.antMatchers("/gerenciarprofissional/**").authenticated()
                 .anyRequest().denyAll();
         ;

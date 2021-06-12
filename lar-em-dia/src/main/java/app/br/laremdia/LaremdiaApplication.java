@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SpringBootApplication
-public class LaremdiaApplication {
+public class LaremdiaApplication   {
 
     @Bean
     public CommandLineRunner commandLineRunner(
@@ -90,7 +90,7 @@ public class LaremdiaApplication {
             LoginClienteEntity loginCliente = new LoginClienteEntity();
             loginCliente.setNome("Marcia dos Santos");
             loginCliente.setCpf("83918396053");
-            loginCliente.setEmail("marcia@gmail.com");
+            loginCliente.setEmail("raulsantiago@id.uff.br");
             loginCliente.setCelular("21988671020");
             loginCliente.setSenha("123");
             loginCliente.setEndereco("Rua Américo Rocha");
@@ -166,5 +166,6 @@ public class LaremdiaApplication {
     public static void main(String[] args) {
         SpringApplication.run(LaremdiaApplication.class, args);
     }
+
 
 }
