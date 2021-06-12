@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Bean;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 @SpringBootApplication
 public class LaremdiaApplication {
@@ -24,7 +22,7 @@ public class LaremdiaApplication {
             PedidoContratadoRepository pedidoContratadoRepository, AgendaRepository agendaRepository){
         return args -> {
             LoginProfissionalEntity loginProfissional = new LoginProfissionalEntity();
-            loginProfissional.setNome("Jaque");
+            loginProfissional.setNome("Jaqueline Pereira");
             loginProfissional.setCpf("80860752062");
             loginProfissional.setEmail("jaq@gmail.com");
             loginProfissional.setCelular("21988671010");
@@ -90,18 +88,18 @@ public class LaremdiaApplication {
             municipioAtendidoRepository.save(municipioAtendidoEntity5);
 
             LoginClienteEntity loginCliente = new LoginClienteEntity();
-            loginCliente.setNome("Marcia");
+            loginCliente.setNome("Marcia dos Santos");
             loginCliente.setCpf("83918396053");
             loginCliente.setEmail("marcia@gmail.com");
             loginCliente.setCelular("21988671020");
             loginCliente.setSenha("123");
-            loginCliente.setEndereco("Rua Rafa Audax");
+            loginCliente.setEndereco("Rua Américo Rocha");
             loginCliente.setNumero("1005");
-            loginCliente.setBairro("Laranjeiras");
+            loginCliente.setBairro("Honório Gurgel");
             loginCliente.setComplemento("Bloco 9 Apto 101");
             loginCliente.setMunicipioAtendido(municipioAtendidoEntity);
             loginCliente.setEstadoAtendido(estadoAtendidoEntity);
-            loginCliente.setReferencia("Próximo a coca-cola");
+            loginCliente.setReferencia("Próximo a linha do trem");
             loginCliente.setAtivo(true);
             repositoryCliente.save(loginCliente);
 

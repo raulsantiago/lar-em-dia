@@ -1,6 +1,9 @@
 package app.br.laremdia.service;
 
+import app.br.laremdia.model.dto.AgendaDTO;
+import app.br.laremdia.model.dto.AlterarPedidoContratadoDTO;
 import app.br.laremdia.model.dto.IncluirPedidoContratadoDTO;
+import app.br.laremdia.model.dto.PedidoContratadoDTO;
 import app.br.laremdia.model.entity.AgendaEntity;
 import app.br.laremdia.model.entity.LoginClienteEntity;
 import app.br.laremdia.model.entity.PedidoContratadoEntity;
@@ -20,6 +23,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +42,11 @@ public class PedidoContratadoService {
 
     @Autowired
     private TipoServicoRepository tipoServicoRepository;
+
+    public PedidoContratadoDTO consultar(Integer id) {
+        Optional< PedidoContratadoEntity > pedidoContratadoEntity = pedidoContratadoRepository.findById(id);
+        return pedidoContratadoEntity.map(PedidoContratadoDTO::new).orElseThrow(() -> new BusinessException("Pedido não encontrada."));
+    }
 
     public List< PedidoContratadoProjection > pedidosPorIdCliente(Integer idCliente) {
         return pedidoContratadoRepository.pedidosPorIdCliente(idCliente);
@@ -70,6 +80,29 @@ public class PedidoContratadoService {
             pedidoContratadoRepository.delete(pedido);
             return Void.TYPE;
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado."));
+
+    }
+
+    public AlterarPedidoContratadoDTO alterar(Integer id, AlterarPedidoContratadoDTO alterarPedidoContratadoDTO){
+        Assert.notNull(id, "Não foi possível atualizar o registro");
+        Optional<PedidoContratadoEntity> pedido = pedidoContratadoRepository.findById(id);
+        if(pedido.isPresent()){
+            PedidoContratadoEntity pedidoContratadoEntity = pedido.get();
+            if(alterarPedidoContratadoDTO.getDespesas() != null){
+                pedidoContratadoEntity.setDespesas(alterarPedidoContratadoDTO.getDespesas());
+            }
+            if(alterarPedidoContratadoDTO.getDataHoraInicio()  != null){
+                pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.parse(alterarPedidoContratadoDTO.getDataHoraInicio().toString()));
+            }
+            if(alterarPedidoContratadoDTO.getDataHoraFim() != null){
+                pedidoContratadoEntity.setDataHoraFim(LocalDateTime.parse(alterarPedidoContratadoDTO.getDataHoraFim().toString()));
+                pedidoContratadoEntity.setSituacao(alterarPedidoContratadoDTO.getSituacao());
+            }
+            pedidoContratadoRepository.save(pedidoContratadoEntity);
+            return AlterarPedidoContratadoDTO.create(pedidoContratadoEntity);
+        } else {
+            return null;
+        }
 
     }
 

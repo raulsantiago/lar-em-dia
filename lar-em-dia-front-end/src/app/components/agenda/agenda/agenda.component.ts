@@ -31,7 +31,9 @@ export class AgendaComponent implements OnInit {
 
   inserir(){
     let incluirAgendaDTO: IncluirAgendaDTO = new IncluirAgendaDTO();
-    incluirAgendaDTO.dia = this.datepipe.transform(this.data, 'dd/MM/yyyy');
+    console.log(this.data);
+    console.log(this.datepipe.transform(this.data, 'dd/MM/yyyy'));
+    incluirAgendaDTO.dia = this.datepipe.transform(this.data, 'dd/MM/yyyy');        
     incluirAgendaDTO.disponivel = true;
     incluirAgendaDTO.turno = 'Manhã';    
     this.agendaService.inserir(incluirAgendaDTO)
@@ -74,3 +76,4 @@ export class AgendaComponent implements OnInit {
   }
 
 }
+

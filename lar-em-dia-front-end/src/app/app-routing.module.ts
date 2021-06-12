@@ -18,8 +18,6 @@ import { AgendarServicoComponent } from './components/pedido/agendar-servico/age
 import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
 import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
 
-
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'loginprofissional', component: LoginProfissionalComponent },
@@ -37,7 +35,7 @@ const routes: Routes = [
   { path: 'solicitar/:id', component: ListarTipoServicoComponent },
   { path: 'agendar/:id', component: AgendarServicoComponent },
   { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent },
-  { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent }
+  { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent }  
   
 ];
 

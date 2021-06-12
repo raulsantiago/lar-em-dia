@@ -3,6 +3,8 @@ package app.br.laremdia.model.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -10,6 +12,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static java.time.format.DateTimeFormatter.*;
 
 @Entity
 @Data
@@ -30,11 +35,11 @@ public class PedidoContratadoEntity {
     private String local;
 
     @Column(name="data_hora_inicio", nullable = true)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataHoraInicio;
 
     @Column(name="data_hora_fim", nullable = true)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dataHoraFim;
 
     @Column(nullable = true)

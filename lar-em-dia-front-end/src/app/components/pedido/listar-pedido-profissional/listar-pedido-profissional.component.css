@@ -1,0 +1,8 @@
+::ng-deep .valores-dialog {
+    width: 70%;
+    height: 900%;
+}
+
+::ng-deep .valores-dialog .p-dialog-content{
+    height: 100%;
+}

@@ -5,6 +5,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData, DatePipe, CurrencyPipe, CommonModule } from  '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader  } from '@ngx-translate/http-loader';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
@@ -118,7 +120,16 @@ import { ModalFecharPedidoComponent } from './components/pedido/listar-pedido-pr
 		ButtonModule,
 		RadioButtonModule,
     RippleModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TranslateModule.forRoot(
+      {
+        loader: {
+          provide: TranslateLoader,
+          useFactory: (http: HttpClient) => { return new TranslateHttpLoader(http, './assets/i18n/', '.json');},
+          deps: [HttpClient]
+        }
+      }
+    )
   ],
   providers: [
     ConfirmationService,
@@ -130,6 +141,7 @@ import { ModalFecharPedidoComponent } from './components/pedido/listar-pedido-pr
     CurrencyPipe,
     LoginProfissionalService,
     LoginClienteService,
+    TranslateService,
     AuthService,    
     {
       provide: LOCALE_ID,

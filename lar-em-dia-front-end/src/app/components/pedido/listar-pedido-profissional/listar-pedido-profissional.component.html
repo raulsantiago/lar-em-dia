@@ -1,5 +1,5 @@
 <br>
-<div class="container">
+<div >
     <h1>Pedidos Solicitados pelos Clientes</h1>
     <div class="alert alert-success" *ngIf="mensagemSucesso">
         {{ mensagemSucesso }}
@@ -9,11 +9,6 @@
     </div>
     <br>    
     <div class="table-responsive">
-
-
-         <!-- Modal de Contato com profisisonal -->
-         <app-modal-fechar-pedido [(visible)]="exibirDetalhar" ></app-modal-fechar-pedido>
-
         <table class="table">
             <thead>
                 <tr>                        
@@ -42,10 +37,10 @@
                     <td>{{ dado.despesas === null || dado.despesas === undefined ? '' : dado.precoContratado - dado.despesas | currency }}</td>
                     <td>
                         <a href="" style="padding-left: 10px;" onclick="return false;" *ngIf="dado.despesas == null || dado.despesas == undefined"
-                        (click)="finalizar(dado.idPedido)"> Fechar pedido </a>
+                        (click)="exibirPopup(dado.idPedido, 'detalhar')"> Fechar pedido </a>
 
                         <a href="" style="padding-left: 10px;" onclick="return false;" *ngIf="dado.despesas"
-                        (click)="detalhar(dado.idPedido)"><strong>Finalizado</strong></a>
+                        (click)="exibirPopup(dado.idPedido, 'detalhar')"><strong>Finalizado</strong></a>
                         
                     </td>
                 </tr>
@@ -56,7 +51,68 @@
     <button style="margin: 5px;" [routerLink]="['/gerenciarprofissional']" type="reset"  class="btn btn-secondary" >Voltar</button>
 </div>
 
-<!-- Modal -->
+
+<!-- Modal Fechar pedido -->
+<p-dialog [(visible)]="exibirDetalhar"
+    *ngIf="pedidoContratado"
+    [baseZIndex]="10000"
+    id="modal-valores"
+    styleClass="valores-dialog">
+    <p-header>
+        <strong>Fechar o Pedido nº {{pedidoContratado.idPedido}} do(a) Cliente {{pedidoContratado.loginClienteDTO.nome}} </strong>
+    </p-header>
+    <div class="alert alert-success" *ngIf="mensagemSucesso2">
+        {{ mensagemSucesso2 }}
+    </div>
+    <div class="alert alert-danger" *ngFor="let erro2 of errors2">
+        {{ erro2 }}
+    </div>
+    <br>
+        <form  #cadForm="ngForm" (submit)="salvar(pedidoContratado.idPedido)">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="dataInicial" >Data e hora do início</label>
+                    <p-calendar showTime="true" hourFormat="24"  id="dataInicial"
+                                styleClass="calendario form-control"
+                                dateFormat="dd/mm/yy"
+                                yearRange="2021:2200"
+                                name="dataInicial" [(ngModel)]="dataInicial"
+                                showIcon="true"
+                                [showButtonBar]="true"
+                                dataType="string"
+                                ></p-calendar>
+                </div>
+            
+                <div class="form-group col-md-3">
+                    <label for="dataFinal" >Data e hora do fim</label>
+                    <p-calendar showTime="true" hourFormat="24"  id="dataFinal"
+                                styleClass="calendario form-control main-container"
+                                dateFormat="dd/mm/yy"
+                                yearRange="2021:2200"
+                                name="dataFinal" [(ngModel)]="dataFinal"
+                                showIcon="true"
+                                [showButtonBar]="true"
+                                dataType="string"
+                                ></p-calendar>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="despesas" >Despesas realizadas</label>
+                    <input currencyMask 
+                           name="despesas" [(ngModel)]="despesas"
+                           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                           Class="form-control" id="despesas"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-sm margin-3x btn-secondary pull-left" title="Clique para salvar">Salvar</button>
+        </form>
+    <ng-template pTemplate="footer">        
+        <button  type="button" (click)="exibirDetalhar=false" class="btn btn-sm margin-3x btn-secondary pull-left">Fechar</button>
+    </ng-template>
+</p-dialog>
+
+<!-- Modal endereço cliente -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -69,11 +125,11 @@
         <div class="modal-body">
             <p><strong> Cliente: {{ gerenciarClienteDTO?.nome }}</strong> </p>
             <p>Celular: {{ gerenciarClienteDTO?.celular }}</p>
-            <p>E-mail: <a href="mailto:{{gerenciarClienteDTO?.email}}" >{{ gerenciarClienteDTO?.email }}</a></p>  
+            <p>E-mail: <a href="mailto:{{gerenciarClienteDTO?.email}}"  title="Enviar e-mail" >{{ gerenciarClienteDTO?.email }}</a></p>  
             <br>
             <p>Endereço: {{ gerenciarClienteDTO?.endereco }},{{ gerenciarClienteDTO?.numero }}
                 <a href="https://www.google.com.br/maps/search/{{ gerenciarClienteDTO?.endereco }},{{ gerenciarClienteDTO?.numero }}" style="padding-left: 10px;"  target="_blank" >
-                    <i class="fa fa-map-marker fa-3x" aria-hidden="true"></i>
+                    <i class="fa fa-map-marker fa-3x" aria-hidden="true" title="Rota do Google Maps" ></i>
                 </a>
             </p>
             <p>Bairro: {{ gerenciarClienteDTO?.bairro }}</p>
