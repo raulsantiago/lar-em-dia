@@ -1,6 +1,8 @@
 <br>
 <div class="container">
-    <h1>Bem vindo Cliente</h1>  
+    <h1><i class="fa fa-home fa-2x" aria-hidden="true" [routerLink]="['/']"></i>
+        Bem vindo Cliente
+    </h1>    
     <br>    
     <div class="card-body">
         <h3 class="card-title">
@@ -141,12 +143,14 @@
     <br>
     <div class="card-footer text-center">
         <div >
-            <a href="#" (click)="preparaCadastrar($event)" >
+            <a href="#" (click)="preparaCadastrar($event)" *ngIf="!cadastrando" >
                 Não possui Usuário? Cadastre-se!
             </a>
         </div>
         <div>
-            <a href="#" onclick="return false;" data-toggle="modal" data-target="#exampleModal" >Esqueceu a senha?</a>
+            <a href="#" onclick="return false;" data-toggle="modal" data-target="#exampleModal" *ngIf="!cadastrando">
+                Esqueceu a senha?
+            </a>
         </div>        
     </div>
     

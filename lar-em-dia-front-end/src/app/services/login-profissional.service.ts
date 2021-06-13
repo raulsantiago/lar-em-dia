@@ -22,6 +22,10 @@ export class LoginProfissionalService {
     return this.http.get<Boolean>(`${this.apiURL}/${ativo}/ativo`);
   }
 
+  consultar(id: number) : Observable<GerenciarProfissionalDTO> {
+    return this.http.get<GerenciarProfissionalDTO>(`${this.apiURL}/${id}`);
+  }
+
   alterar(id: number, gerenciarProfissionalDTO: GerenciarProfissionalDTO): Observable<GerenciarProfissionalDTO> {
     return this.http.put<GerenciarProfissionalDTO>(`${this.apiURL}/${id}`, gerenciarProfissionalDTO);
   }

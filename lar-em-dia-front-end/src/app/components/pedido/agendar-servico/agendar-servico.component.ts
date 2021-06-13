@@ -12,6 +12,8 @@ import { PedidoService } from 'src/app/services/pedido.service';
 import { IncluirPedidoContratadoDTO } from 'src/app/dto/pedido/incluir-pedido-contratadoDTO';
 import { DatePipe } from '@angular/common'
 import { AlterarAgendaDTO } from 'src/app/dto/agenda/alterar-agendaDTO';
+import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
+import { GerenciarProfissionalDTO } from 'src/app/dto/login-profissional/gerenciar-profissionalDTO';
 
 @Component({
   selector: 'app-agendar-servico',
@@ -29,13 +31,15 @@ export class AgendarServicoComponent implements OnInit {
     private _location:                      Location,
     private loginClienteService:            LoginClienteService,
     private pedidoService:                  PedidoService,
-    public  datepipe:                       DatePipe
+    public  datepipe:                       DatePipe,
+    private loginProfissionalService:       LoginProfissionalService
   ) { }
 
   tipoServicoProfissionalDTO: TipoServicoProfissionalDTO;
   listarAgendaDTO:            AgendaDTO[];
   gerenciarClienteDTO:        GerenciarClienteDTO;
   agendaDTO:                  AgendaDTO;
+  gerenciarProfissionalDTO:   GerenciarProfissionalDTO;
 
   descricao: string;
   local:     string;
@@ -60,6 +64,9 @@ export class AgendarServicoComponent implements OnInit {
     });
     this.agendaService.listar().subscribe( dado => {
       this.listarAgendaDTO = dado;
+    });
+    this.loginProfissionalService.consultar(1).subscribe( dado => {
+      this.gerenciarProfissionalDTO = dado;
     });
 
   }

@@ -38,6 +38,10 @@ export class PedidoService {
     return this.http.delete<PedidoContratadoDTO>(`${this.apiURL}/${id}`);
   }
 
+  excluirProf(id: number): Observable<PedidoContratadoDTO>{
+    return this.http.delete<PedidoContratadoDTO>(`${this.apiURL}/${id}/prof`);
+  }
+
   alterar(id: number, pedidoDTO: AlterarPedidoContratadoDTO): Observable<AlterarPedidoContratadoDTO>{
     return this.http.patch<AlterarPedidoContratadoDTO>(`${this.apiURL}/${id}`, pedidoDTO)
   }

@@ -41,6 +41,9 @@
 
                         <a href="" style="padding-left: 10px;" onclick="return false;" *ngIf="dado.despesas"
                         (click)="exibirPopup(dado.idPedido, 'detalhar')"><strong>Finalizado</strong></a>
+
+                        <a href="" style="padding-left: 10px;" onclick="return false;" 
+                        (click)="excluir(dado.idPedido)">Cancelar</a>
                         
                     </td>
                 </tr>
@@ -52,7 +55,7 @@
 </div>
 
 
-<!-- Modal Fechar pedido -->
+<!-- Modal Fechar Pedido -->
 <p-dialog [(visible)]="exibirDetalhar"
     *ngIf="pedidoContratado"
     [baseZIndex]="10000"
@@ -112,7 +115,7 @@
     </ng-template>
 </p-dialog>
 
-<!-- Modal endereço cliente -->
+<!-- Modal dados de contato com o cliente -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -141,6 +144,4 @@
       </div>
     </div>
   </div>
-
-
-
+  

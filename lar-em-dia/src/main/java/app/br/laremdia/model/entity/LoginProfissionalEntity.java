@@ -32,7 +32,7 @@ public class LoginProfissionalEntity {
     @NotEmpty(message = "{campo.email.obrigatorio}")
     private String email;
 
-    @Column(nullable = true, length = 11)
+    @Column(nullable = true, length = 14)
     private String celular;
 
     @Column(nullable = false)

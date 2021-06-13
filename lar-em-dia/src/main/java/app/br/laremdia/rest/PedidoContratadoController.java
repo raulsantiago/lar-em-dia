@@ -43,6 +43,12 @@ public class PedidoContratadoController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/{id}/prof")
+    public ResponseEntity excluirProf(@PathVariable("id") Integer id){
+        pedidoContratadoService.excluirProf(id);
+        return ResponseEntity.ok().build();
+    }
+
     @PatchMapping("/{id}")
     public ResponseEntity alterar(@PathVariable("id") Integer id, @RequestBody @Valid AlterarPedidoContratadoDTO alterarPedidoContratadoDTO){
         AlterarPedidoContratadoDTO alterarPedido =  pedidoContratadoService.alterar(id, alterarPedidoContratadoDTO);

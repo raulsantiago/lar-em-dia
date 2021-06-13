@@ -22,10 +22,10 @@ public class LaremdiaApplication   {
             PedidoContratadoRepository pedidoContratadoRepository, AgendaRepository agendaRepository){
         return args -> {
             LoginProfissionalEntity loginProfissional = new LoginProfissionalEntity();
-            loginProfissional.setNome("Jaqueline Pereira");
+            loginProfissional.setNome("Marcio dos Santos Souza");
             loginProfissional.setCpf("80860752062");
-            loginProfissional.setEmail("jaq@gmail.com");
-            loginProfissional.setCelular("21988671010");
+            loginProfissional.setEmail("raulfsantiago@outlook.com.br");
+            loginProfissional.setCelular("(21)98867-1010");
             loginProfissional.setSenha("123");
             loginProfissional.setAtivo(true);
             repository.save(loginProfissional);
@@ -37,13 +37,13 @@ public class LaremdiaApplication   {
 
             TipoServicoEntity tipoServico = new TipoServicoEntity();
             tipoServico.setNome("Limpeza");
-            tipoServico.setPreco(new BigDecimal("123456.99"));
+            tipoServico.setPreco(new BigDecimal("300.00"));
             tipoServico.setServicoProfissional(servicoProfissional);
             tipoServicoRepository.save(tipoServico);
 
             TipoServicoEntity tipoServico2 = new TipoServicoEntity();
             tipoServico2.setNome("Instalação");
-            tipoServico2.setPreco(new BigDecimal("10.01"));
+            tipoServico2.setPreco(new BigDecimal("500.00"));
             tipoServico2.setServicoProfissional(servicoProfissional);
             tipoServicoRepository.save(tipoServico2);
 
@@ -63,11 +63,11 @@ public class LaremdiaApplication   {
             municipioAtendidoEntity.setEstado(estadoAtendidoEntity);
             municipioAtendidoRepository.save(municipioAtendidoEntity);
 
-            MunicipioAtendidoEntity municipioAtendidoEntity2 = new MunicipioAtendidoEntity();
-            municipioAtendidoEntity2.setMunicipio("São João de Meriti");
-            municipioAtendidoEntity2.setAtivo(true);
-            municipioAtendidoEntity2.setEstado(estadoAtendidoEntity);
-            municipioAtendidoRepository.save(municipioAtendidoEntity2);
+//            MunicipioAtendidoEntity municipioAtendidoEntity2 = new MunicipioAtendidoEntity();
+//            municipioAtendidoEntity2.setMunicipio("São João de Meriti");
+//            municipioAtendidoEntity2.setAtivo(true);
+//            municipioAtendidoEntity2.setEstado(estadoAtendidoEntity);
+//            municipioAtendidoRepository.save(municipioAtendidoEntity2);
 
             MunicipioAtendidoEntity municipioAtendidoEntity3 = new MunicipioAtendidoEntity();
             municipioAtendidoEntity3.setMunicipio("Rio de Janeiro");
@@ -88,10 +88,10 @@ public class LaremdiaApplication   {
             municipioAtendidoRepository.save(municipioAtendidoEntity5);
 
             LoginClienteEntity loginCliente = new LoginClienteEntity();
-            loginCliente.setNome("Marcia dos Santos");
+            loginCliente.setNome("Marcia da Silva Pereira");
             loginCliente.setCpf("83918396053");
-            loginCliente.setEmail("raulsantiago@id.uff.br");
-            loginCliente.setCelular("21988671020");
+            loginCliente.setEmail("marcia@gmail.com");
+            loginCliente.setCelular("(21)98867-1020");
             loginCliente.setSenha("123");
             loginCliente.setEndereco("Rua Américo Rocha");
             loginCliente.setNumero("1005");
@@ -104,40 +104,40 @@ public class LaremdiaApplication   {
             repositoryCliente.save(loginCliente);
 
             AgendaEntity agendaEntity = new AgendaEntity();
-            agendaEntity.setDia(LocalDate.of(2021,6,2));
+            agendaEntity.setDia(LocalDate.of(2021,6,11));
             agendaEntity.setDisponivel(false);
             agendaEntity.setTurno("Manhã");
             agendaRepository.save(agendaEntity);
 
             AgendaEntity agendaEntity2 = new AgendaEntity();
-            agendaEntity2.setDia(LocalDate.of(2021,6,3));
+            agendaEntity2.setDia(LocalDate.of(2021,6,12));
             agendaEntity2.setDisponivel(false);
             agendaEntity2.setTurno("Tarde");
             agendaRepository.save(agendaEntity2);
 
             AgendaEntity agendaEntity3 = new AgendaEntity();
-            agendaEntity3.setDia(LocalDate.of(2021,6,4));
+            agendaEntity3.setDia(LocalDate.of(2021,6,13));
             agendaEntity3.setDisponivel(false);
             agendaEntity3.setTurno("Manhã");
             agendaRepository.save(agendaEntity3);
 
             AgendaEntity agendaEntity4 = new AgendaEntity();
-            agendaEntity4.setDia(LocalDate.of(2021,6,5));
+            agendaEntity4.setDia(LocalDate.of(2021,6,14));
             agendaEntity4.setDisponivel(true);
             agendaEntity4.setTurno("Tarde");
             agendaRepository.save(agendaEntity4);
 
             PedidoContratadoEntity pedidoContratadoEntity = new PedidoContratadoEntity();
-            pedidoContratadoEntity.setDescricao("Casa alta");
+            pedidoContratadoEntity.setDescricao("Casa alta de dois andares");
             pedidoContratadoEntity.setLocal("Casa");
-            pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.of(2021,5,1,10,20));
-            pedidoContratadoEntity.setDataHoraFim(LocalDateTime.of(2021,5,1,12,05));
-            pedidoContratadoEntity.setDespesas(new BigDecimal("50.55"));
+            pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.of(2021,6,11,10,20));
+            pedidoContratadoEntity.setDataHoraFim(LocalDateTime.of(2021,6,11,12,05));
+            pedidoContratadoEntity.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity.setSituacao(false);
             pedidoContratadoEntity.setTipoServico(tipoServico);
             pedidoContratadoEntity.setAgenda(agendaEntity);
             pedidoContratadoEntity.setLoginCliente(loginCliente);
-            pedidoContratadoEntity.setPrecoContratado(new BigDecimal("150.55"));
+            pedidoContratadoEntity.setPrecoContratado(new BigDecimal("300.00"));
             pedidoContratadoRepository.save(pedidoContratadoEntity);
 
             PedidoContratadoEntity pedidoContratadoEntity2 = new PedidoContratadoEntity();

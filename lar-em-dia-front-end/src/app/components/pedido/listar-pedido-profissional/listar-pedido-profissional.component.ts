@@ -77,6 +77,19 @@ export class ListarPedidoProfissionalComponent implements OnInit {
       setTimeout( res => { this.errors2 = null; }, 5000);
     });  
   }
+
+  excluir(id: number){
+    this.pedidoService.excluirProf(id).subscribe( respose => {
+      this.mensagemSucesso = 'Pedido cancelado com sucesso!';
+      setTimeout( res => { this.mensagemSucesso = ''; this.ngOnInit() }, 3000);
+      this.errors = null;      
+    }, errorResponse => {
+      this.mensagemSucesso = null;
+      this.errors = errorResponse.error.errors;
+      setTimeout( res => { this.errors = null; }, 5000);
+    });  
+
+  }
   
 
 }

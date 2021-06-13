@@ -1,6 +1,8 @@
 <br>
 <div class="container">
-    <h1>Bem vindo Profissional</h1>    
+    <h1><i class="fa fa-home fa-2x" aria-hidden="true" [routerLink]="['/']"></i>
+        Bem vindo Profissional
+    </h1>    
     <br>  
     <div class="card-body">
         <h3 class="card-title">
@@ -85,11 +87,11 @@
 
     <br>
     <div class="card-footer text-center">
-        <div >
+        <!-- <div >
             <a href="#" (click)="preparaCadastrar($event)" >
                 Não possui Usuário? Cadastre-se!
             </a>
-        </div>
+        </div> -->
         <div>
             <a href="#" onclick="return false;" data-toggle="modal" data-target="#exampleModal" >Esqueceu a senha?</a>
         </div>        
@@ -97,7 +99,7 @@
     
 </div>
 
-<!-- Modal senha -->
+<!-- Modal recuperar a senha -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -124,7 +126,6 @@
                     <input  class="form-control" type="email" id="exampleDropdownFormEmail4" placeholder="email@exemplo.com.br"
                     name="emailRec" [(ngModel)]="emailRec" >
                 </div>
-
                 <div class="form-group align-items-center justify-content-between mt-4 mb-0">
                     <button style="margin: 5px;" type="submit" class="btn btn-secondary">
                         Recuperar
