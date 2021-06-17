@@ -101,14 +101,17 @@ export class LoginProfissionalComponent implements OnInit {
 
   esqueceuSenha(){
     this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-    this.loginProfissionalService.sendMailProf(this.emailRec, this.not).subscribe( response => {
+    setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);
+    this.loginProfissionalService.sendMailProf(this.emailRec, this.not).subscribe( response => {      
       this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-      setTimeout( res => { this.mensagemSucesso2 = ''; }, 5000);      
+      setTimeout( res => { this.mensagemSucesso2 = ''; }, 5000);
       this.emailRec = '';      
       this.errors2 = null;      
       }, errorResponse => {
+        this.emailRec = '';      
         this.mensagemSucesso2 = null;
-        this.errors2 = errorResponse.error.errors;
+        this.errors2 = ["E-mail não consta na nossa base de dados."];
+        //this.errors2 = errorResponse.error.errors;
         setTimeout( res => { this.errors2 = null; }, 10000);
     });
     

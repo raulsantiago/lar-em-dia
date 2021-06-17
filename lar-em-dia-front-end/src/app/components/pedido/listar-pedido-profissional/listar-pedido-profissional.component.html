@@ -82,7 +82,7 @@
                                 name="dataInicial" [(ngModel)]="dataInicial"
                                 showIcon="true"
                                 [showButtonBar]="true"
-                                dataType="string"
+                                
                                 ></p-calendar>
                 </div>
             
@@ -95,7 +95,7 @@
                                 name="dataFinal" [(ngModel)]="dataFinal"
                                 showIcon="true"
                                 [showButtonBar]="true"
-                                dataType="string"
+                                
                                 ></p-calendar>
                 </div>
             </div>
@@ -126,7 +126,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <p><strong> Cliente: {{ gerenciarClienteDTO?.nome }}</strong> </p>
+            <p>Cliente: <strong>{{ gerenciarClienteDTO?.nome }}</strong> </p>
             <p>Celular: {{ gerenciarClienteDTO?.celular }}</p>
             <p>E-mail: <a href="mailto:{{gerenciarClienteDTO?.email}}"  title="Enviar e-mail" >{{ gerenciarClienteDTO?.email }}</a></p>  
             <br>

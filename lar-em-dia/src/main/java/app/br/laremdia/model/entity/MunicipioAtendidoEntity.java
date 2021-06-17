@@ -19,11 +19,11 @@ public class MunicipioAtendidoEntity {
     private Integer idMunicipio;
 
     @Column(nullable = false)
-    @NotEmpty()
+    @NotEmpty(message = "O campo município é obrigatório.")
     private String municipio;
 
     @Column(nullable = false)
-    @NotNull()
+    @NotNull(message = "O campo ativo é obrigatório.")
     private Boolean ativo;
 
     @ManyToOne

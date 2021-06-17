@@ -31,7 +31,7 @@ public class PedidoContratadoEntity {
     private String descricao;
 
     @Column(nullable = false, length = 31)
-    @NotEmpty()
+    @NotEmpty(message = "O campo local é obrigatório.")
     private String local;
 
     @Column(name="data_hora_inicio", nullable = true)
@@ -48,7 +48,7 @@ public class PedidoContratadoEntity {
     private BigDecimal despesas;
 
     @Column(nullable = false)
-    @NotNull()
+    @NotNull(message = "O campo ativo é obrigatório.")
     private Boolean situacao;
 
     @Column(name="preco_contratado", nullable = false)

@@ -1,34 +1,42 @@
-
-<div class="row row-cols-1 row-cols-md-3 justify-content-center" >
-    <div class="col mb-4">
-    <div class="card h-100">
-        <img src="../assets/img/logo-acesso-cliente.jpg" class="rounded"  width="300" height="300"
-        [routerLink]="['/logincliente']"
-        >
-        <div class="card-body">
-        <h5 class="card-title">Cliente</h5>          
-        </div>
+<br>
+<div class="container">
+    <div class="justify-content-center" >
+        <img src="../assets/img/logo-lar-em-dia.png"  class="rounded mx-auto d-block" width="250" height="250" >
     </div>
-    </div>
-    <div class="col mb-4">
-    <div class="card h-100">
-        <img src="../assets/img/logo-acesso-profissional.jpg" class="rounded" width="300" height="300"
-        [routerLink]="['/loginprofissional']"
-        >
-        <div class="card-body">
-        <h5 class="card-title">Profissional</h5>
-        </div>
-    </div>
-    </div>        
 </div>
 <br>
-<div class="d-flex justify-content-center" >
-    <div  >
-        <label for="exampleDropdownFormPassword1">Logout -> </label>
-            <a href="#" (click)="logout()"><strong> Sair&nbsp;&nbsp;</strong></a>
+<div class="container">
+    <div class="row row-cols-md-4 justify-content-center" >
+        <div class="col mb-2">
+        <div class="card h-100">
+            <img src="../assets/img/logo-acesso-cliente.jpg" class="rounded"  width="200" height="200"
+            [routerLink]="['/logincliente']"
+            >
+            <div class="card-body">
+            <h5 class="card-title">Cliente</h5>          
+            </div>
+        </div>
+        </div>
+        <div class="col mb-2">
+        <div class="card h-100">
+            <img src="../assets/img/logo-acesso-profissional.jpg" class="rounded" width="200" height="200"
+            [routerLink]="['/loginprofissional']"
+            >
+            <div class="card-body">
+            <h5 class="card-title">Profissional</h5>
+            </div>
+        </div>
+        </div>        
     </div>
-    <div  >
-        <label for="exampleDropdownFormPassword2">  Usuário(a) Logado(a):</label>
-        <strong>&nbsp;&nbsp;{{usuarioLogado}}</strong>
-    </div>        
+    <br>
+    <div class="d-flex justify-content-center" >
+        <div  >
+            <label for="exampleDropdownFormPassword1">Logout -> </label>
+                <a href="#" (click)="logout()"><strong> Sair&nbsp;&nbsp;</strong></a>
+        </div>
+        <div  >
+            <label for="exampleDropdownFormPassword2">  Usuário(a) Logado(a):</label>
+            <strong>&nbsp;&nbsp;{{usuarioLogado}}</strong>
+        </div>        
+    </div>
 </div>

@@ -19,11 +19,11 @@ public class EstadoAtendidoEntity {
     private Integer idEstado;
 
     @Column(nullable = false, length = 2)
-    @NotEmpty()
+    @NotEmpty(message = "O campo UF é obrigatório.")
     private String uf;
 
     @Column(nullable = false)
-    @NotNull()
+    @NotNull(message = "O campo ativo é obrigatório.")
     private Boolean ativo;
 
     @OneToMany(mappedBy = "estadoAtendido", fetch = FetchType.LAZY)

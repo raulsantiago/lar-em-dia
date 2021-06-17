@@ -19,11 +19,11 @@ public class ServicoProfissionalEntity {
     private Integer idServico;
 
     @Column(nullable = false, length = 100)
-    @NotEmpty(message = "O campo onde será o serviço é obrigatorio.")
+    @NotEmpty(message = "O campo onde será o serviço é obrigátorio.")
     private String nome;
 
     @Column(nullable = false)
-    @NotNull(message = "{campo.ativo.obrigatorio}")
+    @NotNull(message = "O campo ativo é obrigátorio.")
     private Boolean ativo;
 
     @OneToMany(mappedBy = "servicoProfissional", fetch = FetchType.LAZY)

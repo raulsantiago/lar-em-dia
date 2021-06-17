@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform }  from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GerenciarClienteDTO } from 'src/app/dto/login-cliente/gerenciar-clienteDTO';
 import { AlterarPedidoContratadoDTO } from 'src/app/dto/pedido/alterar-pedido-contratadoDTO';
@@ -16,27 +16,27 @@ import { PedidoService } from 'src/app/services/pedido.service';
 export class ListarPedidoProfissionalComponent implements OnInit {
 
   constructor(
-    private pedidoService:                  PedidoService,    
-    private router:                         Router,
-    private route:                          ActivatedRoute,
-    private loginClienteService:            LoginClienteService,
-    public datepipe:       DatePipe
+    private pedidoService:        PedidoService,    
+    private router:               Router,
+    private route:                ActivatedRoute,
+    private loginClienteService:  LoginClienteService,
+    public  datepipe:             DatePipe
   ) { }
 
   listaPedidosProfissionalDTO: ListaPedidosProfissionalDTO[];
-  pedidoContratado: PedidoContratadoDTO;
-  gerenciarClienteDTO: GerenciarClienteDTO;
-  exibirDetalhar: boolean = false;
+  pedidoContratado:            PedidoContratadoDTO;
+  gerenciarClienteDTO:         GerenciarClienteDTO;
+  exibirDetalhar:              boolean = false;
 
-  mensagemSucesso: string;  
+  mensagemSucesso:  string;  
   mensagemSucesso2: string;  
-  errors:          String[];
-  errors2:          String[];
+  errors:           string[];
+  errors2:          string[];
 
   alterarPedidoContratadoDTO: AlterarPedidoContratadoDTO;
-  dataInicial:      Date;
-  dataFinal:         Date;
-  despesas:         number;
+  dataInicial:                Date;
+  dataFinal:                  Date;
+  despesas:                   number;
 
   ngOnInit(): void {
     this.pedidoService.listaPedidosViewProfissional().subscribe( dado => {
@@ -62,14 +62,15 @@ export class ListarPedidoProfissionalComponent implements OnInit {
   }
 
   salvar(id: number){    
+    console.log(this.datepipe.transform(this.dataInicial, 'yyyy-MM-ddTHH:mm:ss'));
     let pedido: AlterarPedidoContratadoDTO = new AlterarPedidoContratadoDTO();
-    pedido.dataHoraFim = this.datepipe.transform(this.dataFinal, 'yyyy-dd-MMTHH:mm:ss');
-    pedido.dataHoraInicio = this.datepipe.transform(this.dataInicial, 'yyyy-dd-MMTHH:mm:ss');
+    pedido.dataHoraInicio = this.datepipe.transform(this.dataInicial, 'yyyy-MM-ddTHH:mm:ss') == undefined || this.datepipe.transform(this.dataInicial, 'yyyy-MM-ddTHH:mm:ss') == null ? null : this.datepipe.transform(this.dataInicial, 'yyyy-MM-ddTHH:mm:ss');
+    pedido.dataHoraFim = this.datepipe.transform(this.dataFinal, 'yyyy-MM-ddTHH:mm:ss') == undefined || this.datepipe.transform(this.dataFinal, 'yyyy-MM-ddTHH:mm:ss') == null ? null : this.datepipe.transform(this.dataFinal, 'yyyy-MM-ddTHH:mm:ss');  
     pedido.despesas = this.despesas == undefined || this.despesas == null ? null : this.despesas;
     pedido.situacao = false;
     this.pedidoService.alterar(id, pedido).subscribe( respose => {      
       this.mensagemSucesso2 = 'Cadastro realizado com sucesso!';
-      setTimeout( res => { this.mensagemSucesso2 = ''; }, 3000);
+      setTimeout( res => { this.mensagemSucesso2 = ''; this.ngOnInit() }, 5000);
       this.errors2 = null;      
     }, errorResponse => {
       this.mensagemSucesso2 = null;

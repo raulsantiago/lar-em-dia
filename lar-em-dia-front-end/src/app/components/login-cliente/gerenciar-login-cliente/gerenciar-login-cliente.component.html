@@ -128,11 +128,9 @@
                 [(ngModel)]="gerenciarClienteDTO.ativo" [value]=false value="false">
                 <label class="custom-control-label" for="customRadioInline2">Sim</label>
             </div>
-
-            <button style="margin: 5px;" [routerLink]="['']" type="reset" class="btn btn-secondary" >Voltar</button>
             <button style="margin: 5px;" (click)="solicitarServico()" type="reset" class="btn btn-secondary" >Serviços</button>
             <button style="margin: 5px;" [routerLink]="['/listarpedidoscliente']" type="reset" class="btn btn-secondary" >Meus Pedidos</button>
-            <button style="margin: 5px;" type="submit" class="btn btn-secondary" >Salvar</button>
+            <button style="margin: 5px;" type="submit" class="btn btn-secondary" style="float: right;">Salvar</button>
         </div>
     </form> 
     <br>

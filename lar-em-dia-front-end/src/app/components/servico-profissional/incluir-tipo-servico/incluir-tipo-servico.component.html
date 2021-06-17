@@ -25,7 +25,9 @@
             <div class="col-md-2 mb-3">
                 <label for="validationCustom02">Preço</label>
                 <input type="text" class="form-control" id="validationCustom02" 
-                name="preco" [(ngModel)]="preco">                
+                name="preco" [(ngModel)]="preco"
+                currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                >                
             </div>
         </div>            
         <button style="margin: 5px;" class="btn btn-secondary" type="submit">Incluir</button>        

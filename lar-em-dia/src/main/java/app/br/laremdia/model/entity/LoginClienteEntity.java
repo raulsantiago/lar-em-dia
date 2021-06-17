@@ -22,34 +22,34 @@ public class LoginClienteEntity {
     private Integer idCliente;
 
     @Column(nullable = false, length = 50)
-    @NotEmpty(message = "{campo.nome.obrigatorio}")
+    @NotEmpty(message = "O campo nome é obrigatório.")
     private String nome;
 
     @Column(nullable = true, length = 11, unique=true)
-    @CPF(message = "{campo.cpf.invalido}")
+    @CPF(message = "CPF está inválido.")
     private String cpf;
 
     @Column(nullable = false, length = 70, unique=true)
-    @NotEmpty(message = "{campo.email.obrigatorio}")
+    @NotEmpty(message = "O campo e-mail é obrigatório.")
     private String email;
 
     @Column(nullable = true, length = 14)
     private String celular;
 
     @Column(nullable = false)
-    @NotEmpty(message = "{campo.senha.obrigatorio}")
+    @NotEmpty(message = "O campo senha é obrigatório.")
     private String senha;
 
     @Column(nullable = false, length = 70)
-    @NotEmpty(message = "{campo.endereco.obrigatorio}")
+    @NotEmpty(message = "O campo endereço é obrigatório.")
     private String endereco;
 
     @Column(nullable = false, length = 15)
-    @NotEmpty(message = "{campo.numero.obrigatorio}")
+    @NotEmpty(message = "O campo número é obrigatório.")
     private String numero;
 
     @Column(nullable = false, length = 50)
-    @NotEmpty(message = "{campo.bairro.obrigatorio}")
+    @NotEmpty(message = "O campo bairro é obrigatório.")
     private String bairro;
 
     @Column(nullable = true, length = 30)
@@ -62,7 +62,7 @@ public class LoginClienteEntity {
     private byte[] foto;
 
     @Column(nullable = false)
-    @NotNull(message = "{campo.ativo.obrigatorio}")
+    @NotNull(message = "O campo ativo é obrigatório.")
     private Boolean ativo;
 
     @Column(name="data_cadastro", nullable = false, updatable = false)
