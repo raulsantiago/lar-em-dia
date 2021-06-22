@@ -57,11 +57,11 @@ export class ListarPedidoClientesComponent implements OnInit {
         this.agendaService.alterar(idAgenda, agenda)
           .subscribe( response => {
             this.mensagemSucesso = 'Exclusão realizada com sucesso!';
-            setTimeout( res => { this.mensagemSucesso = ''; }, 3000);
+            setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
             this.errors = null;
             setTimeout( res => { 
                 this.ngOnInit();
-            }, 3500);
+            }, 2100);
           }, errorResponse => {
             this.mensagemSucesso = null;
             this.errors = errorResponse.error.errors;

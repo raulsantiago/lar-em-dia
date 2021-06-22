@@ -44,7 +44,7 @@ export class IncluirTipoServicoComponent implements OnInit {
     this.tipoServicoProfissionalService.inserir(TipoServicoProfissionalDTO)
       .subscribe(response => {
         this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-        setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
+        setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
         TipoServicoProfissionalDTO.nome = '';
         TipoServicoProfissionalDTO.preco = null;
         this.errors = null;

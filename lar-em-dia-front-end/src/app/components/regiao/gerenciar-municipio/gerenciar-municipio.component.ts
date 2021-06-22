@@ -52,7 +52,7 @@ export class GerenciarMunicipioComponent implements OnInit {
     this.regiaoService.inserir(municipioAtendidoDTO)
       .subscribe( response => {
         this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-        setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
+        setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
         this.errors = null;        
         this.ngOnInit();
       }, errorResponse => {

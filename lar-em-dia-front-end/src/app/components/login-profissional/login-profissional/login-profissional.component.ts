@@ -87,7 +87,7 @@ export class LoginProfissionalComponent implements OnInit {
     this.authService.incluirProfissional(loginProfissionalDTO)
     .subscribe( response => {      
       this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";
-      setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
+      setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
       this.cadastrando = false;
       this.email = '';
       this.senha = '';
@@ -104,7 +104,7 @@ export class LoginProfissionalComponent implements OnInit {
     setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);
     this.loginProfissionalService.sendMailProf(this.emailRec, this.not).subscribe( response => {      
       this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-      setTimeout( res => { this.mensagemSucesso2 = ''; }, 5000);
+      setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);
       this.emailRec = '';      
       this.errors2 = null;      
       }, errorResponse => {

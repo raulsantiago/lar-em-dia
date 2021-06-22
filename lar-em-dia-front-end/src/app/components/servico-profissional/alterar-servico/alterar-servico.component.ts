@@ -61,7 +61,7 @@ export class AlterarServicoComponent implements OnInit {
         this.tipoServicoProfissionalService.alterar(alterarTipoServicoProfissionalDTO, this.idTipo)
           .subscribe(response => {
             this.mensagemSucesso = "Cadastro alterado com sucesso!";
-            setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
+            setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
             this.errors = null;
             this.router.navigate(['listarservico']);
           }, errorResponse => {

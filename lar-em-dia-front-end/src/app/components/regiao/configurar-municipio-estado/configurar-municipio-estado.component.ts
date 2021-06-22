@@ -52,7 +52,7 @@ export class ConfigurarMunicipioEstadoComponent implements OnInit {
         this.regiaoService.alterarMunicipio(municipioDTO, this.idMunicipio)
           .subscribe(response => {
             this.mensagemSucesso = "Cadastro alterado com sucesso!";
-            setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
+            setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
             this.errors = null;
             this.router.navigate(['regiao']);
           },errorResponse => {

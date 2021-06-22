@@ -101,7 +101,7 @@ export class LoginClienteComponent implements OnInit {
     this.authService.incluirCliente(loginClienteDTO)
     .subscribe( response => {      
       this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";
-      setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
+      setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
       this.cadastrando = false;
       this.email = '';
       this.senha = '';            
@@ -109,7 +109,7 @@ export class LoginClienteComponent implements OnInit {
       }, errorResponse => {
         this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 10000);
+        setTimeout( res => { this.errors = null; }, 5000);
     })
   }
 
@@ -118,7 +118,7 @@ export class LoginClienteComponent implements OnInit {
     setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);
     this.loginClienteService.sendMail(this.emailRec, this.not).subscribe( response => {
       this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-      setTimeout( res => { this.mensagemSucesso2 = ''; }, 5000);      
+      setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);      
       this.emailRec = '';      
       this.errors2 = null;      
       }, errorResponse => {

@@ -63,17 +63,11 @@ public class LaremdiaApplication   {
             municipioAtendidoEntity.setEstado(estadoAtendidoEntity);
             municipioAtendidoRepository.save(municipioAtendidoEntity);
 
-//            MunicipioAtendidoEntity municipioAtendidoEntity2 = new MunicipioAtendidoEntity();
-//            municipioAtendidoEntity2.setMunicipio("São João de Meriti");
-//            municipioAtendidoEntity2.setAtivo(true);
-//            municipioAtendidoEntity2.setEstado(estadoAtendidoEntity);
-//            municipioAtendidoRepository.save(municipioAtendidoEntity2);
-
-            MunicipioAtendidoEntity municipioAtendidoEntity3 = new MunicipioAtendidoEntity();
-            municipioAtendidoEntity3.setMunicipio("Rio de Janeiro");
-            municipioAtendidoEntity3.setAtivo(false);
-            municipioAtendidoEntity3.setEstado(estadoAtendidoEntity);
-            municipioAtendidoRepository.save(municipioAtendidoEntity3);
+            MunicipioAtendidoEntity municipioAtendidoEntity2 = new MunicipioAtendidoEntity();
+            municipioAtendidoEntity2.setMunicipio("São João de Meriti");
+            municipioAtendidoEntity2.setAtivo(true);
+            municipioAtendidoEntity2.setEstado(estadoAtendidoEntity);
+            municipioAtendidoRepository.save(municipioAtendidoEntity2);
 
             MunicipioAtendidoEntity municipioAtendidoEntity4 = new MunicipioAtendidoEntity();
             municipioAtendidoEntity4.setMunicipio("São Paulo");
@@ -93,36 +87,36 @@ public class LaremdiaApplication   {
             loginCliente.setEmail("marcia@gmail.com");
             loginCliente.setCelular("(21)98867-1020");
             loginCliente.setSenha("123");
-            loginCliente.setEndereco("Rua Américo Rocha");
-            loginCliente.setNumero("1005");
-            loginCliente.setBairro("Honório Gurgel");
-            loginCliente.setComplemento("Bloco 9 Apto 101");
-            loginCliente.setMunicipioAtendido(municipioAtendidoEntity);
+            loginCliente.setEndereco("Rua Enéas Miranda");
+            loginCliente.setNumero("35");
+            loginCliente.setBairro("Grande Rio");
+            loginCliente.setComplemento("Casa");
+            loginCliente.setMunicipioAtendido(municipioAtendidoEntity2);
             loginCliente.setEstadoAtendido(estadoAtendidoEntity);
             loginCliente.setReferencia("Próximo a linha do trem");
             loginCliente.setAtivo(true);
             repositoryCliente.save(loginCliente);
 
             AgendaEntity agendaEntity = new AgendaEntity();
-            agendaEntity.setDia(LocalDate.of(2021,6,11));
+            agendaEntity.setDia(LocalDate.of(2021,6,16));
             agendaEntity.setDisponivel(false);
             agendaEntity.setTurno("Manhã");
             agendaRepository.save(agendaEntity);
 
             AgendaEntity agendaEntity2 = new AgendaEntity();
-            agendaEntity2.setDia(LocalDate.of(2021,6,12));
+            agendaEntity2.setDia(LocalDate.of(2021,6,18));
             agendaEntity2.setDisponivel(false);
             agendaEntity2.setTurno("Tarde");
             agendaRepository.save(agendaEntity2);
 
             AgendaEntity agendaEntity3 = new AgendaEntity();
-            agendaEntity3.setDia(LocalDate.of(2021,6,13));
+            agendaEntity3.setDia(LocalDate.of(2021,6,19));
             agendaEntity3.setDisponivel(false);
             agendaEntity3.setTurno("Manhã");
             agendaRepository.save(agendaEntity3);
 
             AgendaEntity agendaEntity4 = new AgendaEntity();
-            agendaEntity4.setDia(LocalDate.of(2021,6,14));
+            agendaEntity4.setDia(LocalDate.of(2021,6,20));
             agendaEntity4.setDisponivel(true);
             agendaEntity4.setTurno("Tarde");
             agendaRepository.save(agendaEntity4);
@@ -130,8 +124,8 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity = new PedidoContratadoEntity();
             pedidoContratadoEntity.setDescricao("Casa alta de dois andares");
             pedidoContratadoEntity.setLocal("Casa");
-            pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.of(2021,6,11,10,20));
-            pedidoContratadoEntity.setDataHoraFim(LocalDateTime.of(2021,6,11,12,05));
+            pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.of(2021,6,16,10,20));
+            pedidoContratadoEntity.setDataHoraFim(LocalDateTime.of(2021,6,16,12,05));
             pedidoContratadoEntity.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity.setSituacao(false);
             pedidoContratadoEntity.setTipoServico(tipoServico);

@@ -89,7 +89,7 @@ export class GerenciarLoginClienteComponent implements OnInit {
     incluirLoginClienteDTO.idMunicipio = this.municipio;
     this.loginClienteService.alterar(incluirLoginClienteDTO, this.gerenciarClienteDTO.idCliente).subscribe( response => {      
       this.mensagemSucesso = "Cadastro alterado com sucesso!";
-      setTimeout( res => { this.mensagemSucesso = ''; }, 5000);
+      setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
       this.errors = null;
       }, errorResponse => {
         this.mensagemSucesso = null;
@@ -116,15 +116,14 @@ export class GerenciarLoginClienteComponent implements OnInit {
   
 
   solicitarServico(){
-    this.loginProfissionalService.consultarAtivo(true).subscribe( response => {
-      console.log(response);
+    this.loginProfissionalService.consultarAtivo(true).subscribe( response => {      
       if(response){
         this.router.navigate(['/solicitar']);
       }
     }, errorResponse => {
       this.mensagemSucesso = null;
       this.errors = errorResponse.error.errors;
-      setTimeout( res => { this.errors = null; this.ngOnInit() }, 11000);
+      setTimeout( res => { this.errors = null; this.ngOnInit() }, 5000);
     });
     
   }
