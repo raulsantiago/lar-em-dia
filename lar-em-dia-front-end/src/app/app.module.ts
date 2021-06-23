@@ -37,7 +37,7 @@ import { NgxCurrencyModule } from "ngx-currency";
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PickListModule } from 'primeng/picklist';
 import { TableModule, Table, TableService } from 'primeng/table';
-
+import { TabMenuModule } from 'primeng/tabmenu';
 
 // Componentes
 import { AppRoutingModule } from './app-routing.module';
@@ -64,6 +64,7 @@ import { AgendarServicoComponent } from './components/pedido/agendar-servico/age
 import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
 import { ModalContatoComponent } from './components/pedido/listar-pedido-clientes/modal-contato/modal-contato.component';
 import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pe
     AgendarServicoComponent,
     ListarPedidoClientesComponent,
     ModalContatoComponent,
-    ListarPedidoProfissionalComponent
+    ListarPedidoProfissionalComponent,
+    LayoutComponent
     
   ],
   imports: [    
@@ -97,6 +99,7 @@ import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pe
     InputNumberModule,
     PickListModule,
     TableModule,
+    TabMenuModule,    
     NgxCurrencyModule,    
     TreeTableModule,
     FileUploadModule,    

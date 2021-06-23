@@ -1,0 +1,5 @@
+::ng-deep .fundo {
+    background-color:#ffd4fd;
+    background-image: linear-gradient(to right, transparent 30%, #db79d8);
+    color: white;    
+}

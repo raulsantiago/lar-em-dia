@@ -17,26 +17,34 @@ import { ListarTipoServicoComponent } from './components/pedido/listar-tipo-serv
 import { AgendarServicoComponent } from './components/pedido/agendar-servico/agendar-servico.component';
 import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido-clientes/listar-pedido-clientes.component';
 import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'loginprofissional', component: LoginProfissionalComponent },
-  { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent },
   { path: 'logincliente', component: LoginClienteComponent },
-  { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
-  { path: 'cadastrarservico', component: IncluirServicoComponent },
-  { path: 'listarservico', component: ListarServicoComponent },
-  { path: 'alterarservico/:id', component: AlterarServicoComponent },
-  { path: 'cadastrartiposervico/:id', component: IncluirTipoServicoComponent },
-  { path: 'regiao', component: GerenciarMunicipioComponent },
-  { path: 'regiao/:id', component: ConfigurarMunicipioEstadoComponent },
-  { path: 'agenda', component: AgendaComponent },
-  { path: 'solicitar', component: ListarServicoSolicitacaoComponent },
-  { path: 'solicitar/:id', component: ListarTipoServicoComponent },
-  { path: 'agendar/:id', component: AgendarServicoComponent },
-  { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent },
-  { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent }  
+
+
   
+
+  { path: '', component: LayoutComponent, children: [
+    { path: 'home', component: HomeComponent },
+    { path: '' , redirectTo: '/home', pathMatch: 'full' },
+    { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent },    
+    { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
+    { path: 'cadastrarservico', component: IncluirServicoComponent },
+    { path: 'listarservico', component: ListarServicoComponent },
+    { path: 'alterarservico/:id', component: AlterarServicoComponent },
+    { path: 'cadastrartiposervico/:id', component: IncluirTipoServicoComponent },
+    { path: 'regiao', component: GerenciarMunicipioComponent },
+    { path: 'regiao/:id', component: ConfigurarMunicipioEstadoComponent },
+    { path: 'agenda', component: AgendaComponent },
+    { path: 'solicitar', component: ListarServicoSolicitacaoComponent },
+    { path: 'solicitar/:id', component: ListarTipoServicoComponent },
+    { path: 'agendar/:id', component: AgendarServicoComponent },
+    { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent },
+    { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent }
+
+  ]}
 ];
 
 @NgModule({

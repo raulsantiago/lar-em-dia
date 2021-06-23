@@ -43,11 +43,6 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
     })
   }
 
-  logout(){
-    this.authService.encerrarSessao();
-    this.router.navigate(['']);    
-  }
-
   uploadFoto(event){
     const files = event.target.files;
     if(files){
