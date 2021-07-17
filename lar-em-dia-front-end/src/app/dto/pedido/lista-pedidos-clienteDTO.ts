@@ -12,4 +12,6 @@ export interface ListaPedidosClienteDTO {
     dia:             string;
     turno:           string;
 
+    precoContratadoFmt: string;
+
 }

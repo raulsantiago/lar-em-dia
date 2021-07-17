@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { GerenciarProfissionalDTO } from 'src/app/dto/login-profissional/gerenciar-profissionalDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
-
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-gerenciar-login-profissional',
   templateUrl: './gerenciar-login-profissional.component.html',
@@ -13,8 +12,8 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
 
   constructor(
     private loginProfissionalService: LoginProfissionalService,
-    private authService: AuthService,
-    private router: Router
+    private authService:              AuthService,
+    private messageService:           MessageService
     ) { }
 
  gerenciarProfissionalDTO: GerenciarProfissionalDTO; 
@@ -33,13 +32,12 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
 
   alterar(){
     this.loginProfissionalService.alterar(this.gerenciarProfissionalDTO.idProfissional, this.gerenciarProfissionalDTO).subscribe( response => {
-      this.mensagemSucesso = "Cadastro alterado com sucesso!";
-      setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
-      this.errors = null;
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 5000 });
       }, errorResponse => {
-        this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });
     })
   }
 

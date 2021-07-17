@@ -1,16 +1,16 @@
 <p-dialog [(visible)]="visible"
-          [draggable]="false"
-          [modal]="true"
-          [resizable]="false"
-          [baseZIndex]="1020"
+          draggable="false"
+          styleClass="active"
+          resizable="false"
           dismissableMask="true"
-          styleClass="modal-contato"
-          (onHide)="fechar()">
-    <p-header>
+          (onHide)="fechar()"
+          [style]="{'color':'#2196F3', 'background-color':'#d8d7d7'}"
+           >
+    <p-header >
         ATENÇÃO ENTRE EM CONTATO COM O PROFISSIONAL
     </p-header>
         <tbody>
-            <div class="modal-body">
+            <div >
                 <p style="text-align: justify;">
                     Prezado Cliente,
                 </p>
@@ -22,14 +22,10 @@
                 </p>
             </div>
         </tbody>    
-    <p-footer> 
-        <div class="row">
+    <p-footer > 
+        <div class="row" >
             <div class="col-12 linha-footer"></div>
         </div>
-        <button (click)="fechar()"
-                class="btn btn-sm btn-secondary pull-left theme-main-button"
-                aria-label="Fechar">
-            <span>Fechar</span> 
-        </button>
+        <button (click)="fechar()"  pButton label="Fechar" class="p-button p-button-rounded p-button-secondary pull-left" ></button>
     </p-footer>
 </p-dialog>

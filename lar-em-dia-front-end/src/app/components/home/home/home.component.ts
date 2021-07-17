@@ -11,7 +11,14 @@ export class HomeComponent implements OnInit {
   costructor(    
   ) { }
 
+  exibir: boolean = true;
+
   ngOnInit(): void {   
+    setTimeout( res => { this.exibir = false; }, 5000);
   }
+
+  
+  
+  
 
 }

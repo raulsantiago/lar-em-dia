@@ -4,6 +4,7 @@ import { IncluirTipoServicoProfissionalDTO } from 'src/app/dto/servico-profissio
 import { ServicoProfissionalDTO } from 'src/app/dto/servico-profissional/servico-profissionalDTO';
 import { TipoServicoProfissionalDTO } from 'src/app/dto/servico-profissional/tipo-servico-profissionalDTO';
 import { TipoServicoProfissionalService } from 'src/app/services/tipo-servico-profissional.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-incluir-tipo-servico',
@@ -14,7 +15,8 @@ export class IncluirTipoServicoComponent implements OnInit {
 
   constructor(    
     private tipoServicoProfissionalService: TipoServicoProfissionalService,
-    private activatedRoute:                 ActivatedRoute
+    private activatedRoute:                 ActivatedRoute,
+    private messageService:                 MessageService
     ) { }
   
   servicoProfissionalDTO: ServicoProfissionalDTO;  
@@ -33,7 +35,14 @@ export class IncluirTipoServicoComponent implements OnInit {
     let listarServicosPromise: Promise<TipoServicoProfissionalDTO[]> = this.tipoServicoProfissionalService.listarPorUmServico(this.idServico).toPromise();
     Promise.all([listarServicosPromise]).then(data => {
       this.listaTipoServicoProfissionalDTO = data[0];
+      this.listaTipoServicoProfissionalDTO.map((tipo: TipoServicoProfissionalDTO) => this.mapearValorGrid(tipo));
     });
+  }
+
+  private mapearValorGrid(tipo: TipoServicoProfissionalDTO): TipoServicoProfissionalDTO {  
+    let valorMoedaNumber = parseFloat(tipo.preco.toString());
+    tipo.precoFmt = valorMoedaNumber.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    return tipo;
   }
 
   inserir(){
@@ -42,17 +51,16 @@ export class IncluirTipoServicoComponent implements OnInit {
     TipoServicoProfissionalDTO.nome = this.nomeTipo;
     TipoServicoProfissionalDTO.preco = this.preco;      
     this.tipoServicoProfissionalService.inserir(TipoServicoProfissionalDTO)
-      .subscribe(response => {
-        this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-        setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
+      .subscribe(response => {        
+        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 5000 });
+        setTimeout( res => { this.ngOnInit(); }, 5100);
         TipoServicoProfissionalDTO.nome = '';
         TipoServicoProfissionalDTO.preco = null;
-        this.errors = null;
-        this.ngOnInit();
-      }, errorResponse => {
-        this.mensagemSucesso = null;        
+      }, errorResponse => {        
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });
       });
   }
 

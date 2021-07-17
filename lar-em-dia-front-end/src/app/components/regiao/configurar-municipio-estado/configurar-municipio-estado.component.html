@@ -1,13 +1,8 @@
 <br>
 <div class="container">
+  <p-toast></p-toast>
   <h1>Configurar Estado e Município</h1>
   <br>
-  <div class="alert alert-success" *ngIf="mensagemSucesso">
-      {{ mensagemSucesso }}
-  </div>
-  <div class="alert alert-danger" *ngFor="let erro of errors">
-      {{ erro }}
-  </div>
   <br>
     <form   #cadForm="ngForm" (submit)="alterar()">
         <div class="form-row align-items-center">
@@ -16,16 +11,16 @@
             </div>
             <div class="col-auto my-1">
               <div class="custom-control custom-checkbox mr-sm-2">
-                <p>Ativo - UF</p>
+                <h4>Ativo - UF</h4>
                 <div class="custom-control custom-radio custom-control-inline">                
                     <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" 
                     [(ngModel)]="ativoUf" [value]=true value="true" >
-                    <label class="custom-control-label" for="customRadioInline1">Sim</label>
+                    <label class="custom-control-label" for="customRadioInline1"><h5>Sim</h5></label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input"
                     [(ngModel)]="ativoUf" [value]=false value="false">
-                    <label class="custom-control-label" for="customRadioInline2">Não</label>
+                    <label class="custom-control-label" for="customRadioInline2"><h5>Não</h5></label>
                 </div>
               </div>
             </div>           
@@ -37,21 +32,24 @@
             </div>
             <div class="col-auto my-1">
               <div class="custom-control custom-checkbox mr-sm-2">
-                <p>Ativo - Município</p>
+                <h4>Ativo - Município</h4>
                 <div class="custom-control custom-radio custom-control-inline">                
                     <input type="radio" id="customRadioInline11" name="customRadioInline" class="custom-control-input" 
                     [(ngModel)]="ativoMunicipio" [value]=true value="true" >
-                    <label class="custom-control-label" for="customRadioInline11">Sim</label>
+                    <label class="custom-control-label" for="customRadioInline11"><h5>Sim</h5></label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="customRadioInline12" name="customRadioInline" class="custom-control-input"
                     [(ngModel)]="ativoMunicipio" [value]=false value="false">
-                    <label class="custom-control-label" for="customRadioInline12">Não</label>
+                    <label class="custom-control-label" for="customRadioInline12"><h5>Não</h5></label>
                 </div>
               </div>
             </div>           
-        </div>                 
-        <button style="margin: 5px;" [routerLink]="['/regiao']" type="reset" class="btn btn-secondary" >Voltar</button>
-        <button style="margin: 5px;" type="submit" class="btn btn-secondary" >Salvar</button>
+        </div>
+        <br>
+        <div class="form-row">            
+            <button style="margin: 5px;" type="submit" pButton label="Salvar" class="p-button p-button-rounded p-button-warning" ></button>
+            <button style="margin: 5px;" [routerLink]="['/regiao']" pButton type="reset" label="Voltar" class="p-button p-button-rounded p-button-secondary" ></button>
+        </div>
     </form>    
 </div>

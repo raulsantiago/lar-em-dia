@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoginClienteService } from 'src/app/services/login-cliente.service';
 import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
 import { RegiaoService } from 'src/app/services/regiao.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-gerenciar-login-cliente',
@@ -17,12 +18,12 @@ import { RegiaoService } from 'src/app/services/regiao.service';
 export class GerenciarLoginClienteComponent implements OnInit {
 
   constructor(
-    private loginClienteService: LoginClienteService,
-    private authService:         AuthService,
-    private router:              Router,
-    private regiaoService:       RegiaoService,
+    private loginClienteService:      LoginClienteService,
+    private authService:              AuthService,
+    private router:                   Router,
+    private regiaoService:            RegiaoService,
     private loginProfissionalService: LoginProfissionalService,    
-    private route:                    ActivatedRoute,
+    private messageService:           MessageService
     ) { }
 
   idCliente: number;
@@ -87,14 +88,13 @@ export class GerenciarLoginClienteComponent implements OnInit {
     incluirLoginClienteDTO.ativo = this.gerenciarClienteDTO.ativo;
     incluirLoginClienteDTO.idEstado = this.estado;
     incluirLoginClienteDTO.idMunicipio = this.municipio;
-    this.loginClienteService.alterar(incluirLoginClienteDTO, this.gerenciarClienteDTO.idCliente).subscribe( response => {      
-      this.mensagemSucesso = "Cadastro alterado com sucesso!";
-      setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
-      this.errors = null;
-      }, errorResponse => {
-        this.mensagemSucesso = null;
+    this.loginClienteService.alterar(incluirLoginClienteDTO, this.gerenciarClienteDTO.idCliente).subscribe( response => {
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 5000 });
+      }, errorResponse => {        
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });
     })
   }
 
@@ -120,10 +120,11 @@ export class GerenciarLoginClienteComponent implements OnInit {
       if(response){
         this.router.navigate(['/solicitar']);
       }
-    }, errorResponse => {
-      this.mensagemSucesso = null;
+    }, errorResponse => {      
       this.errors = errorResponse.error.errors;
-      setTimeout( res => { this.errors = null; this.ngOnInit() }, 5000);
+      this.errors.forEach(response => {
+        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+      });
     });
     
   }

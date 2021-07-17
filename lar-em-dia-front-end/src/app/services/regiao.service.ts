@@ -21,6 +21,10 @@ export class RegiaoService {
     return this.http.get<Object[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios?orderBy=nome`);
   }
 
+  listarUf(): Observable<EstadoAtendidoDTO[]> {
+    return this.http.get<EstadoAtendidoDTO[]>(`${this.apiURL}`);
+  }
+
   listarUfAtivo(): Observable<EstadoAtendidoDTO[]> {
     return this.http.get<EstadoAtendidoDTO[]>(`${this.apiURL}/ufativo`);
   }

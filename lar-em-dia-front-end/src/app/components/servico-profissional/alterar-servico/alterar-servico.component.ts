@@ -5,6 +5,7 @@ import { ServicoProfissionalDTO } from 'src/app/dto/servico-profissional/servico
 import { TipoServicoProfissionalDTO } from 'src/app/dto/servico-profissional/tipo-servico-profissionalDTO';
 import { ServicoProfissionalService } from 'src/app/services/servico-profissional.service';
 import { TipoServicoProfissionalService } from 'src/app/services/tipo-servico-profissional.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-alterar-servico',
@@ -17,7 +18,8 @@ export class AlterarServicoComponent implements OnInit {
     private activatedRoute:                 ActivatedRoute,
     private router:                         Router,
     private tipoServicoProfissionalService: TipoServicoProfissionalService,    
-    private servicoProfissionalService:     ServicoProfissionalService
+    private servicoProfissionalService:     ServicoProfissionalService,
+    private messageService:                 MessageService
   ) { }
 
   servicoProfissionalDTO: ServicoProfissionalDTO;
@@ -60,19 +62,19 @@ export class AlterarServicoComponent implements OnInit {
         alterarTipoServicoProfissionalDTO.preco = this.preco;
         this.tipoServicoProfissionalService.alterar(alterarTipoServicoProfissionalDTO, this.idTipo)
           .subscribe(response => {
-            this.mensagemSucesso = "Cadastro alterado com sucesso!";
-            setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
-            this.errors = null;
-            this.router.navigate(['listarservico']);
+            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Alteração realizada.' , life: 5000 });            
+            setTimeout( res => { this.router.navigate(['listarservico']); }, 5100);
           }, errorResponse => {
-            this.mensagemSucesso = null;
             this.errors = errorResponse.error.errors;
-            setTimeout( res => { this.errors = null; }, 5000);
+            this.errors.forEach(response => {
+              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+            });
           });
       }, errorResponse => {
-        this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });
       });
 
   }

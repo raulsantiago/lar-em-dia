@@ -38,6 +38,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { PickListModule } from 'primeng/picklist';
 import { TableModule, Table, TableService } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { PasswordModule } from "primeng/password";
+import { DividerModule } from "primeng/divider";
 
 // Componentes
 import { AppRoutingModule } from './app-routing.module';
@@ -90,7 +92,9 @@ import { LayoutComponent } from './components/layout/layout.component';
     LayoutComponent
     
   ],
-  imports: [    
+  imports: [
+    PasswordModule,
+    DividerModule,
     MenubarModule,
     ConfirmDialogModule,
     ToastModule,    

@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+    color: #2196F3;
+    background-color: #d8d7d7;
+}
+
+body {
+    height: 100%!important;
+}
+
+.modal-content {
+    color: #2196F3 !important;
+    background-color: #d8d7d7 !important;
+}
+
+.textCenter {
+	text-align: center !important;
+}
+
+.textRight {
+	text-align: right !important;
+}
+
+.inputCemPorcento {    
+    width: 100%;
+}
+
+.inputOitentaPorcento {    
+    width: 80%;
+}
+
+.inputTrintaPorcento {    
+    width: 30%;
+}
+
+/* :host ::ng-deep .p-dialog {
+    color: #2196F3 !important;
+    background-color: #d8d7d7 !important;
+} */

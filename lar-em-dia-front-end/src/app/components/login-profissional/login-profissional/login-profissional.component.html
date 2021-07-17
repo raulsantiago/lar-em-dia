@@ -1,57 +1,52 @@
-<br>
-<div class="container">
-    <h1><i class="fa fa-home fa-2x" aria-hidden="true" [routerLink]="['/']"></i>
+<div class="externa" >
+    <p-toast></p-toast>
+<div class="interna">
+    <h1>
+        <img [routerLink]="['/']" src="../assets/img/logo-lar-em-dia.png" height="80" style="padding: 5px;" class="p-mr-2">
         Bem vindo Profissional
-    </h1>    
+    </h1>
     <br>  
     <div class="card-body">
         <h3 class="card-title">
             {{ cadastrando ? 'Cadastro de Novo Profissional' : 'Entre com seu login' }}
         </h3>
     </div>
-    <div class="alert alert-success" *ngIf="mensagemSucesso">
-        {{ mensagemSucesso }}
-    </div>
-    <div class="alert alert-danger" *ngFor="let erro of errors">
-        {{ erro }}
-    </div>
-
     <form #loginForm="ngForm" (submit)="onSubmit();">
         <div class="form-row">
         
             <div class="form-group col-md-6"  *ngIf="cadastrando">
-                <label for="exampleDropdownFormEmailnome">Nome</label>
+                <label for="exampleDropdownFormEmailnome"><h5>Nome</h5></label>
                 <input class="form-control"  type="text" id="exampleDropdownFormEmailnome" 
                 name="nome" [(ngModel)]="nome" >
             </div>
             <div class="form-group col-md-4" *ngIf="cadastrando">
-                <label for="exampleDropdownFormEmailcpf">CPF</label>
+                <label for="exampleDropdownFormEmailcpf"><h5>CPF</h5></label>
                 <input  class="form-control" type="text" id="exampleDropdownFormEmailcpf" 
                 name="cpf" [(ngModel)]="cpf" >
             </div>
-            <div class="form-group col-md-6" >
-                <label for="exampleDropdownFormEmail1">Email</label>
-                <input class="form-control" type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
+
+            <div class="form-group" >
+                <label for="exampleDropdownFormEmail1"><h5>E-mail</h5></label>
+                <input  class="form-control email" type="email" id="exampleDropdownFormEmail1" 
                 name="email" [(ngModel)]="email" >
-            </div>
+            </div>   
+
             <div class="form-group col-md-4" *ngIf="cadastrando">
-                <label for="exampleDropdownFormEmailcelular">Celular</label>
+                <label for="exampleDropdownFormEmailcelular"><h5>Celular</h5></label>
                 <input  class="form-control" type="text" id="exampleDropdownFormEmailcelular" 
                 name="celular" [(ngModel)]="celular" >
             </div>
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-6" >
-                <label for="exampleDropdownFormPassword1">Senha</label>
-                <input  class="form-control" type="password"  id="exampleDropdownFormPassword1"
-                name="senha"   [(ngModel)]="senha" >
+            <div class="form-group" >
+                <h5>Senha</h5>
+                <p-password name="senha" [(ngModel)]="senha" [toggleMask]="true" ></p-password>
             </div>
         </div>
-
         
         <div  *ngIf="cadastrando">
-            <p>Cancelar acesso</p>
+            <h5>Cancelar acesso</h5>
             <div class="custom-control custom-radio custom-control-inline">                
                 <input type="radio" id="customRadioInline1" name="customRadioInline"  class="custom-control-input"
                 [(ngModel)]="ativo" [value]=true checked>
@@ -66,75 +61,67 @@
 
         <div >        
         </div>
-        
-        <div class="form-group align-items-center justify-content-between mt-4 mb-0">
-            <button style="margin: 5px;" type="submit" class="btn btn-secondary" *ngIf="!cadastrando">
-                Enviar
-            </button>
+        <br>
 
-            <button style="margin: 5px;" type="button" class="btn btn-secondary"
-                    (click)="incluir()" *ngIf="cadastrando" >
-                Cadastrar
-            </button>
+        <div class="enviar">
+            <button *ngIf="!cadastrando" pButton pRipple type="submit" label="Enviar" class="p-button-lg p-button-rounded" ></button>
+        </div>
 
-            <button style="margin: 5px;" type="button" (click)="cancelaCadastro()"
-            class="btn btn-secondary" *ngIf="cadastrando">
-                Cancelar
-            </button>
+        <div class="form-group align-items-center justify-content-between mt-4 mb-0">    
+            <button *ngIf="cadastrando" (click)="incluir()" style="margin: 5px;" pButton type="button" label="Salvar" class="p-button p-button-rounded p-button-warning" ></button>
+                
+            <button *ngIf="cadastrando" (click)="cancelaCadastro()" style="margin: 5px;" pButton type="button" label="Cancelar" class="p-button p-button-rounded p-button-danger" ></button>
         </div>
 
     </form>
 
     <br>
-    <div class="card-footer text-center">
+
+    <div class="text-center">
         <!-- <div >
             <a href="#" (click)="preparaCadastrar($event)" >
-                Não possui Usuário? Cadastre-se!
+                Não possui usuário? Cadastre-se aqui!
             </a>
         </div> -->
         <div>
             <a href="#" onclick="return false;" data-toggle="modal" data-target="#exampleModal" >Esqueceu a senha?</a>
         </div>        
     </div>
-    
+
+</div>    
 </div>
 
 <!-- Modal recuperar a senha -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <p-toast key="sen"></p-toast>
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Recuperação de Senha</h5>
+          <h4 class="modal-title" id="exampleModalLabel">Recuperação de Senha</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <div class="alert alert-success" *ngIf="mensagemSucesso2">
-                {{ mensagemSucesso2 }}
-            </div>
-            <div class="alert alert-danger" *ngFor="let erro2 of errors2">
-                {{ erro2 }}
-            </div>
             <br>
             <h6>Digite seu e-mail para recuperar a sua senha, você receberá a mesma no seu e-mail !</h6>
             <br>
             <br>            
             <form #senhaForm="ngForm" (submit)="esqueceuSenha();">
                 <div class="form-group col-md-6" >
-                    <label for="exampleDropdownFormEmail4">Email</label>
-                    <input  class="form-control" type="email" id="exampleDropdownFormEmail4" placeholder="email@exemplo.com.br"
+                    <label for="exampleDropdownFormEmail4"><h5>E-mail</h5></label>
+                    <input  class="form-control" type="email" id="exampleDropdownFormEmail4" 
                     name="emailRec" [(ngModel)]="emailRec" >
                 </div>
+
                 <div class="form-group align-items-center justify-content-between mt-4 mb-0">
-                    <button style="margin: 5px;" type="submit" class="btn btn-secondary">
-                        Recuperar
-                    </button>
+                    <button style="margin: 5px;" pButton pRipple type="submit" label="Recuperar" class="p-button p-button-rounded" ></button>
                 </div>
+
             </form>
-        </div>
+        </div>        
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button data-dismiss="modal" style="margin: 5px;" pButton pRipple type="button" label="Fechar" class="p-button p-button-rounded p-button-secondary" ></button>
         </div>
       </div>
     </div>

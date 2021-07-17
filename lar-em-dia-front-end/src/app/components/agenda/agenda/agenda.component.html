@@ -1,46 +1,106 @@
 <br>
 <div class="container">
-    <h1>Agenda Disponível para Serviços Profissionais</h1>
-    <div class="alert alert-success" *ngIf="mensagemSucesso">
-        {{ mensagemSucesso }}
-    </div>
-    <div class="alert alert-danger" *ngFor="let erro of errors">
-        {{ erro }}
-    </div>
+    <p-toast></p-toast>
+    <h1>Agenda Disponível para Serviços Profissionais</h1>    
     <br>
-    <form class="needs-validation"  #cadForm="ngForm" (submit)="inserir()">          
-        <div class="form-row">
-            <div class="col-md-2 mb-3">
-                <label for="validationCustom02">Data</label>
+    <form class="needs-validation"  #cadForm="ngForm" (submit)="inserir()">
+        <div class="form-row align-items-center">
+            <div class="col-auto my-1 col-md-3 mb-3">
+                <label for="validationCustom02"><h5>Data</h5></label>
                 <input type="date" class="form-control" id="validationCustom02" 
-                name="data" [(ngModel)]="data">                
+                name="data" [(ngModel)]="data">
             </div>
-        </div>            
-        <button style="margin: 5px;" class="btn btn-secondary" type="submit">Incluir</button>
+            <div >
+                <button style="margin-top: 20px;" type="submit" pButton label="Incluir" class="p-button p-button-rounded p-button-warning" ></button>
+            </div>
+            <!-- <button style="margin: 5px;" class="btn btn-secondary" type="submit">Incluir</button> -->
+        </div>
     </form>
     <br>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>                        
-                    <th scope="col">Dia</th>
-                    <th scope="col">Turno</th>
-                    <th scope="col">Ação</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let dado of listarAgendaDTO" >
-                <tr>                        
-                    <td>{{ dado.dia | date: 'dd/MM/yyyy' }}</td>
-                    <td>{{ dado.turno }}</td>
-                    <td>
-                        <a href="" style="padding-left: 10px;" onclick="return false;" 
-                        (click)="excluir(dado.idAgenda)">Excluir</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+    <!-- tabela primeng -->
+    <p-table #table
+    [value]="listarAgendaDTO"
+    [rowHover]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 100]"
+    [paginator]="true"
+    [showCurrentPageReport]="true"
+    styleClass="p-datatable-striped"
+    stateStorage="session"
+    stateKey="agendaState"
+    sortMode="multiple"
+    currentPageReportTemplate="Total de registros: {totalRecords}">
+
+        <!-- filtro -->
+        <ng-template pTemplate="header">
+            <tr>                    
+                <th class="textCenter inputOitentaPorcento" pSortableColumn="dia" scope="col">
+                    Dia<p-sortIcon field="dia"></p-sortIcon>
+                </th>
+                <th class="textCenter inputOitentaPorcento" pSortableColumn="turno" scope="col">
+                    Turno<p-sortIcon field="turno"></p-sortIcon>
+                </th>
+                <th class="textCenter" style="width:15%" scope="col">Ação</th>
+            </tr>
+            <tr>
+                <th>
+                    <input pInputText class="inputCemPorcento"
+                            type="date"
+                            [value]="table.filters.dia ? table.filters.dia['value'] : ''" 
+                            (input)="table.filter($event.target.value, 'dia', 'contains')"/>
+                </th>
+                <th>
+                    <input pInputText class="inputCemPorcento"
+                            type="text"
+                            [value]="table.filters.turno ? table.filters.turno['value'] : ''" 
+                            (input)="table.filter($event.target.value, 'turno', 'contains')"/>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+
+        <!-- listagem da tabela -->
+        <ng-template pTemplate="body" let-dado>
+            <tr class="ui-selectable-row" >
+                <td class="textCenter">{{ dado.dia | date: 'dd/MM/yyyy' }}</td>
+                <td class="textCenter">{{ dado.turno }}</td>
+                <td class="textCenter">
+                    <a href="" onclick="return false;" (click)="showConfirm(dado.idAgenda)">
+                        <i  class="fa fa-trash" title="Excluir data da agenda"></i>
+                    </a>
+                </td>
+                <p-toast position="top-center" key="ex" (onClose)="onReject()" [baseZIndex]="5000">
+                    <ng-template let-message pTemplate="message">
+                        <div class="p-flex p-flex-column" style="flex: 1">
+                            <div class="p-text-center">
+                                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                                <h4>{{message.summary}}</h4>
+                                <p>{{message.detail}}</p>
+                            </div>
+                            <div class="p-grid p-fluid">
+                                <div class="p-col-3">
+                                    <button type="button" pButton (click)="onConfirm()" label="Yes" class="p-button-success"></button>
+                                </div>
+                                <div class="p-col-3">
+                                    <button type="button" pButton (click)="onReject()" label="No" class="p-button-secondary"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-toast>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5" style="text-align:left">Não existem registros cadastrados.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div class="form-row">
+        <div class="ml-auto p-2 bd-highlight">
+            <button [routerLink]="['/gerenciarprofissional']" style="margin: 5px;" pButton type="reset" label="Voltar" class="p-button p-button-rounded p-button-secondary" ></button>
+        </div>
     </div>
-    <br>
-    <button style="margin: 5px;" [routerLink]="['/gerenciarprofissional']" type="reset"  class="btn btn-secondary" >Voltar</button>    
 
 </div>

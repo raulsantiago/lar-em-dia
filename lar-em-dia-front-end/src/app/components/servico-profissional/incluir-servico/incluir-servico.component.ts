@@ -4,6 +4,7 @@ import { IncluirTipoServicoProfissionalDTO } from 'src/app/dto/servico-profissio
 import { ServicoProfissionalDTO } from 'src/app/dto/servico-profissional/servico-profissionalDTO';
 import { ServicoProfissionalService } from 'src/app/services/servico-profissional.service';
 import { TipoServicoProfissionalService } from 'src/app/services/tipo-servico-profissional.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-incluir-servico',
@@ -13,8 +14,9 @@ import { TipoServicoProfissionalService } from 'src/app/services/tipo-servico-pr
 export class IncluirServicoComponent implements OnInit {
 
   constructor(
-    private servicoProfissionalService: ServicoProfissionalService,
-    private tipoServicoProfissionalService: TipoServicoProfissionalService
+    private servicoProfissionalService:     ServicoProfissionalService,
+    private tipoServicoProfissionalService: TipoServicoProfissionalService,
+    private messageService:                 MessageService
     ) { }
 
   nomeServico: string;
@@ -44,29 +46,30 @@ export class IncluirServicoComponent implements OnInit {
             incluirTipoServicoProfissionalDTO.preco = this.preco;          
             this.tipoServicoProfissionalService.inserir(incluirTipoServicoProfissionalDTO)
               .subscribe(response => {
-                this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-                setTimeout( res => { this.mensagemSucesso = ''; }, 2000);              
+                this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 5000 });
                 this.nomeServico = '';
                 this.nomeTipo = '';
-                this.preco = null;            
-                this.errors = null;
+                this.preco = null;
               }
-              , errorResponse => {
-                this.mensagemSucesso = null;
+              , errorResponse => {                
                 this.errors = errorResponse.error.errors;
-                setTimeout( res => { this.errors = null; }, 5000);
+                this.errors.forEach(response => {
+                  this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+                });
               });
           
             }, errorResponse => {
-            this.mensagemSucesso = null;
-            this.errors = errorResponse.error.errors;
-            setTimeout( res => { this.errors = null; }, 5000);
+              this.errors = errorResponse.error.errors;
+              this.errors.forEach(response => {
+                this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+              });
           });
 
       }, errorResponse => {
-        this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });        
       });      
 
   }

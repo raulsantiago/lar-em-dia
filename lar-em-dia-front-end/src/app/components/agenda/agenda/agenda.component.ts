@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgendaDTO } from 'src/app/dto/agenda/agendaDTO';
 import { IncluirAgendaDTO } from 'src/app/dto/agenda/incluir-agendaDTO';
 import { AgendaService } from 'src/app/services/agenda.service';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { MessageService } from 'primeng/api';
+import { Table } from 'primeng/table/table';
 
 @Component({
   selector: 'app-agenda',
@@ -11,14 +13,19 @@ import { DatePipe } from '@angular/common'
 })
 export class AgendaComponent implements OnInit {
 
+  @ViewChild('table')
+  table: Table;
+
   constructor(    
     private agendaService: AgendaService,
-    public datepipe:       DatePipe
+    public datepipe:       DatePipe,
+    private messageService: MessageService
   ) { }
 
   agendaDTO:       AgendaDTO;
   listarAgendaDTO: AgendaDTO[];
   data:            Date;
+  id:              number;
 
   mensagemSucesso: string;  
   errors:          String[];
@@ -42,35 +49,45 @@ export class AgendaComponent implements OnInit {
         incluirAgendaDTO2.turno = 'Tarde';
         this.agendaService.inserir(incluirAgendaDTO2)
           .subscribe( response => {
-            this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-            setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
-            this.errors = null;        
+            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 2000 });
             setTimeout( res => { this.ngOnInit(); }, 2100);
           }
-          , errorResponse => {
-            this.mensagemSucesso = null;
+          , errorResponse => {            
             this.errors = errorResponse.error.errors;
-            setTimeout( res => { this.errors = null; }, 5000);
+            this.errors.forEach(response => {
+              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+            });            
           });              
       }, errorResponse => {
-        this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });            
       });
   }
 
-  excluir(id: number){
-    this.agendaService.excluir(id)
+  showConfirm(id: number){
+    this.id = id;
+    this.messageService.clear();
+    this.messageService.add({key: 'ex', sticky: true, severity:'warn', summary:'Deseja realmente excluir a data da agenda?', detail:'Confirme para excluir'});
+  }
+
+  onConfirm() {
+    this.messageService.clear('ex');
+    this.agendaService.excluir(this.id)
       .subscribe( response => {
-        this.mensagemSucesso = 'Cadastro excluído com sucesso!';
-        setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
-        this.errors = null;
+        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro excluído.' , life: 2000 });
         setTimeout( res => { this.ngOnInit(); }, 2100);
       }, errorResponse => {
-        this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });                    
       });
+  }
+
+  onReject() {
+    this.messageService.clear('ex');
   }
 
 }

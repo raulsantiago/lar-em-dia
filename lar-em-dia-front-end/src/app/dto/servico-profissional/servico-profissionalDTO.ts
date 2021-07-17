@@ -4,4 +4,6 @@ export class ServicoProfissionalDTO {
     nome:      string;
     ativo:     boolean;
 
+    ativoFmt:  string;
+
 }

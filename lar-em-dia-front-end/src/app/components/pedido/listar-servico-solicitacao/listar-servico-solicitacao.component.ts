@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicoProfissionalDTO } from 'src/app/dto/servico-profissional/servico-profissionalDTO';
 import { ServicoProfissionalService } from 'src/app/services/servico-profissional.service';
+import { Table } from 'primeng/table/table';
 
 @Component({
   selector: 'app-listar-servico-solicitacao',
@@ -10,6 +11,9 @@ import { ServicoProfissionalService } from 'src/app/services/servico-profissiona
 })
 export class ListarServicoSolicitacaoComponent implements OnInit {
 
+  @ViewChild('table')
+  table: Table;
+
   constructor(
     private servicoProfissionalService: ServicoProfissionalService,
     private router:                     Router,
@@ -17,10 +21,6 @@ export class ListarServicoSolicitacaoComponent implements OnInit {
   ) { }
 
   listarServicoProfissionalDTO: ServicoProfissionalDTO[];
-
-  mensagemSucesso: string;  
-  errors:          String[];
-
 
   ngOnInit(): void {
     this.servicoProfissionalService.listarAtivos().subscribe( dado => {

@@ -4,6 +4,7 @@ import { RegiaoService } from 'src/app/services/regiao.service';
 import { EstadoAtendidoDTO } from 'src/app/dto/regiao/estado-atendidoDTO';
 import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
 import { IncluirMunicipioAtendidoDTO } from 'src/app/dto/regiao/incluir-municipio-atendidoDTO';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-gerenciar-municipio',
@@ -13,9 +14,10 @@ import { IncluirMunicipioAtendidoDTO } from 'src/app/dto/regiao/incluir-municipi
 export class GerenciarMunicipioComponent implements OnInit {
 
   constructor(    
-    private router:        Router,
-    private route:         ActivatedRoute,
-    private regiaoService: RegiaoService
+    private router:         Router,
+    private route:          ActivatedRoute,
+    private regiaoService:  RegiaoService,
+    private messageService: MessageService
   ) { }
 
   estado: string;
@@ -33,7 +35,19 @@ export class GerenciarMunicipioComponent implements OnInit {
 
   ngOnInit(): void {
     this.regiaoService.listarMunicipo().subscribe( dado => {
-      this.listaMunicipioAtendidoDTO = dado;      
+      this.listaMunicipioAtendidoDTO = dado;
+      this.listaMunicipioAtendidoDTO.forEach((municipio: MunicipioAtendidoDTO) => {
+        municipio.ativoFmt = municipio.ativo ? 'Sim' : 'Não';
+        municipio.ativoEstadoMuniFmt = municipio.estadoAtendidoDTO.ativo ? 'Sim' : 'Não';
+        municipio.ativoClienteFmt = municipio.ativo && municipio.estadoAtendidoDTO.ativo ? 'Sim' : 'Não';
+      });
+    });
+
+    this.regiaoService.listarUf().subscribe( dado => {
+      this.listaEstadoAtendidoDTO = dado;
+      this.listaEstadoAtendidoDTO.forEach((estado: EstadoAtendidoDTO) => {
+        estado.ativoEstadoFmt = estado.ativo ? 'Sim' : 'Não';
+      });
     });
     
   }
@@ -51,14 +65,13 @@ export class GerenciarMunicipioComponent implements OnInit {
     municipioAtendidoDTO.uf = this.estado;    
     this.regiaoService.inserir(municipioAtendidoDTO)
       .subscribe( response => {
-        this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-        setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
-        this.errors = null;        
-        this.ngOnInit();
-      }, errorResponse => {
-        this.mensagemSucesso = null;
+        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado!' , life: 2000 });
+        setTimeout( res => { this.ngOnInit(); }, 2100);
+      }, errorResponse => {        
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 2000 });
+        });
       });
   }
 

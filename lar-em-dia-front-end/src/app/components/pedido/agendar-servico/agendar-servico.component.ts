@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common'
 import { AlterarAgendaDTO } from 'src/app/dto/agenda/alterar-agendaDTO';
 import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
 import { GerenciarProfissionalDTO } from 'src/app/dto/login-profissional/gerenciar-profissionalDTO';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-agendar-servico',
@@ -32,7 +33,8 @@ export class AgendarServicoComponent implements OnInit {
     private loginClienteService:            LoginClienteService,
     private pedidoService:                  PedidoService,
     public  datepipe:                       DatePipe,
-    private loginProfissionalService:       LoginProfissionalService
+    private loginProfissionalService:       LoginProfissionalService,
+    private messageService:                 MessageService
   ) { }
 
   tipoServicoProfissionalDTO: TipoServicoProfissionalDTO;
@@ -89,28 +91,29 @@ export class AgendarServicoComponent implements OnInit {
             agenda.disponivel = false;                        
             this.agendaService.alterar(parseInt(this.data), agenda)
             .subscribe( response => {
-              this.mensagemSucesso = 'Cadastro realizado com sucesso!';
-              setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
-              this.errors = null;
+              this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado!' , life: 5000 });              
               setTimeout( res => { 
                  this.router.navigate(['listarpedidoscliente'], {
                    relativeTo: this.activatedRoute['listarpedidoscliente'],
                  });
               }, 2100);
-            }, errorResponse => {
-              this.mensagemSucesso = null;
+            }, errorResponse => {              
               this.errors = errorResponse.error.errors;
-              setTimeout( res => { this.errors = null; }, 5000);
+              this.errors.forEach(response => {
+                this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+              });              
             });   
           }, errorResponse => {
-            this.mensagemSucesso = null;
             this.errors = errorResponse.error.errors;
-            setTimeout( res => { this.errors = null; }, 5000);
+            this.errors.forEach(response => {
+              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+            });
           });
       }, errorResponse => {
-        this.mensagemSucesso = null;
-        this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+          this.errors = errorResponse.error.errors;
+          this.errors.forEach(response => {
+            this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          });
       });
 
   }

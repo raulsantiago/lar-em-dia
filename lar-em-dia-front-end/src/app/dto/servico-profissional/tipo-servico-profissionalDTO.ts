@@ -7,4 +7,8 @@ export class TipoServicoProfissionalDTO {
     preco:                  number;    
     servicoProfissionalDTO: ServicoProfissionalDTO;
 
+    precoFmt:               string;
+    nomeServico:            string;
+    ativoServicoFmt:        string;
+
 }

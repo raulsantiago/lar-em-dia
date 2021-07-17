@@ -6,7 +6,7 @@ import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginClienteService } from 'src/app/services/login-cliente.service';
 import { RegiaoService } from 'src/app/services/regiao.service';
-
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-login-cliente',
   templateUrl: './login-cliente.component.html',
@@ -18,7 +18,8 @@ export class LoginClienteComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private regiaoService: RegiaoService,
-    private loginClienteService: LoginClienteService
+    private loginClienteService: LoginClienteService,
+    private messageService: MessageService
     ) { }
   
   nome: string;
@@ -52,9 +53,9 @@ export class LoginClienteComponent implements OnInit {
   ngOnInit(): void {   
     this.regiaoService.listarUfAtivo().subscribe( dado => {
       this.listaEstadoAtendidoDTO = dado;
-    });
+    });    
   }
-
+  
   preparaCadastrar(event){
     event.preventDefault();
     this.cadastrando = true;    
@@ -70,10 +71,12 @@ export class LoginClienteComponent implements OnInit {
     .subscribe(response => {      
       const access_token = JSON.stringify(response);
       localStorage.setItem('access_token', access_token);
-      this.router.navigate(['/gerenciarcliente']);
+      this.router.navigate(['/gerenciarcliente']);      
     }, errorResponse => {
-      this.errors = ['Usuário e/ou senha incorreto(s).'];
-      setTimeout( res => { this.errors = null; }, 5000);
+      this.errors = ['Usuário e/ou senha incorreto(s)'];
+      this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+      });
     })
   }
 
@@ -99,36 +102,32 @@ export class LoginClienteComponent implements OnInit {
     loginClienteDTO.referencia = this.referencia;
     loginClienteDTO.senha = this.senha;    
     this.authService.incluirCliente(loginClienteDTO)
-    .subscribe( response => {      
-      this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";
-      setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
+    .subscribe( response => {
+      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Cadastro realizado efetue seu login.', life: 5000});
       this.cadastrando = false;
       this.email = '';
-      this.senha = '';            
-      this.errors = null;      
+      this.senha = '';
       }, errorResponse => {
-        this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });
     })
   }
 
   esqueceuSenha(){
-    this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-    setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);
+    setTimeout(res => { this.emailRec = ''; }, 2000);
     this.loginClienteService.sendMail(this.emailRec, this.not).subscribe( response => {
-      this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-      setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);      
+      //this.messageService.add({key: 'sen', severity:'success', summary: 'Sucesso!', detail: 'Email enviado com sucesso aguarde chegar na sua conta.', life: 5000});
       this.emailRec = '';      
-      this.errors2 = null;      
       }, errorResponse => {
-        this.emailRec = '';      
-        this.mensagemSucesso2 = null;
-        this.errors2 = ["E-mail não consta na nossa base de dados."];
-        //this.errors2 = errorResponse.error.errors;
-        setTimeout( res => { this.errors2 = null; }, 10000);
+        this.emailRec = '';        
+        //this.errors2 = ["E-mail não consta na nossa base de dados."];
+        //this.errors2 = errorResponse?.error.errors;
+        // this.errors2.forEach(response => {
+        //   this.messageService.add({key: 'sen', severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        // });
     });
-    
     
   }
 

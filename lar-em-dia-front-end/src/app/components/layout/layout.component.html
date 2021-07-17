@@ -2,7 +2,7 @@
 <div id="layoutSidenav">
     <p-menubar [model]="items" styleClass="fundo" >
         <ng-template pTemplate="start">            
-            <img src="../assets/img/logo-lar-em-dia.png" height="40" class="p-mr-2">            
+            <img src="../assets/img/logo-lar-em-dia.png" height="50" style="padding: 5px;" class="p-mr-2">            
         </ng-template>               
         <ng-template pTemplate="end" >
             <button *ngIf="usuarioLogado" (click)="usuario()" pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded" title="Acesse seu perfil"></button>
@@ -10,21 +10,19 @@
             <button *ngIf="usuarioLogado" (click)="logout()" pButton pRipple type="button" label="Logout" icon="pi pi-power-off" class="p-button-rounded"  style="margin-left:.25em; margin-right:.25em;" title="Sair do sistema"></button>
         </ng-template>
     </p-menubar>
-  <div id="layoutSidenav_content">
-    <main>
-      <div class="container-fluid">
-        <router-outlet></router-outlet>
-      </div>
-      <footer class="py-3 bg-light mt-auto fixed-bottom">
-        <div class="container-fluid">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright &copy; Lar Em Dia 2021</div>
-                <div>
-                    <a href="#" title="Indisponível">Política de Privacidade</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    </main>
-  </div>
 </div>
+    <main>      
+        <router-outlet></router-outlet>
+        <!-- <footer class="py-3 bg-light mt-auto fixed-bottom">
+          <div class="container-fluid">
+              <div class="d-flex align-items-center justify-content-between small">
+                  <div class="text-muted">Copyright &copy; Lar em Dia 2021</div>
+                  <div>
+                      <a href="#" title="Indisponível">Política de Privacidade</a>
+                  </div>
+              </div>
+          </div>
+      </footer> -->
+    </main>
+
+

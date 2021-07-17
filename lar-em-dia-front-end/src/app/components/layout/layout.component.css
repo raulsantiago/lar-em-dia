@@ -3,3 +3,8 @@
     background-image: linear-gradient(to right, transparent 30%, #db79d8);
     color: white;    
 }
+
+
+::ng-deep .p-menubar {
+    border: 0px;
+}

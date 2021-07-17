@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
 import { LoginProfissionalService } from 'src/app/services/login-profissional.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login-profissional',
@@ -15,9 +16,10 @@ import { LoginProfissionalService } from 'src/app/services/login-profissional.se
 export class LoginProfissionalComponent implements OnInit {
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
-    private loginProfissionalService: LoginProfissionalService
+    private router:                   Router,
+    private authService:              AuthService,
+    private loginProfissionalService: LoginProfissionalService,
+    private messageService:           MessageService
     ) { }
 
   
@@ -62,8 +64,10 @@ export class LoginProfissionalComponent implements OnInit {
       localStorage.setItem('access_token', access_token);
       this.router.navigate(['/gerenciarprofissional']);
     }, errorResponse => {
-      this.errors = ['Usuário e/ou senha incorreto(s).'];
-      setTimeout( res => { this.errors = null; }, 5000);
+      this.errors = ['Usuário e/ou senha incorreto(s)'];
+      this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+      });
     })
   }
 
@@ -85,36 +89,25 @@ export class LoginProfissionalComponent implements OnInit {
     loginProfissionalDTO.cpf = this.cpf;        
     loginProfissionalDTO.nome = this.nome;    
     this.authService.incluirProfissional(loginProfissionalDTO)
-    .subscribe( response => {      
-      this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue login";
-      setTimeout( res => { this.mensagemSucesso = ''; }, 2000);
+    .subscribe( response => {
+      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Cadastro realizado efetue seu login.', life: 5000});
       this.cadastrando = false;
       this.email = '';
       this.senha = '';
-      this.errors = null;
       }, errorResponse => {
-        this.mensagemSucesso = null;
         this.errors = errorResponse.error.errors;
-        setTimeout( res => { this.errors = null; }, 5000);
+        this.errors.forEach(response => {
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        });
     })
   }
 
   esqueceuSenha(){
-    this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-    setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);
-    this.loginProfissionalService.sendMailProf(this.emailRec, this.not).subscribe( response => {      
-      this.mensagemSucesso2 = "Email enviado com sucesso aguarde chegar na sua conta";
-      setTimeout( res => { this.mensagemSucesso2 = ''; }, 95000);
-      this.emailRec = '';      
-      this.errors2 = null;      
+    setTimeout(res => { this.emailRec = ''; }, 2000);
+    this.loginProfissionalService.sendMailProf(this.emailRec, this.not).subscribe( response => {                  
       }, errorResponse => {
-        this.emailRec = '';      
-        this.mensagemSucesso2 = null;
-        this.errors2 = ["E-mail não consta na nossa base de dados."];
-        //this.errors2 = errorResponse.error.errors;
-        setTimeout( res => { this.errors2 = null; }, 10000);
+        this.emailRec = '';
     });
-    
     
   }
 

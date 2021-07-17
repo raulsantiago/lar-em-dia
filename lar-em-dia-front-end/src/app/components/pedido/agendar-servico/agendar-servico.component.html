@@ -1,21 +1,16 @@
 <br>
 <div class="container">
+  <p-toast></p-toast>
   <h1>Contratar o Serviço</h1>
-  <br>
-  <div class="alert alert-success" *ngIf="mensagemSucesso">
-      {{ mensagemSucesso }}
-  </div>
-  <div class="alert alert-danger" *ngFor="let erro of errors">
-      {{ erro }}
-  </div>
+  <br>  
   <br>
   <h4>Serviço: {{tipoServicoProfissionalDTO?.servicoProfissionalDTO?.nome}}</h4>
   <h4>Tipo: {{tipoServicoProfissionalDTO?.nome}}  Valor: {{tipoServicoProfissionalDTO?.preco | currency}}</h4>
   <br>
   <form  #cadForm="ngForm" (submit)="inserir()">  
     <div class="form-row align-items-center">
-      <div class="col-auto my-1 col-md-4 mb-3">
-        <label  for="inlineFormCustomSelect">Local</label>
+      <div class="col-auto my-1 col-md-6 mb-3">
+        <label  for="inlineFormCustomSelect"><h5>Local</h5></label>
         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
         [(ngModel)]="local" name="local"  >
           <option selected disabled>Selecione</option>
@@ -26,8 +21,8 @@
           <option value="Sala comercial">Sala comercial</option>
         </select>
       </div>
-      <div class="col-auto my-1 col-md-3 mb-3">
-        <label  for="inlineFormCustomSelect">Data e turno</label>
+      <div class="col-auto my-1 col-md-4 mb-3">
+        <label  for="inlineFormCustomSelect"><h5>Data e turno</h5></label>
         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
         [(ngModel)]="data" name="data"
         >
@@ -38,8 +33,8 @@
         </select>
       </div>
       <br>
-      <div class="col my-1 col-md-7">
-        <label for="exampleFormControlTextarea1">Descrição detalhada da situação do local onde o serviço será executado</label>
+      <div class="col my-1 col-md-10">
+        <label for="exampleFormControlTextarea1"><h5>Descrição detalhada da situação do local onde o serviço será executado</h5></label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Exemplo: O ar condicionado está dentro do telhado" 
         [(ngModel)]="descricao" name="descricao" ></textarea>
       </div>      
@@ -47,16 +42,19 @@
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1"
             (click)="habilitar()" >
-            <label class="form-check-label" for="exampleCheck1">Aceite no termo de compromisso.
+            <label class="form-check-label" for="exampleCheck1"><h5>Aceite no termo de compromisso.
                 <a href="" onclick="return false;" data-toggle="modal" data-target="#exampleModal" >  
-                    Click aqui para visualizar o termo!</a></label>
+                    Click aqui para visualizar o termo!</a></h5></label>
         </div>      
       </div>      
     </div>
-    <div>
-        <button style="margin: 5px;" (click)="backClicked()" type="reset" class="btn btn-secondary" >Voltar</button>
-        <button style="margin: 5px;" type="submit" class="btn btn-secondary" [hidden]="!ativar" >Confirmar</button>
-    </div>
+    
+      <div class="form-row">
+        <div>
+            <button [hidden]="!ativar" style="margin: 5px;" pButton type="submit" label="Confirmar" class="p-button p-button-rounded p-button-success" ></button>
+            <button (click)="backClicked()" style="margin: 5px;" pButton type="reset" label="Voltar" class="p-button p-button-rounded p-button-secondary" ></button>
+        </div>
+      </div>
   </form>
   
   
@@ -79,7 +77,7 @@
           <p>Resaltamos que o profissional poderá cancelar o serviço já agendado pelo cliente a qualquer momento, por quaisquer motivos sendo-lhe respeitado a sua vontade no presente compromisso.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button pButton type="button" label="Fechar" data-dismiss="modal" class="p-button p-button-rounded p-button-secondary" ></button>
         </div>
       </div>
     </div>

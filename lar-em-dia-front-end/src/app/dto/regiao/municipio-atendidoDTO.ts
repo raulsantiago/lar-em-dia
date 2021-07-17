@@ -6,5 +6,9 @@ export class MunicipioAtendidoDTO {
     municipio: string;
     ativo: boolean;
     estadoAtendidoDTO: EstadoAtendidoDTO;
+
+    ativoFmt: string;
+    ativoClienteFmt: string;
+    ativoEstadoMuniFmt: string;
     
 }
