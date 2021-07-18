@@ -1,8 +1,20 @@
 ::ng-deep .valores-dialog {
-    width: 70%;
+    width: 50%;
     height: 900%;
 }
 
-::ng-deep .valores-dialog .p-dialog-content{
+::ng-deep .valores-dialog .p-dialog-content  {
     height: 100%;
+    color: #2196F3;
+    background-color: #d8d7d7;
+}
+
+::ng-deep .p-dialog .p-dialog-header {    
+    color: #2196F3;
+    background-color: #d8d7d7;
+}
+
+::ng-deep .p-dialog .p-dialog-footer {    
+    color: #2196F3;
+    background-color: #d8d7d7;
 }

@@ -40,8 +40,9 @@
                 <tr class="ui-selectable-row" >
                     <td  >{{servico.nome}}</td>
                     <td  class="textCenter">
-                        <i  href="" onclick="return false;" 
-                        (click)="listarTipos(servico.idServico)"  class="fa fa-list" title="Listar Tipos de Serviços"></i>
+                        <a href="" onclick="return false;" (click)="listarTipos(servico.idServico)" >
+                            <i class="fa fa-list" title="Listar tipos de serviços"></i>
+                        </a>
                     </td>
                 </tr>
             </ng-template>

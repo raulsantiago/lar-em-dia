@@ -53,8 +53,9 @@
                     <td  >{{tiposervico.nome}}</td>
                     <td  class="textRight" >{{tiposervico.precoFmt }}</td>
                     <td  class="textCenter">
-                        <i  href="" onclick="return false;" 
-                        (click)="agendar(tiposervico.idTipo)"  class="fa fa-calendar" title="Agendar um serviço profissional"></i>
+                        <a  href="" onclick="return false;" (click)="agendar(tiposervico.idTipo)"  >
+                            <i class="fa fa-calendar" title="Agendar um serviço profissional"></i>
+                        </a>
                     </td>
                 </tr>
             </ng-template>

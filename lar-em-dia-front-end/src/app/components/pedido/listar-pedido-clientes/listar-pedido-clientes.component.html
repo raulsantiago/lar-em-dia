@@ -27,10 +27,10 @@
                     <th class="textCenter inputCemPorcento" pSortableColumn="nomeServico" scope="col">
                         Onde será o serviço<p-sortIcon field="nomeServico"></p-sortIcon>
                     </th>
-                    <th class="textCenter inputOitentaPorcento" pSortableColumn="nomeTipoServico" scope="col">
+                    <th class="textCenter inputCemPorcento" pSortableColumn="nomeTipoServico" scope="col">
                         Tipo do serviço<p-sortIcon field="nomeTipoServico"></p-sortIcon>
                     </th>
-                    <th class="textCenter inputOitentaPorcento" pSortableColumn="precoContratadoFmt" scope="col">
+                    <th class="textCenter" style="width: 70%;" pSortableColumn="precoContratadoFmt" scope="col">
                         Preço<p-sortIcon field="precoContratadoFmt"></p-sortIcon>
                     </th>
                     <th class="textCenter inputOitentaPorcento" pSortableColumn="dia" scope="col">
@@ -49,30 +49,30 @@
                                 (input)="table.filter($event.target.value, 'nomeServico', 'contains')"/>
                     </th>
                     <th>
-                        <input pInputText class="inputOitentaPorcento"
+                        <input pInputText class="inputCemPorcento"
                                 type="text"
                                 [value]="table.filters.nomeTipoServico ? table.filters.nomeTipoServico['value'] : ''" 
                                 (input)="table.filter($event.target.value, 'nomeTipoServico', 'contains')"/>
                     </th>
                     <th>
-                        <input pInputText class="inputOitentaPorcento"
+                        <input pInputText class="inputCemPorcento"
                                 type="text"
                                 [value]="table.filters.precoContratadoFmt ? table.filters.precoContratadoFmt['value'] : ''" 
                                 (input)="table.filter($event.target.value, 'precoContratadoFmt', 'contains')"/>
                     </th>
                     <th>
-                        <input pInputText class="inputOitentaPorcento"
+                        <input pInputText class="inputCemPorcento"
                                 type="date"
                                 [value]="table.filters.dia ? table.filters.dia['value'] : ''" 
                                 (input)="table.filter($event.target.value, 'dia', 'contains')"/>
                     </th>
                     <th>
-                        <input pInputText class="inputOitentaPorcento"
+                        <input pInputText class="inputCemPorcento"
                                 type="date"
                                 [value]="table.filters.dataFim ? table.filters.dataFim['value'] : ''" 
                                 (input)="table.filter($event.target.value, 'dataFim', 'contains')"/>
                     </th>
-                    <th></th>
+                    <th class="inputCemPorcento"></th>
                 </tr>
             </ng-template>
 

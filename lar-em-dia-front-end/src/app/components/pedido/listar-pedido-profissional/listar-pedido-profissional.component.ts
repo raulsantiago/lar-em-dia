@@ -1,12 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, Pipe, PipeTransform }  from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild }  from '@angular/core';
 import { GerenciarClienteDTO } from 'src/app/dto/login-cliente/gerenciar-clienteDTO';
 import { AlterarPedidoContratadoDTO } from 'src/app/dto/pedido/alterar-pedido-contratadoDTO';
 import { ListaPedidosProfissionalDTO } from 'src/app/dto/pedido/lista-pedidos-profissionalDTO';
 import { PedidoContratadoDTO } from 'src/app/dto/pedido/pedido-contratadoDTO';
 import { LoginClienteService } from 'src/app/services/login-cliente.service';
 import { PedidoService } from 'src/app/services/pedido.service';
+import { MessageService } from 'primeng/api';
+import { Table } from 'primeng/table/table';
 
 @Component({
   selector: 'app-listar-pedido-profissional',
@@ -15,12 +16,14 @@ import { PedidoService } from 'src/app/services/pedido.service';
 })
 export class ListarPedidoProfissionalComponent implements OnInit {
 
+  @ViewChild('table')
+  table: Table;
+
   constructor(
-    private pedidoService:        PedidoService,    
-    private router:               Router,
-    private route:                ActivatedRoute,
+    private pedidoService:        PedidoService,
     private loginClienteService:  LoginClienteService,
-    public  datepipe:             DatePipe
+    public  datepipe:             DatePipe,
+    private messageService:       MessageService
   ) { }
 
   listaPedidosProfissionalDTO: ListaPedidosProfissionalDTO[];
@@ -37,13 +40,26 @@ export class ListarPedidoProfissionalComponent implements OnInit {
   dataInicial:                Date;
   dataFinal:                  Date;
   despesas:                   number;
+  id:                         number;
 
   ngOnInit(): void {
     this.pedidoService.listaPedidosViewProfissional().subscribe( dado => {
       this.listaPedidosProfissionalDTO = dado;
+      this.listaPedidosProfissionalDTO.map((lista: ListaPedidosProfissionalDTO) => this.mapearValorGrid(lista));
+      console.log(this.listaPedidosProfissionalDTO);
     });
   }
 
+  private mapearValorGrid(lista: ListaPedidosProfissionalDTO): ListaPedidosProfissionalDTO {  
+    let valorMoedaNumberPreco   = parseFloat(lista.precoContratado.toString());
+    let valorMoedaNumberDespesa = lista.despesas === null || lista.despesas === undefined ? null : parseFloat(lista.despesas.toString());
+    lista.precoContratadoFmt    = valorMoedaNumberPreco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    lista.despesasFmt           = valorMoedaNumberDespesa === null || valorMoedaNumberDespesa === undefined ? null : valorMoedaNumberDespesa.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    let calculo                 = lista.precoContratado - lista.despesas;
+    let valorMoedaNumberLucro   = parseFloat(calculo.toString());
+    lista.lucroFmt              = lista.despesas === null || lista.despesas === undefined ? null : valorMoedaNumberLucro.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    return lista;
+}
  
   endereco(id: number){
     this.loginClienteService.consultar(id).subscribe( dado => {
@@ -67,29 +83,38 @@ export class ListarPedidoProfissionalComponent implements OnInit {
     pedido.dataHoraFim = this.datepipe.transform(this.dataFinal, 'yyyy-MM-ddTHH:mm:ss') == undefined || this.datepipe.transform(this.dataFinal, 'yyyy-MM-ddTHH:mm:ss') == null ? '' : this.datepipe.transform(this.dataFinal, 'yyyy-MM-ddTHH:mm:ss');
     pedido.despesas = this.despesas == undefined || this.despesas == null ? null : this.despesas;
     pedido.situacao = false;
-    this.pedidoService.alterar(id, pedido).subscribe( respose => {      
-      this.mensagemSucesso2 = 'Cadastro realizado com sucesso!';
-      setTimeout( res => { this.mensagemSucesso2 = ''; this.ngOnInit() }, 2000);
-      this.errors2 = null;      
-    }, errorResponse => {
-      this.mensagemSucesso2 = null;
+    this.pedidoService.alterar(id, pedido).subscribe( respose => { 
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Registro realizado.' , life: 2000 });
+      setTimeout( res => { this.ngOnInit() }, 2100);
+    }, errorResponse => {      
       this.errors2 = errorResponse.error.errors;
-      setTimeout( res => { this.errors2 = null; }, 5000);
+      this.errors2.forEach(response => {
+        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+      });      
     });  
   }
 
-  excluir(id: number){
-    this.pedidoService.excluirProf(id).subscribe( respose => {
-      this.mensagemSucesso = 'Pedido cancelado com sucesso!';
-      setTimeout( res => { this.mensagemSucesso = ''; this.ngOnInit() }, 2000);
-      this.errors = null;      
-    }, errorResponse => {
-      this.mensagemSucesso = null;
-      this.errors = errorResponse.error.errors;
-      setTimeout( res => { this.errors = null; }, 5000);
-    });  
+  showConfirm(id: number){    
+    this.id = id;    
+    this.messageService.clear();
+    this.messageService.add({key: 'ex', sticky: true, severity:'warn', summary:'Deseja realmente excluir o serviço?', detail:'Confirme para excluir'});
+  }
 
+  onConfirm() {
+    this.messageService.clear('ex');
+    this.pedidoService.excluirProf(this.id).subscribe( respose => {
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Exclusão realizada.' , life: 2000 });
+      setTimeout( res => { this.ngOnInit() }, 2100);      
+    }, errorResponse => {      
+      this.errors = errorResponse.error.errors;
+      this.errors.forEach(response => {
+        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+      });
+    });
   }
   
+  onReject() {
+    this.messageService.clear('ex');
+  }
 
 }

@@ -1,10 +1,14 @@
-:host ::ng-deep .p-dialog .ui-dialog .ui-dialog-titlebar {
-    background-image: none;
+::ng-deep .valores-dialog .p-dialog-content  {
     color: #2196F3;
     background-color: #d8d7d7;
 }
 
-.active {
+::ng-deep .p-dialog .p-dialog-header {    
+    color: #2196F3;
+    background-color: #d8d7d7;
+}
+
+::ng-deep .p-dialog .p-dialog-footer {    
     color: #2196F3;
     background-color: #d8d7d7;
 }

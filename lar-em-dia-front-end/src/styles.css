@@ -36,8 +36,3 @@ body {
 .inputTrintaPorcento {    
     width: 30%;
 }
-
-/* :host ::ng-deep .p-dialog {
-    color: #2196F3 !important;
-    background-color: #d8d7d7 !important;
-} */

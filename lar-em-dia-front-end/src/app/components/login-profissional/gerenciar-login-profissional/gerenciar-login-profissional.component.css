@@ -2,17 +2,17 @@
 .externa {
     position: relative;
     width:100%;
-    height:920px;
+    height:600px;
 }
 
 .interna {
     left:50%;
     top:50%;
     margin-left:-360px; /* Metade do valor da Largura */
-    margin-top:-400px; /* Metade da valor da Altura */
+    margin-top:-300px; /* Metade da valor da Altura */
     position:absolute;
     width:720px; /* Valor da Largura */
-    height:800px; /* Valor da Altura */
+    height:600px; /* Valor da Altura */
 }
 
 :host ::ng-deep .p-password input {

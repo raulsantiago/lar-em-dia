@@ -5,14 +5,14 @@ export interface ListaPedidosProfissionalDTO {
     descricao:       string;    
     local:           string;    
     precoContratado: number;
-
     nomeTipoServico: string;
-    
     nomeServico:     string;
-    
-    idCliente:       number;    
-    
+    idCliente:       number;
     dia:             string;
     turno:           string;
+    
+    precoContratadoFmt: string;
+    despesasFmt:        string;
+    lucroFmt:           string;
 
 }
