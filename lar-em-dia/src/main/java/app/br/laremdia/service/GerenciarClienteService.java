@@ -29,6 +29,10 @@ public class GerenciarClienteService {
     @Autowired
     private MunicipioAtendidoRepository municipioAtendidoRepository;
 
+    public String quantidadeClientesAtivos(){
+        return loginClienteRepository.quantidadeClientesAtivos();
+    }
+
     public LoginClienteDTO consultarEmail(String email) {
         Optional<LoginClienteEntity> loginClienteEntity = loginClienteRepository.findByEmail(email);
         return loginClienteEntity.map(LoginClienteDTO::new).orElseThrow(() -> new BusinessException("Cliente não encontrado."));

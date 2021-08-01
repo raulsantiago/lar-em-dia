@@ -1,6 +1,7 @@
 package app.br.laremdia.model.repository;
 
 import app.br.laremdia.model.entity.PedidoContratadoEntity;
+import app.br.laremdia.model.projection.PedidoContratadoGraficoProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProfissionalProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PedidoContratadoRepository extends JpaRepository< PedidoContratadoEntity, Integer> {
@@ -53,6 +55,18 @@ public interface PedidoContratadoRepository extends JpaRepository< PedidoContrat
             "INNER JOIN servico_profissional sp ON sp.id_servico = ts.id_tipo_id_servico " +
             "ORDER BY ag.dia DESC, ag.turno ASC", nativeQuery = true)
     List< PedidoContratadoProfissionalProjection > listaPedidosViewProfissional();
+
+    @Query(value = "SELECT  despesas         AS despesas, " +
+                           "preco_contratado AS precoContratado, " +
+                           "data_hora_fim    AS dataFim " +
+                   "FROM pedido_contratado " +
+            "WHERE ( data_hora_fim BETWEEN :periodoInicial AND  :periodoFinal ) " +
+            "ORDER BY data_hora_fim DESC", nativeQuery = true)
+    List< PedidoContratadoGraficoProjection > listaPedidosGrafico(@Param("periodoInicial") LocalDateTime periodoInicial, @Param("periodoFinal") LocalDateTime periodoFinal);
+
+
+
+
 
 
 

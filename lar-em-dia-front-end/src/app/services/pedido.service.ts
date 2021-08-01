@@ -6,6 +6,7 @@ import { AlterarPedidoContratadoDTO } from '../dto/pedido/alterar-pedido-contrat
 import { IncluirPedidoContratadoDTO } from '../dto/pedido/incluir-pedido-contratadoDTO';
 import { ListaPedidosClienteDTO } from '../dto/pedido/lista-pedidos-clienteDTO';
 import { ListaPedidosProfissionalDTO } from '../dto/pedido/lista-pedidos-profissionalDTO';
+import { ListaGraficoDTO } from '../dto/pedido/listaGraficoDTO';
 import { PedidoContratadoDTO } from '../dto/pedido/pedido-contratadoDTO';
 
 
@@ -28,6 +29,10 @@ export class PedidoService {
 
   listaPedidosViewProfissional(): Observable<ListaPedidosProfissionalDTO[]>{
     return this.http.get<ListaPedidosProfissionalDTO[]>(`${this.apiURL}/profissional`);
+  }
+
+  listaPedidosGrafico(periodoInicial: string, periodoFinal: string): Observable<ListaGraficoDTO[]>{
+    return this.http.get<ListaGraficoDTO[]>(`${this.apiURL}/${periodoInicial}/${periodoFinal}/grafico`);
   }
 
   inserir(incluirPedidoContratadoDTO: IncluirPedidoContratadoDTO): Observable<IncluirPedidoContratadoDTO>{

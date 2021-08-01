@@ -7,6 +7,7 @@ import app.br.laremdia.model.entity.AgendaEntity;
 import app.br.laremdia.model.entity.LoginClienteEntity;
 import app.br.laremdia.model.entity.PedidoContratadoEntity;
 import app.br.laremdia.model.entity.TipoServicoEntity;
+import app.br.laremdia.model.projection.PedidoContratadoGraficoProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProfissionalProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProjection;
 import app.br.laremdia.model.repository.AgendaRepository;
@@ -50,6 +51,14 @@ public class PedidoContratadoService {
 
     public List< PedidoContratadoProfissionalProjection > listaPedidosViewProfissional() {
         return pedidoContratadoRepository.listaPedidosViewProfissional();
+    }
+
+    public List< PedidoContratadoGraficoProjection > listaPedidosGrafico(String periodoInicial, String periodoFinal) {
+
+        LocalDateTime inicio = LocalDateTime.parse(periodoInicial);
+        LocalDateTime fim = LocalDateTime.parse(periodoFinal);
+
+        return pedidoContratadoRepository.listaPedidosGrafico(inicio, fim);
     }
 
     public IncluirPedidoContratadoDTO inserir(IncluirPedidoContratadoDTO incluirPedidoContratadoDTO){

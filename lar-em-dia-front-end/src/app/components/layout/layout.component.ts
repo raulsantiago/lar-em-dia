@@ -31,7 +31,7 @@ export class LayoutComponent implements OnInit {
         this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Serviços', icon: 'fa fa-plug', routerLink: ['/listarservico']} : {label: ''},
         this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Agenda', icon: 'pi pi-fw pi-calendar', routerLink: ['/agenda']} : {label: ''},
         this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Contratos', icon: 'fa fa-compress', routerLink: ['/listarpedidosprofissional']} : {label: ''},
-        this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Relatórios', icon: 'fa fa-bar-chart', routerLink: ['#']} : {label: ''}
+        this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Relatórios', icon: 'fa fa-bar-chart', routerLink: ['/relatorios']} : {label: ''}
     ];
     this.activeItem = this.items[0];
   }

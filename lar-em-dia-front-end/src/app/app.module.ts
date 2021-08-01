@@ -40,6 +40,8 @@ import { TableModule, Table, TableService } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { PasswordModule } from "primeng/password";
 import { DividerModule } from "primeng/divider";
+import { ChartModule } from 'primeng/chart';
+
 
 // Componentes
 import { AppRoutingModule } from './app-routing.module';
@@ -67,6 +69,7 @@ import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido
 import { ModalContatoComponent } from './components/pedido/listar-pedido-clientes/modal-contato/modal-contato.component';
 import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.component';
 
 @NgModule({
   declarations: [
@@ -89,10 +92,12 @@ import { LayoutComponent } from './components/layout/layout.component';
     ListarPedidoClientesComponent,
     ModalContatoComponent,
     ListarPedidoProfissionalComponent,
-    LayoutComponent
+    LayoutComponent,
+    SinteticoComponent
     
   ],
-  imports: [
+  imports: [    
+    ChartModule,
     PasswordModule,
     DividerModule,
     MenubarModule,

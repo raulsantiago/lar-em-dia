@@ -1,0 +1,10 @@
+<div >
+    <h5>Total de clientes ativos na plataforma:  {{ quantidadeClientesAtivos }}</h5>
+    <button type="reset" (click)="grafico()" >teste</button>    
+</div>
+
+<div *ngIf="exibe" >
+    <h5>Valor do Lucro Total no Mês: {{fmtLucroServicosTotal}}  </h5>
+    <h5>Quantidade Total de Serviços no Mês: {{quantitadeServicosTotal}}  </h5>
+    <p-chart type="horizontalBar" [data]="graficoData" [options]="options" width="80vw" height="80vh" style="text-align: center;" ></p-chart>
+</div>

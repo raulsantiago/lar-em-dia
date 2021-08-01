@@ -25,6 +25,11 @@ public class GerenciarClienteController {
     private final GerenciarClienteService gerenciarClienteService;
     private final LoginClienteRepository loginClienteRepository;
 
+    @GetMapping("/ativos")
+    public String quantidadeClientesAtivos(){
+        return gerenciarClienteService.quantidadeClientesAtivos();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity consultar(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(gerenciarClienteService.consultar(id));

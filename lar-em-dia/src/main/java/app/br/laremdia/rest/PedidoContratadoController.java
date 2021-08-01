@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/pedido")
@@ -29,6 +30,11 @@ public class PedidoContratadoController {
     @GetMapping("/profissional")
     public ResponseEntity listaPedidosViewProfissional() {
         return ResponseEntity.ok(pedidoContratadoService.listaPedidosViewProfissional());
+    }
+
+    @GetMapping("/{periodoInicial}/{periodoFinal}/grafico")
+    public ResponseEntity listaPedidosGrafico(@PathVariable("periodoInicial") String periodoInicial, @PathVariable("periodoFinal") String periodoFinal) {
+        return ResponseEntity.ok(pedidoContratadoService.listaPedidosGrafico(periodoInicial, periodoFinal));
     }
 
     @PostMapping()
