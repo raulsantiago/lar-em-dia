@@ -1,10 +1,41 @@
-<div >
-    <h5>Total de clientes ativos na plataforma:  {{ quantidadeClientesAtivos }}</h5>
-    <button type="reset" (click)="grafico()" >teste</button>    
-</div>
-
-<div *ngIf="exibe" >
-    <h5>Valor do Lucro Total no Mês: {{fmtLucroServicosTotal}}  </h5>
-    <h5>Quantidade Total de Serviços no Mês: {{quantitadeServicosTotal}}  </h5>
-    <p-chart type="horizontalBar" [data]="graficoData" [options]="options" width="80vw" height="80vh" style="text-align: center;" ></p-chart>
+<div class="container-fluid">
+    <br>
+    <h1 class="text-center" >Relatórios Gerenciais Relativo aos Serviços Profissionais</h1>
+    <br>
+    <div>
+        <h5>Total de Clientes Ativos na Plataforma:  {{ quantidadeClientesAtivos }}</h5>
+        <h5>Total de Serviços Realizados na Plataforma:  {{ quantitadeServicos }}</h5>
+        <h5>Valor por Hora Trabalhada de Todos os Serviços Realizados na Plataforma:  {{ fmtValorPorHora }}</h5>
+    </div>
+    <br>
+    <div>
+        <h3 class="text-center" >Cacular o Valor por Hora Trabalhada dos Serviços Realizados no Mês</h3>
+        <div class="p-field p-col-12 p-md-4">
+            <h5>Selecione o Mês/Ano</h5>
+            <p-calendar [showIcon]="true" placeholder="Mês/Ano" [(ngModel)]="dateValue2" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
+            <button style="margin-left: 10px;"  pButton type="button" (click)="calcularValorHoraTrabalhada()" label="Calcular Valor" class="p-button-raised p-button-rounded"></button>
+            <button style="margin-left: 10px;" pButton type="button"  (click)="fecharValorHoraTrabalhada()" label="Fechar Valor" class="p-button-raised p-button-rounded p-button-secondary"></button>        
+        </div>
+    </div>
+    <br>
+    <div *ngIf="exibe2" >        
+        <h5>Valor por Hora Trabalhada dos Serviços Realizados no Mês: {{fmtValorPorHora2}}  </h5>
+        <h5>Total de Serviços Realizados no Mês:  {{ quantitadeServicos2 }}</h5>
+    </div>
+    <br>
+    <div>
+        <h4 class="text-center" >Gráfico Relativo ao Lucro e Quantidade de Serviços por Dia Durante um Mês</h4>        
+        <div class="p-field p-col-12 p-md-4">
+            <h5>Selecione o Mês/Ano</h5>
+            <p-calendar [showIcon]="true" placeholder="Mês/Ano" [(ngModel)]="dateValue" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
+            <button style="margin-left: 10px;"  pButton type="button" (click)="grafico()" label="Gerar Gráfico" class="p-button-raised p-button-rounded"></button>
+            <button style="margin-left: 10px;" pButton type="button"  (click)="fecharGrafico()" label="Fechar Gráfico" class="p-button-raised p-button-rounded p-button-secondary"></button>        
+        </div>
+    </div>
+    <br>
+    <div *ngIf="exibe" >
+        <h5>Valor do Lucro Total no Mês: {{fmtLucroServicosTotal}}  </h5>
+        <h5>Quantidade Total de Serviços no Mês: {{quantitadeServicosTotal}}  </h5>        
+        <p-chart type="horizontalBar" [data]="graficoData" [options]="options" width="80vw" height="80vh" style="text-align: center;" ></p-chart>
+    </div>
 </div>

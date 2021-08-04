@@ -2,6 +2,7 @@ package app.br.laremdia.model.repository;
 
 import app.br.laremdia.model.entity.PedidoContratadoEntity;
 import app.br.laremdia.model.projection.PedidoContratadoGraficoProjection;
+import app.br.laremdia.model.projection.PedidoContratadoLucroHoraProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProfissionalProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -61,13 +62,26 @@ public interface PedidoContratadoRepository extends JpaRepository< PedidoContrat
                            "data_hora_fim    AS dataFim " +
                    "FROM pedido_contratado " +
             "WHERE ( data_hora_fim BETWEEN :periodoInicial AND  :periodoFinal ) " +
-            "ORDER BY data_hora_fim DESC", nativeQuery = true)
+            "ORDER BY data_hora_fim ASC", nativeQuery = true)
     List< PedidoContratadoGraficoProjection > listaPedidosGrafico(@Param("periodoInicial") LocalDateTime periodoInicial, @Param("periodoFinal") LocalDateTime periodoFinal);
 
+    @Query(value = "SELECT despesas         AS despesas, " +
+                          "preco_contratado AS precoContratado, " +
+                          "data_hora_fim    AS dataFim, " +
+                          "data_hora_inicio AS dataInicio " +
+                   "FROM pedido_contratado " +
+            "WHERE ( data_hora_fim BETWEEN :periodoInicial AND  :periodoFinal ) " +
+            "ORDER BY data_hora_fim ASC;", nativeQuery = true)
+    List< PedidoContratadoLucroHoraProjection > listaPedidosLucroHora(@Param("periodoInicial") LocalDateTime periodoInicial, @Param("periodoFinal") LocalDateTime periodoFinal);
 
 
-
-
-
+    @Query(value = "SELECT despesas         AS despesas, " +
+                          "preco_contratado AS precoContratado, " +
+                          "data_hora_fim    AS dataFim, " +
+                          "data_hora_inicio AS dataInicio " +
+                   "FROM pedido_contratado " +
+            "WHERE ( data_hora_fim is not null ) " +
+            "ORDER BY data_hora_fim ASC;", nativeQuery = true)
+    List< PedidoContratadoLucroHoraProjection > listaTodosPedidosLucroHora();
 
 }

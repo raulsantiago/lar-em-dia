@@ -8,6 +8,7 @@ import app.br.laremdia.model.entity.LoginClienteEntity;
 import app.br.laremdia.model.entity.PedidoContratadoEntity;
 import app.br.laremdia.model.entity.TipoServicoEntity;
 import app.br.laremdia.model.projection.PedidoContratadoGraficoProjection;
+import app.br.laremdia.model.projection.PedidoContratadoLucroHoraProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProfissionalProjection;
 import app.br.laremdia.model.projection.PedidoContratadoProjection;
 import app.br.laremdia.model.repository.AgendaRepository;
@@ -22,7 +23,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -54,11 +57,19 @@ public class PedidoContratadoService {
     }
 
     public List< PedidoContratadoGraficoProjection > listaPedidosGrafico(String periodoInicial, String periodoFinal) {
-
         LocalDateTime inicio = LocalDateTime.parse(periodoInicial);
         LocalDateTime fim = LocalDateTime.parse(periodoFinal);
-
         return pedidoContratadoRepository.listaPedidosGrafico(inicio, fim);
+    }
+
+    public List< PedidoContratadoLucroHoraProjection > listaPedidosLucroHora(String periodoInicial, String periodoFinal) {
+        LocalDateTime inicio = LocalDateTime.parse(periodoInicial);
+        LocalDateTime fim = LocalDateTime.parse(periodoFinal);
+        return pedidoContratadoRepository.listaPedidosLucroHora(inicio, fim);
+    }
+
+    public List< PedidoContratadoLucroHoraProjection > listaTodosPedidosLucroHora() {
+        return pedidoContratadoRepository.listaTodosPedidosLucroHora();
     }
 
     public IncluirPedidoContratadoDTO inserir(IncluirPedidoContratadoDTO incluirPedidoContratadoDTO){
@@ -119,7 +130,5 @@ public class PedidoContratadoService {
         }
 
     }
-
-
 
 }

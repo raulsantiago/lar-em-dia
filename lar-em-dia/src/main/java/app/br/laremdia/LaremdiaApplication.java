@@ -346,12 +346,40 @@ public class LaremdiaApplication   {
             agendaEntity36.setTurno("Manhã");
             agendaRepository.save(agendaEntity36);
 
+            AgendaEntity agendaEntity37 = new AgendaEntity();
+            agendaEntity37.setDia(LocalDate.of(2021,8,2));
+            agendaEntity37.setDisponivel(false);
+            agendaEntity37.setTurno("Manhã");
+            agendaRepository.save(agendaEntity37);
 
+            AgendaEntity agendaEntity38 = new AgendaEntity();
+            agendaEntity38.setDia(LocalDate.of(2021,8,3));
+            agendaEntity38.setDisponivel(false);
+            agendaEntity38.setTurno("Manhã");
+            agendaRepository.save(agendaEntity38);
+
+            AgendaEntity agendaEntity39 = new AgendaEntity();
+            agendaEntity39.setDia(LocalDate.of(2021,8,4));
+            agendaEntity39.setDisponivel(false);
+            agendaEntity39.setTurno("Manhã");
+            agendaRepository.save(agendaEntity39);
+
+            AgendaEntity agendaEntity40 = new AgendaEntity();
+            agendaEntity40.setDia(LocalDate.of(2021,6,30));
+            agendaEntity40.setDisponivel(false);
+            agendaEntity40.setTurno("Manhã");
+            agendaRepository.save(agendaEntity40);
+
+            AgendaEntity agendaEntity41 = new AgendaEntity();
+            agendaEntity41.setDia(LocalDate.of(2021,6,29));
+            agendaEntity41.setDisponivel(false);
+            agendaEntity41.setTurno("Manhã");
+            agendaRepository.save(agendaEntity41);
 
             PedidoContratadoEntity pedidoContratadoEntity = new PedidoContratadoEntity();
             pedidoContratadoEntity.setDescricao("Casa alta de dois andares");
             pedidoContratadoEntity.setLocal("Casa");
-            pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.of(2021,7,1,10,20));
+            pedidoContratadoEntity.setDataHoraInicio(LocalDateTime.of(2021,7,1,9,20));
             pedidoContratadoEntity.setDataHoraFim(LocalDateTime.of(2021,7,1,12,05));
             pedidoContratadoEntity.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity.setSituacao(false);
@@ -365,7 +393,7 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity2.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity2.setLocal("Apartamento");
             pedidoContratadoEntity2.setDataHoraInicio(LocalDateTime.of(2021,7,1,13,00));
-            pedidoContratadoEntity2.setDataHoraFim(LocalDateTime.of(2021,7,1,14,00));
+            pedidoContratadoEntity2.setDataHoraFim(LocalDateTime.of(2021,7,1,18,00));
             pedidoContratadoEntity2.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity2.setSituacao(false);
             pedidoContratadoEntity2.setTipoServico(tipoServico2);
@@ -378,7 +406,7 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity3.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity3.setLocal("Apartamento");
             pedidoContratadoEntity3.setDataHoraInicio(LocalDateTime.of(2021,7,2,9,00));
-            pedidoContratadoEntity3.setDataHoraFim(LocalDateTime.of(2021,7,2,10,00));
+            pedidoContratadoEntity3.setDataHoraFim(LocalDateTime.of(2021,7,2,11,30));
             pedidoContratadoEntity3.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity3.setSituacao(false);
             pedidoContratadoEntity3.setTipoServico(tipoServico);
@@ -387,11 +415,10 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity3.setPrecoContratado(tipoServico.getPreco());
             pedidoContratadoRepository.save(pedidoContratadoEntity3);
 
-
             PedidoContratadoEntity pedidoContratadoEntity4 = new PedidoContratadoEntity();
             pedidoContratadoEntity4.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity4.setLocal("Apartamento");
-            pedidoContratadoEntity4.setDataHoraInicio(LocalDateTime.of(2021,7,2,15,00));
+            pedidoContratadoEntity4.setDataHoraInicio(LocalDateTime.of(2021,7,2,12,00));
             pedidoContratadoEntity4.setDataHoraFim(LocalDateTime.of(2021,7,2,16,00));
             pedidoContratadoEntity4.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity4.setSituacao(false);
@@ -401,11 +428,10 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity4.setPrecoContratado(tipoServico3.getPreco());
             pedidoContratadoRepository.save(pedidoContratadoEntity4);
 
-
             PedidoContratadoEntity pedidoContratadoEntity5 = new PedidoContratadoEntity();
             pedidoContratadoEntity5.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity5.setLocal("Apartamento");
-            pedidoContratadoEntity5.setDataHoraInicio(LocalDateTime.of(2021,7,3,15,30));
+            pedidoContratadoEntity5.setDataHoraInicio(LocalDateTime.of(2021,7,3,12,30));
             pedidoContratadoEntity5.setDataHoraFim(LocalDateTime.of(2021,7,3,16,00));
             pedidoContratadoEntity5.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity5.setSituacao(false);
@@ -415,14 +441,12 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity5.setPrecoContratado(tipoServico.getPreco());
             pedidoContratadoRepository.save(pedidoContratadoEntity5);
 
-
-
             PedidoContratadoEntity pedidoContratadoEntity6 = new PedidoContratadoEntity();
             pedidoContratadoEntity6.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity6.setLocal("Apartamento");
-            pedidoContratadoEntity6.setDataHoraInicio(LocalDateTime.of(2021,7,4,15,30));
-            pedidoContratadoEntity6.setDataHoraFim(LocalDateTime.of(2021,7,4,16,00));
-            pedidoContratadoEntity6.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity6.setDataHoraInicio(LocalDateTime.of(2021,7,4,12,30));
+            pedidoContratadoEntity6.setDataHoraFim(LocalDateTime.of(2021,7,4,17,30));
+            pedidoContratadoEntity6.setDespesas(new BigDecimal("30.00"));
             pedidoContratadoEntity6.setSituacao(false);
             pedidoContratadoEntity6.setTipoServico(tipoServico2);
             pedidoContratadoEntity6.setPrecoContratado(tipoServico2.getPreco());
@@ -430,13 +454,12 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity6.setLoginCliente(loginCliente2);
             pedidoContratadoRepository.save(pedidoContratadoEntity6);
 
-
             PedidoContratadoEntity pedidoContratadoEntity7 = new PedidoContratadoEntity();
             pedidoContratadoEntity7.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity7.setLocal("Apartamento");
-            pedidoContratadoEntity7.setDataHoraInicio(LocalDateTime.of(2021,7,5,15,30));
+            pedidoContratadoEntity7.setDataHoraInicio(LocalDateTime.of(2021,7,5,12,30));
             pedidoContratadoEntity7.setDataHoraFim(LocalDateTime.of(2021,7,5,16,00));
-            pedidoContratadoEntity7.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity7.setDespesas(new BigDecimal("30.00"));
             pedidoContratadoEntity7.setSituacao(false);
             pedidoContratadoEntity7.setTipoServico(tipoServico4);
             pedidoContratadoEntity7.setPrecoContratado(tipoServico4.getPreco());
@@ -449,7 +472,7 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity8.setLocal("Apartamento");
             pedidoContratadoEntity8.setDataHoraInicio(LocalDateTime.of(2021,7,6,15,30));
             pedidoContratadoEntity8.setDataHoraFim(LocalDateTime.of(2021,7,6,16,00));
-            pedidoContratadoEntity8.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity8.setDespesas(new BigDecimal("40.00"));
             pedidoContratadoEntity8.setSituacao(false);
             pedidoContratadoEntity8.setTipoServico(tipoServico4);
             pedidoContratadoEntity8.setPrecoContratado(tipoServico4.getPreco());
@@ -460,9 +483,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity9 = new PedidoContratadoEntity();
             pedidoContratadoEntity9.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity9.setLocal("Apartamento");
-            pedidoContratadoEntity9.setDataHoraInicio(LocalDateTime.of(2021,7,7,15,30));
+            pedidoContratadoEntity9.setDataHoraInicio(LocalDateTime.of(2021,7,7,12,30));
             pedidoContratadoEntity9.setDataHoraFim(LocalDateTime.of(2021,7,7,16,00));
-            pedidoContratadoEntity9.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity9.setDespesas(new BigDecimal("30.00"));
             pedidoContratadoEntity9.setSituacao(false);
             pedidoContratadoEntity9.setTipoServico(tipoServico);
             pedidoContratadoEntity9.setPrecoContratado(tipoServico.getPreco());
@@ -474,8 +497,8 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity10.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity10.setLocal("Apartamento");
             pedidoContratadoEntity10.setDataHoraInicio(LocalDateTime.of(2021,7,8,15,30));
-            pedidoContratadoEntity10.setDataHoraFim(LocalDateTime.of(2021,7,8,16,00));
-            pedidoContratadoEntity10.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity10.setDataHoraFim(LocalDateTime.of(2021,7,8,18,00));
+            pedidoContratadoEntity10.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity10.setSituacao(false);
             pedidoContratadoEntity10.setTipoServico(tipoServico3);
             pedidoContratadoEntity10.setPrecoContratado(tipoServico3.getPreco());
@@ -486,9 +509,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity11 = new PedidoContratadoEntity();
             pedidoContratadoEntity11.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity11.setLocal("Apartamento");
-            pedidoContratadoEntity11.setDataHoraInicio(LocalDateTime.of(2021,7,9,15,30));
-            pedidoContratadoEntity11.setDataHoraFim(LocalDateTime.of(2021,7,9,16,00));
-            pedidoContratadoEntity11.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity11.setDataHoraInicio(LocalDateTime.of(2021,7,9,12,30));
+            pedidoContratadoEntity11.setDataHoraFim(LocalDateTime.of(2021,7,9,19,00));
+            pedidoContratadoEntity11.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity11.setSituacao(false);
             pedidoContratadoEntity11.setTipoServico(tipoServico3);
             pedidoContratadoEntity11.setPrecoContratado(tipoServico3.getPreco());
@@ -499,9 +522,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity12 = new PedidoContratadoEntity();
             pedidoContratadoEntity12.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity12.setLocal("Apartamento");
-            pedidoContratadoEntity12.setDataHoraInicio(LocalDateTime.of(2021,7,11,15,30));
-            pedidoContratadoEntity12.setDataHoraFim(LocalDateTime.of(2021,7,11,16,00));
-            pedidoContratadoEntity12.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity12.setDataHoraInicio(LocalDateTime.of(2021,7,11,12,30));
+            pedidoContratadoEntity12.setDataHoraFim(LocalDateTime.of(2021,7,11,16,30));
+            pedidoContratadoEntity12.setDespesas(new BigDecimal("40.00"));
             pedidoContratadoEntity12.setSituacao(false);
             pedidoContratadoEntity12.setTipoServico(tipoServico2);
             pedidoContratadoEntity12.setPrecoContratado(tipoServico2.getPreco());
@@ -512,9 +535,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity13 = new PedidoContratadoEntity();
             pedidoContratadoEntity13.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity13.setLocal("Apartamento");
-            pedidoContratadoEntity13.setDataHoraInicio(LocalDateTime.of(2021,7,12,15,30));
+            pedidoContratadoEntity13.setDataHoraInicio(LocalDateTime.of(2021,7,12,12,30));
             pedidoContratadoEntity13.setDataHoraFim(LocalDateTime.of(2021,7,12,16,00));
-            pedidoContratadoEntity13.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity13.setDespesas(new BigDecimal("30.00"));
             pedidoContratadoEntity13.setSituacao(false);
             pedidoContratadoEntity13.setTipoServico(tipoServico2);
             pedidoContratadoEntity13.setPrecoContratado(tipoServico2.getPreco());
@@ -525,9 +548,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity14 = new PedidoContratadoEntity();
             pedidoContratadoEntity14.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity14.setLocal("Apartamento");
-            pedidoContratadoEntity14.setDataHoraInicio(LocalDateTime.of(2021,7,13,15,30));
-            pedidoContratadoEntity14.setDataHoraFim(LocalDateTime.of(2021,7,13,16,00));
-            pedidoContratadoEntity14.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity14.setDataHoraInicio(LocalDateTime.of(2021,7,13,12,30));
+            pedidoContratadoEntity14.setDataHoraFim(LocalDateTime.of(2021,7,13,18,00));
+            pedidoContratadoEntity14.setDespesas(new BigDecimal("30.00"));
             pedidoContratadoEntity14.setSituacao(false);
             pedidoContratadoEntity14.setTipoServico(tipoServico2);
             pedidoContratadoEntity14.setPrecoContratado(tipoServico2.getPreco());
@@ -538,9 +561,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity15 = new PedidoContratadoEntity();
             pedidoContratadoEntity15.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity15.setLocal("Apartamento");
-            pedidoContratadoEntity15.setDataHoraInicio(LocalDateTime.of(2021,7,14,15,30));
-            pedidoContratadoEntity15.setDataHoraFim(LocalDateTime.of(2021,7,14,16,00));
-            pedidoContratadoEntity15.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity15.setDataHoraInicio(LocalDateTime.of(2021,7,14,12,30));
+            pedidoContratadoEntity15.setDataHoraFim(LocalDateTime.of(2021,7,14,18,00));
+            pedidoContratadoEntity15.setDespesas(new BigDecimal("30.00"));
             pedidoContratadoEntity15.setSituacao(false);
             pedidoContratadoEntity15.setTipoServico(tipoServico2);
             pedidoContratadoEntity15.setPrecoContratado(tipoServico2.getPreco());
@@ -551,9 +574,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity16 = new PedidoContratadoEntity();
             pedidoContratadoEntity16.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity16.setLocal("Apartamento");
-            pedidoContratadoEntity16.setDataHoraInicio(LocalDateTime.of(2021,7,15,15,30));
-            pedidoContratadoEntity16.setDataHoraFim(LocalDateTime.of(2021,7,15,16,00));
-            pedidoContratadoEntity16.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity16.setDataHoraInicio(LocalDateTime.of(2021,7,15,12,30));
+            pedidoContratadoEntity16.setDataHoraFim(LocalDateTime.of(2021,7,15,19,00));
+            pedidoContratadoEntity16.setDespesas(new BigDecimal("30.00"));
             pedidoContratadoEntity16.setSituacao(false);
             pedidoContratadoEntity16.setTipoServico(tipoServico2);
             pedidoContratadoEntity16.setPrecoContratado(tipoServico2.getPreco());
@@ -564,9 +587,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity17 = new PedidoContratadoEntity();
             pedidoContratadoEntity17.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity17.setLocal("Apartamento");
-            pedidoContratadoEntity17.setDataHoraInicio(LocalDateTime.of(2021,7,16,15,30));
-            pedidoContratadoEntity17.setDataHoraFim(LocalDateTime.of(2021,7,16,16,00));
-            pedidoContratadoEntity17.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity17.setDataHoraInicio(LocalDateTime.of(2021,7,16,12,30));
+            pedidoContratadoEntity17.setDataHoraFim(LocalDateTime.of(2021,7,16,18,00));
+            pedidoContratadoEntity17.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity17.setSituacao(false);
             pedidoContratadoEntity17.setTipoServico(tipoServico2);
             pedidoContratadoEntity17.setPrecoContratado(tipoServico2.getPreco());
@@ -577,8 +600,8 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity18 = new PedidoContratadoEntity();
             pedidoContratadoEntity18.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity18.setLocal("Apartamento");
-            pedidoContratadoEntity18.setDataHoraInicio(LocalDateTime.of(2021,7,17,15,30));
-            pedidoContratadoEntity18.setDataHoraFim(LocalDateTime.of(2021,7,17,16,00));
+            pedidoContratadoEntity18.setDataHoraInicio(LocalDateTime.of(2021,7,17,12,30));
+            pedidoContratadoEntity18.setDataHoraFim(LocalDateTime.of(2021,7,17,17,00));
             pedidoContratadoEntity18.setDespesas(new BigDecimal("20.00"));
             pedidoContratadoEntity18.setSituacao(false);
             pedidoContratadoEntity18.setTipoServico(tipoServico2);
@@ -590,9 +613,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity19 = new PedidoContratadoEntity();
             pedidoContratadoEntity19.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity19.setLocal("Apartamento");
-            pedidoContratadoEntity19.setDataHoraInicio(LocalDateTime.of(2021,7,18,15,30));
+            pedidoContratadoEntity19.setDataHoraInicio(LocalDateTime.of(2021,7,18,12,30));
             pedidoContratadoEntity19.setDataHoraFim(LocalDateTime.of(2021,7,18,16,00));
-            pedidoContratadoEntity19.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity19.setDespesas(new BigDecimal("25.00"));
             pedidoContratadoEntity19.setSituacao(false);
             pedidoContratadoEntity19.setTipoServico(tipoServico2);
             pedidoContratadoEntity19.setPrecoContratado(tipoServico2.getPreco());
@@ -603,7 +626,7 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity20 = new PedidoContratadoEntity();
             pedidoContratadoEntity20.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity20.setLocal("Apartamento");
-            pedidoContratadoEntity20.setDataHoraInicio(LocalDateTime.of(2021,7,19,15,30));
+            pedidoContratadoEntity20.setDataHoraInicio(LocalDateTime.of(2021,7,19,12,30));
             pedidoContratadoEntity20.setDataHoraFim(LocalDateTime.of(2021,7,19,16,00));
             pedidoContratadoEntity20.setDespesas(new BigDecimal("20.00"));
             pedidoContratadoEntity20.setSituacao(false);
@@ -616,9 +639,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity21 = new PedidoContratadoEntity();
             pedidoContratadoEntity21.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity21.setLocal("Apartamento");
-            pedidoContratadoEntity21.setDataHoraInicio(LocalDateTime.of(2021,7,21,15,30));
+            pedidoContratadoEntity21.setDataHoraInicio(LocalDateTime.of(2021,7,21,12,30));
             pedidoContratadoEntity21.setDataHoraFim(LocalDateTime.of(2021,7,21,16,00));
-            pedidoContratadoEntity21.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity21.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity21.setSituacao(false);
             pedidoContratadoEntity21.setTipoServico(tipoServico2);
             pedidoContratadoEntity21.setPrecoContratado(tipoServico2.getPreco());
@@ -629,9 +652,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity22 = new PedidoContratadoEntity();
             pedidoContratadoEntity22.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity22.setLocal("Apartamento");
-            pedidoContratadoEntity22.setDataHoraInicio(LocalDateTime.of(2021,7,22,15,30));
-            pedidoContratadoEntity22.setDataHoraFim(LocalDateTime.of(2021,7,22,16,00));
-            pedidoContratadoEntity22.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity22.setDataHoraInicio(LocalDateTime.of(2021,7,22,12,30));
+            pedidoContratadoEntity22.setDataHoraFim(LocalDateTime.of(2021,7,22,19,00));
+            pedidoContratadoEntity22.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity22.setSituacao(false);
             pedidoContratadoEntity22.setTipoServico(tipoServico2);
             pedidoContratadoEntity22.setPrecoContratado(tipoServico2.getPreco());
@@ -642,9 +665,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity23 = new PedidoContratadoEntity();
             pedidoContratadoEntity23.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity23.setLocal("Apartamento");
-            pedidoContratadoEntity23.setDataHoraInicio(LocalDateTime.of(2021,7,23,15,30));
-            pedidoContratadoEntity23.setDataHoraFim(LocalDateTime.of(2021,7,23,16,00));
-            pedidoContratadoEntity23.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity23.setDataHoraInicio(LocalDateTime.of(2021,7,23,12,30));
+            pedidoContratadoEntity23.setDataHoraFim(LocalDateTime.of(2021,7,23,17,00));
+            pedidoContratadoEntity23.setDespesas(new BigDecimal("35.00"));
             pedidoContratadoEntity23.setSituacao(false);
             pedidoContratadoEntity23.setTipoServico(tipoServico2);
             pedidoContratadoEntity23.setPrecoContratado(tipoServico2.getPreco());
@@ -655,9 +678,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity24 = new PedidoContratadoEntity();
             pedidoContratadoEntity24.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity24.setLocal("Apartamento");
-            pedidoContratadoEntity24.setDataHoraInicio(LocalDateTime.of(2021,7,24,15,30));
-            pedidoContratadoEntity24.setDataHoraFim(LocalDateTime.of(2021,7,24,16,00));
-            pedidoContratadoEntity24.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity24.setDataHoraInicio(LocalDateTime.of(2021,7,24,12,30));
+            pedidoContratadoEntity24.setDataHoraFim(LocalDateTime.of(2021,7,24,18,00));
+            pedidoContratadoEntity24.setDespesas(new BigDecimal("45.00"));
             pedidoContratadoEntity24.setSituacao(false);
             pedidoContratadoEntity24.setTipoServico(tipoServico2);
             pedidoContratadoEntity24.setPrecoContratado(tipoServico2.getPreco());
@@ -668,9 +691,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity25 = new PedidoContratadoEntity();
             pedidoContratadoEntity25.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity25.setLocal("Apartamento");
-            pedidoContratadoEntity25.setDataHoraInicio(LocalDateTime.of(2021,7,25,15,30));
-            pedidoContratadoEntity25.setDataHoraFim(LocalDateTime.of(2021,7,25,16,00));
-            pedidoContratadoEntity25.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity25.setDataHoraInicio(LocalDateTime.of(2021,7,25,12,30));
+            pedidoContratadoEntity25.setDataHoraFim(LocalDateTime.of(2021,7,25,19,00));
+            pedidoContratadoEntity25.setDespesas(new BigDecimal("50.00"));
             pedidoContratadoEntity25.setSituacao(false);
             pedidoContratadoEntity25.setTipoServico(tipoServico2);
             pedidoContratadoEntity25.setPrecoContratado(tipoServico2.getPreco());
@@ -681,9 +704,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity26 = new PedidoContratadoEntity();
             pedidoContratadoEntity26.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity26.setLocal("Apartamento");
-            pedidoContratadoEntity26.setDataHoraInicio(LocalDateTime.of(2021,7,26,15,30));
-            pedidoContratadoEntity26.setDataHoraFim(LocalDateTime.of(2021,7,26,16,00));
-            pedidoContratadoEntity26.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity26.setDataHoraInicio(LocalDateTime.of(2021,7,26,12,30));
+            pedidoContratadoEntity26.setDataHoraFim(LocalDateTime.of(2021,7,26,18,00));
+            pedidoContratadoEntity26.setDespesas(new BigDecimal("40.00"));
             pedidoContratadoEntity26.setSituacao(false);
             pedidoContratadoEntity26.setTipoServico(tipoServico2);
             pedidoContratadoEntity26.setPrecoContratado(tipoServico2.getPreco());
@@ -694,8 +717,8 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity27 = new PedidoContratadoEntity();
             pedidoContratadoEntity27.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity27.setLocal("Apartamento");
-            pedidoContratadoEntity27.setDataHoraInicio(LocalDateTime.of(2021,7,27,15,30));
-            pedidoContratadoEntity27.setDataHoraFim(LocalDateTime.of(2021,7,27,16,00));
+            pedidoContratadoEntity27.setDataHoraInicio(LocalDateTime.of(2021,7,27,12,30));
+            pedidoContratadoEntity27.setDataHoraFim(LocalDateTime.of(2021,7,27,18,00));
             pedidoContratadoEntity27.setDespesas(new BigDecimal("20.00"));
             pedidoContratadoEntity27.setSituacao(false);
             pedidoContratadoEntity27.setTipoServico(tipoServico2);
@@ -707,8 +730,8 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity28 = new PedidoContratadoEntity();
             pedidoContratadoEntity28.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity28.setLocal("Apartamento");
-            pedidoContratadoEntity28.setDataHoraInicio(LocalDateTime.of(2021,7,28,15,30));
-            pedidoContratadoEntity28.setDataHoraFim(LocalDateTime.of(2021,7,28,16,00));
+            pedidoContratadoEntity28.setDataHoraInicio(LocalDateTime.of(2021,7,28,12,30));
+            pedidoContratadoEntity28.setDataHoraFim(LocalDateTime.of(2021,7,28,18,00));
             pedidoContratadoEntity28.setDespesas(new BigDecimal("20.00"));
             pedidoContratadoEntity28.setSituacao(false);
             pedidoContratadoEntity28.setTipoServico(tipoServico2);
@@ -720,9 +743,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity29 = new PedidoContratadoEntity();
             pedidoContratadoEntity29.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity29.setLocal("Apartamento");
-            pedidoContratadoEntity29.setDataHoraInicio(LocalDateTime.of(2021,7,29,15,30));
-            pedidoContratadoEntity29.setDataHoraFim(LocalDateTime.of(2021,7,29,16,00));
-            pedidoContratadoEntity29.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity29.setDataHoraInicio(LocalDateTime.of(2021,7,29,12,30));
+            pedidoContratadoEntity29.setDataHoraFim(LocalDateTime.of(2021,7,29,19,00));
+            pedidoContratadoEntity29.setDespesas(new BigDecimal("55.00"));
             pedidoContratadoEntity29.setSituacao(false);
             pedidoContratadoEntity29.setTipoServico(tipoServico2);
             pedidoContratadoEntity29.setPrecoContratado(tipoServico2.getPreco());
@@ -733,9 +756,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity30 = new PedidoContratadoEntity();
             pedidoContratadoEntity30.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity30.setLocal("Apartamento");
-            pedidoContratadoEntity30.setDataHoraInicio(LocalDateTime.of(2021,7,30,15,30));
-            pedidoContratadoEntity30.setDataHoraFim(LocalDateTime.of(2021,7,30,16,00));
-            pedidoContratadoEntity30.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity30.setDataHoraInicio(LocalDateTime.of(2021,7,30,12,30));
+            pedidoContratadoEntity30.setDataHoraFim(LocalDateTime.of(2021,7,30,17,00));
+            pedidoContratadoEntity30.setDespesas(new BigDecimal("25.00"));
             pedidoContratadoEntity30.setSituacao(false);
             pedidoContratadoEntity30.setTipoServico(tipoServico2);
             pedidoContratadoEntity30.setPrecoContratado(tipoServico2.getPreco());
@@ -746,8 +769,8 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity31 = new PedidoContratadoEntity();
             pedidoContratadoEntity31.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity31.setLocal("Apartamento");
-            pedidoContratadoEntity31.setDataHoraInicio(LocalDateTime.of(2021,7,31,15,15));
-            pedidoContratadoEntity31.setDataHoraFim(LocalDateTime.of(2021,7,31,15,55));
+            pedidoContratadoEntity31.setDataHoraInicio(LocalDateTime.of(2021,7,31,12,15));
+            pedidoContratadoEntity31.setDataHoraFim(LocalDateTime.of(2021,7,31,18,55));
             pedidoContratadoEntity31.setDespesas(new BigDecimal("22.00"));
             pedidoContratadoEntity31.setSituacao(false);
             pedidoContratadoEntity31.setTipoServico(tipoServico2);
@@ -760,8 +783,8 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity32.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity32.setLocal("Apartamento");
             pedidoContratadoEntity32.setDataHoraInicio(LocalDateTime.of(2021,7,31,14,30));
-            pedidoContratadoEntity32.setDataHoraFim(LocalDateTime.of(2021,7,31,16,00));
-            pedidoContratadoEntity32.setDespesas(new BigDecimal("20.00"));
+            pedidoContratadoEntity32.setDataHoraFim(LocalDateTime.of(2021,7,31,20,00));
+            pedidoContratadoEntity32.setDespesas(new BigDecimal("45.00"));
             pedidoContratadoEntity32.setSituacao(false);
             pedidoContratadoEntity32.setTipoServico(tipoServico2);
             pedidoContratadoEntity32.setPrecoContratado(tipoServico2.getPreco());
@@ -772,9 +795,9 @@ public class LaremdiaApplication   {
             PedidoContratadoEntity pedidoContratadoEntity33 = new PedidoContratadoEntity();
             pedidoContratadoEntity33.setDescricao("Apartamento de um quarto");
             pedidoContratadoEntity33.setLocal("Apartamento");
-            pedidoContratadoEntity33.setDataHoraInicio(LocalDateTime.of(2021,7,31,15,30));
+            pedidoContratadoEntity33.setDataHoraInicio(LocalDateTime.of(2021,7,31,12,30));
             pedidoContratadoEntity33.setDataHoraFim(LocalDateTime.of(2021,7,31,17,00));
-            pedidoContratadoEntity33.setDespesas(new BigDecimal("2.00"));
+            pedidoContratadoEntity33.setDespesas(new BigDecimal("20.00"));
             pedidoContratadoEntity33.setSituacao(false);
             pedidoContratadoEntity33.setTipoServico(tipoServico2);
             pedidoContratadoEntity33.setPrecoContratado(tipoServico2.getPreco());
@@ -792,6 +815,70 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity34.setPrecoContratado(tipoServico2.getPreco());
             pedidoContratadoRepository.save(pedidoContratadoEntity34);
 
+            PedidoContratadoEntity pedidoContratadoEntity35 = new PedidoContratadoEntity();
+            pedidoContratadoEntity35.setDescricao("Apartamento de um quarto");
+            pedidoContratadoEntity35.setLocal("Apartamento");
+            pedidoContratadoEntity35.setDataHoraInicio(LocalDateTime.of(2021,8,2,12,30));
+            pedidoContratadoEntity35.setDataHoraFim(LocalDateTime.of(2021,8,2,17,00));
+            pedidoContratadoEntity35.setDespesas(new BigDecimal("30.00"));
+            pedidoContratadoEntity35.setSituacao(false);
+            pedidoContratadoEntity35.setTipoServico(tipoServico2);
+            pedidoContratadoEntity35.setPrecoContratado(tipoServico2.getPreco());
+            pedidoContratadoEntity35.setAgenda(agendaEntity37);
+            pedidoContratadoEntity35.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity35);
+
+            PedidoContratadoEntity pedidoContratadoEntity36 = new PedidoContratadoEntity();
+            pedidoContratadoEntity36.setDescricao("Apartamento de um quarto");
+            pedidoContratadoEntity36.setLocal("Apartamento");
+            pedidoContratadoEntity36.setDataHoraInicio(LocalDateTime.of(2021,8,3,12,30));
+            pedidoContratadoEntity36.setDataHoraFim(LocalDateTime.of(2021,8,3,19,00));
+            pedidoContratadoEntity36.setDespesas(new BigDecimal("25.00"));
+            pedidoContratadoEntity36.setSituacao(false);
+            pedidoContratadoEntity36.setTipoServico(tipoServico2);
+            pedidoContratadoEntity36.setPrecoContratado(tipoServico2.getPreco());
+            pedidoContratadoEntity36.setAgenda(agendaEntity38);
+            pedidoContratadoEntity36.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity36);
+
+            PedidoContratadoEntity pedidoContratadoEntity37 = new PedidoContratadoEntity();
+            pedidoContratadoEntity37.setDescricao("Apartamento de um quarto");
+            pedidoContratadoEntity37.setLocal("Apartamento");
+            pedidoContratadoEntity37.setDataHoraInicio(LocalDateTime.of(2021,8,4,12,30));
+            pedidoContratadoEntity37.setDataHoraFim(LocalDateTime.of(2021,8,4,18,00));
+            pedidoContratadoEntity37.setDespesas(new BigDecimal("50.00"));
+            pedidoContratadoEntity37.setSituacao(false);
+            pedidoContratadoEntity37.setTipoServico(tipoServico2);
+            pedidoContratadoEntity37.setPrecoContratado(tipoServico2.getPreco());
+            pedidoContratadoEntity37.setAgenda(agendaEntity39);
+            pedidoContratadoEntity37.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity37);
+
+            PedidoContratadoEntity pedidoContratadoEntity38 = new PedidoContratadoEntity();
+            pedidoContratadoEntity38.setDescricao("Apartamento de um quarto");
+            pedidoContratadoEntity38.setLocal("Apartamento");
+            pedidoContratadoEntity38.setDataHoraInicio(LocalDateTime.of(2021,6,30,12,30));
+            pedidoContratadoEntity38.setDataHoraFim(LocalDateTime.of(2021,6,30,16,00));
+            pedidoContratadoEntity38.setDespesas(new BigDecimal("30.00"));
+            pedidoContratadoEntity38.setSituacao(false);
+            pedidoContratadoEntity38.setTipoServico(tipoServico2);
+            pedidoContratadoEntity38.setPrecoContratado(tipoServico2.getPreco());
+            pedidoContratadoEntity38.setAgenda(agendaEntity40);
+            pedidoContratadoEntity38.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity38);
+
+            PedidoContratadoEntity pedidoContratadoEntity39 = new PedidoContratadoEntity();
+            pedidoContratadoEntity39.setDescricao("Apartamento de um quarto");
+            pedidoContratadoEntity39.setLocal("Apartamento");
+            pedidoContratadoEntity39.setDataHoraInicio(LocalDateTime.of(2021,6,29,12,30));
+            pedidoContratadoEntity39.setDataHoraFim(LocalDateTime.of(2021,6,29,17,00));
+            pedidoContratadoEntity39.setDespesas(new BigDecimal("25.00"));
+            pedidoContratadoEntity39.setSituacao(false);
+            pedidoContratadoEntity39.setTipoServico(tipoServico2);
+            pedidoContratadoEntity39.setPrecoContratado(tipoServico2.getPreco());
+            pedidoContratadoEntity39.setAgenda(agendaEntity41);
+            pedidoContratadoEntity39.setLoginCliente(loginCliente);
+            pedidoContratadoRepository.save(pedidoContratadoEntity39);
 
         };
     }

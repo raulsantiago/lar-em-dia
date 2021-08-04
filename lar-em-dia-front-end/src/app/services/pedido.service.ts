@@ -7,6 +7,7 @@ import { IncluirPedidoContratadoDTO } from '../dto/pedido/incluir-pedido-contrat
 import { ListaPedidosClienteDTO } from '../dto/pedido/lista-pedidos-clienteDTO';
 import { ListaPedidosProfissionalDTO } from '../dto/pedido/lista-pedidos-profissionalDTO';
 import { ListaGraficoDTO } from '../dto/pedido/listaGraficoDTO';
+import { ListaLucroHoraDTO } from '../dto/pedido/listaLucroHoraDTO';
 import { PedidoContratadoDTO } from '../dto/pedido/pedido-contratadoDTO';
 
 
@@ -33,6 +34,14 @@ export class PedidoService {
 
   listaPedidosGrafico(periodoInicial: string, periodoFinal: string): Observable<ListaGraficoDTO[]>{
     return this.http.get<ListaGraficoDTO[]>(`${this.apiURL}/${periodoInicial}/${periodoFinal}/grafico`);
+  }
+
+  listaPedidosLucroHora(periodoInicial: string, periodoFinal: string): Observable<ListaLucroHoraDTO[]>{
+    return this.http.get<ListaLucroHoraDTO[]>(`${this.apiURL}/${periodoInicial}/${periodoFinal}/lucro`);
+  }
+
+  listaTodosPedidosLucroHora(): Observable<ListaLucroHoraDTO[]>{
+    return this.http.get<ListaLucroHoraDTO[]>(`${this.apiURL}/lucro`);
   }
 
   inserir(incluirPedidoContratadoDTO: IncluirPedidoContratadoDTO): Observable<IncluirPedidoContratadoDTO>{

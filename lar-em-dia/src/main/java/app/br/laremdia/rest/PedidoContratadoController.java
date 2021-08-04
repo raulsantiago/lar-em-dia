@@ -37,6 +37,16 @@ public class PedidoContratadoController {
         return ResponseEntity.ok(pedidoContratadoService.listaPedidosGrafico(periodoInicial, periodoFinal));
     }
 
+    @GetMapping("/{periodoInicial}/{periodoFinal}/lucro")
+    public ResponseEntity listaPedidosLucroHora(@PathVariable("periodoInicial") String periodoInicial, @PathVariable("periodoFinal") String periodoFinal) {
+        return ResponseEntity.ok(pedidoContratadoService.listaPedidosLucroHora(periodoInicial, periodoFinal));
+    }
+
+    @GetMapping("/lucro")
+    public ResponseEntity listaTodosPedidosLucroHora() {
+        return ResponseEntity.ok(pedidoContratadoService.listaTodosPedidosLucroHora());
+    }
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity inserir(@RequestBody @Valid IncluirPedidoContratadoDTO incluirPedidoContratadoDTO){

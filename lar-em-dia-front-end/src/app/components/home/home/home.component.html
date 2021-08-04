@@ -1,19 +1,21 @@
-<div *ngIf="exibir" class="embed-responsive embed-responsive-21by9">
-    <video class="embed-responsive-item" autoplay>
-        <source src="../assets/img/video-lar-em-dia.mp4" type="video/mp4" style="width:95%;">
-    </video>
-</div>
+<div class="container-fluid">
+    <div *ngIf="exibir" class="embed-responsive embed-responsive-21by9">
+        <video class="embed-responsive-item" autoplay>
+            <source src="../assets/img/video-lar-em-dia.mp4" type="video/mp4" style="width:95%;">
+        </video>
+    </div>
 
-<div *ngIf="!exibir" class="fundoHome">
-    <h1  class="center" style="padding: 3%;">Bem vindo aos serviços do Lar em Dia</h1>
-    <figure class="cliente">
-        <img src="../assets/img/logo-acesso-cliente.jpg"  width="250" height="250" [routerLink]="['/logincliente']">                
-        <figcaption class="center" ><h2>Cliente</h2></figcaption>
-    </figure>
+    <div *ngIf="!exibir" class="fundoHome">
+        <h1  class="center" style="padding: 3%;">Bem vindo aos serviços do Lar em Dia</h1>
+        <figure class="cliente">
+            <img src="../assets/img/logo-acesso-cliente.jpg"  width="250" height="250" [routerLink]="['/logincliente']">                
+            <figcaption class="center" ><h2>Cliente</h2></figcaption>
+        </figure>
 
-    <figure class="profissional">
-        <img src="../assets/img/logo-acesso-profissional.jpg"  width="250" height="250" [routerLink]="['/loginprofissional']" >
-        <figcaption class="center" ><h2>Profissional</h2></figcaption>
-    </figure>
-    
+        <figure class="profissional">
+            <img src="../assets/img/logo-acesso-profissional.jpg"  width="250" height="250" [routerLink]="['/loginprofissional']" >
+            <figcaption class="center" ><h2>Profissional</h2></figcaption>
+        </figure>
+        
+    </div>
 </div>
