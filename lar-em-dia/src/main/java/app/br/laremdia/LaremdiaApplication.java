@@ -376,6 +376,12 @@ public class LaremdiaApplication   {
             agendaEntity41.setTurno("Manhã");
             agendaRepository.save(agendaEntity41);
 
+            AgendaEntity agendaEntity42 = new AgendaEntity();
+            agendaEntity42.setDia(LocalDate.of(2021,9,11));
+            agendaEntity42.setDisponivel(false);
+            agendaEntity42.setTurno("Tarde");
+            agendaRepository.save(agendaEntity42);
+
             PedidoContratadoEntity pedidoContratadoEntity = new PedidoContratadoEntity();
             pedidoContratadoEntity.setDescricao("Casa alta de dois andares");
             pedidoContratadoEntity.setLocal("Casa");
@@ -879,6 +885,16 @@ public class LaremdiaApplication   {
             pedidoContratadoEntity39.setAgenda(agendaEntity41);
             pedidoContratadoEntity39.setLoginCliente(loginCliente);
             pedidoContratadoRepository.save(pedidoContratadoEntity39);
+
+            PedidoContratadoEntity pedidoContratadoEntity40 = new PedidoContratadoEntity();
+            pedidoContratadoEntity40.setDescricao("Apartamento de um quarto");
+            pedidoContratadoEntity40.setLocal("Apartamento");
+            pedidoContratadoEntity40.setSituacao(true);
+            pedidoContratadoEntity40.setTipoServico(tipoServico2);
+            pedidoContratadoEntity40.setAgenda(agendaEntity42);
+            pedidoContratadoEntity40.setLoginCliente(loginCliente);
+            pedidoContratadoEntity40.setPrecoContratado(tipoServico2.getPreco());
+            pedidoContratadoRepository.save(pedidoContratadoEntity40);
 
         };
     }

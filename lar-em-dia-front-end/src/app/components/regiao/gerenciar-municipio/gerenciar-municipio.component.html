@@ -9,7 +9,7 @@
         <div class="col-auto my-1 col-md-3 mb-3">
           <label  for="inlineFormCustomSelect"><h5>UF</h5></label>
           <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
-          [(ngModel)]="estado" name="estado"
+          [(ngModel)]="uf" name="estado"
           (change)="tipoAcaoUf($event.target.value)"  
           >
             <option selected disabled>Selecione</option>
@@ -80,8 +80,8 @@
             <!-- filtro -->
             <ng-template pTemplate="header">
                 <tr>                    
-                    <th style="width: 15%;" class="textCenter" pSortableColumn="uf" scope="col">
-                        UF<p-sortIcon field="uf"></p-sortIcon>
+                    <th style="width: 15%;" class="textCenter" pSortableColumn="estadoAtendidoDTO.uf" scope="col">
+                        UF<p-sortIcon field="estadoAtendidoDTO.uf"></p-sortIcon>
                     </th>
                     <th style="width: 15%;" class="textCenter" pSortableColumn="ativoEstadoMuniFmt" scope="col">
                         Ativo - UF<p-sortIcon field="ativoEstadoMuniFmt"></p-sortIcon>
@@ -100,10 +100,10 @@
                 <tr>
                     <th>
                       <select class="form-control"
-                              [value]="table.filters.uf ? table.filters.uf['value'] : ''"
-                              (change)="table.filter($event.target.value, 'estadoAtendidoDTO.idEstado', 'equals')">
+                              [value]="table.filters.uf ? table.filters.idEstado['value'] : ''"
+                              (change)="table.filter($event.target.value, 'estadoAtendidoDTO.uf', 'equals')">
                           <option value="">Todos</option>
-                          <option *ngFor="let estado of listaEstadoAtendidoDTO" [value]="estado.idEstado">{{estado.uf}}</option>
+                          <option *ngFor="let est of listaEstadoAtendidoDTO" [value]="est.uf">{{est.uf}}</option>
                       </select>
                     </th>
                     <th>

@@ -52,18 +52,18 @@ export class ConfigurarMunicipioEstadoComponent implements OnInit {
         municipioDTO.municipio = this.municipioAtendidoDTO?.municipio;
         this.regiaoService.alterarMunicipio(municipioDTO, this.idMunicipio)
           .subscribe(response => {
-            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 2000 });
-            setTimeout( res => { this.router.navigate(['regiao']); }, 2100);
+            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 1500 });
+            setTimeout( res => { this.router.navigate(['regiao']); }, 1600);
           },errorResponse => {
             this.errors = errorResponse.error.errors;
             this.errors.forEach(response => {
-              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 2000 });
+              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
             });
           });
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 2000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
       });
   }

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div *ngIf="exibir" class="embed-responsive embed-responsive-21by9">
-        <video class="embed-responsive-item" autoplay>
-            <source src="../assets/img/video-lar-em-dia.mp4" type="video/mp4" style="width:95%;">
+        <video *ngIf="exibir" class="embed-responsive-item" id="video" autoplay>
+            <source id="video_player" src="../assets/img/video-lar-em-dia.mp4" type="video/mp4" style="width:95%;">
         </video>
     </div>
 

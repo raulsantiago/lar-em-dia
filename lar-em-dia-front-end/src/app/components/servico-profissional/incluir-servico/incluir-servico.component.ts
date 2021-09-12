@@ -46,7 +46,7 @@ export class IncluirServicoComponent implements OnInit {
             incluirTipoServicoProfissionalDTO.preco = this.preco;          
             this.tipoServicoProfissionalService.inserir(incluirTipoServicoProfissionalDTO)
               .subscribe(response => {
-                this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 5000 });
+                this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 1500 });
                 this.nomeServico = '';
                 this.nomeTipo = '';
                 this.preco = null;
@@ -54,21 +54,21 @@ export class IncluirServicoComponent implements OnInit {
               , errorResponse => {                
                 this.errors = errorResponse.error.errors;
                 this.errors.forEach(response => {
-                  this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+                  this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
                 });
               });
           
             }, errorResponse => {
               this.errors = errorResponse.error.errors;
               this.errors.forEach(response => {
-                this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+                this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
               });
           });
 
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });        
       });      
 

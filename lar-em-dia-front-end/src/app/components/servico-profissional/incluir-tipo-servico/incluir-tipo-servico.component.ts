@@ -52,14 +52,14 @@ export class IncluirTipoServicoComponent implements OnInit {
     TipoServicoProfissionalDTO.preco = this.preco;      
     this.tipoServicoProfissionalService.inserir(TipoServicoProfissionalDTO)
       .subscribe(response => {        
-        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 5000 });
-        setTimeout( res => { this.ngOnInit(); }, 5100);
+        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 1500 });
+        setTimeout( res => { this.ngOnInit(); }, 1600);
         TipoServicoProfissionalDTO.nome = '';
         TipoServicoProfissionalDTO.preco = null;
       }, errorResponse => {        
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
       });
   }

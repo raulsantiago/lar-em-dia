@@ -49,19 +49,19 @@ export class AgendaComponent implements OnInit {
         incluirAgendaDTO2.turno = 'Tarde';
         this.agendaService.inserir(incluirAgendaDTO2)
           .subscribe( response => {
-            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 2000 });
-            setTimeout( res => { this.ngOnInit(); }, 2100);
+            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado.' , life: 1500 });
+            setTimeout( res => { this.ngOnInit(); }, 1600);
           }
           , errorResponse => {            
             this.errors = errorResponse.error.errors;
             this.errors.forEach(response => {
-              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
             });            
           });              
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });            
       });
   }
@@ -76,12 +76,12 @@ export class AgendaComponent implements OnInit {
     this.messageService.clear('ex');
     this.agendaService.excluir(this.id)
       .subscribe( response => {
-        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro excluído.' , life: 2000 });
-        setTimeout( res => { this.ngOnInit(); }, 2100);
+        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro excluído.' , life: 1500 });
+        setTimeout( res => { this.ngOnInit(); }, 1600);
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });                    
       });
   }

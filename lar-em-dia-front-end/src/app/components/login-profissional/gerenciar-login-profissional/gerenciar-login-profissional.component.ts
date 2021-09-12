@@ -32,11 +32,11 @@ export class GerenciarLoginProfissionalComponent implements OnInit {
 
   alterar(){
     this.loginProfissionalService.alterar(this.gerenciarProfissionalDTO.idProfissional, this.gerenciarProfissionalDTO).subscribe( response => {
-      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 5000 });
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 1500 });
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
     })
   }

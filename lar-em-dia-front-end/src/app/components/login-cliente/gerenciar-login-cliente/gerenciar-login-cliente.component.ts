@@ -89,11 +89,11 @@ export class GerenciarLoginClienteComponent implements OnInit {
     incluirLoginClienteDTO.idEstado = this.estado;
     incluirLoginClienteDTO.idMunicipio = this.municipio;
     this.loginClienteService.alterar(incluirLoginClienteDTO, this.gerenciarClienteDTO.idCliente).subscribe( response => {
-      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 5000 });
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro alterado!' , life: 1500 });
       }, errorResponse => {        
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
     })
   }
@@ -123,7 +123,7 @@ export class GerenciarLoginClienteComponent implements OnInit {
     }, errorResponse => {      
       this.errors = errorResponse.error.errors;
       this.errors.forEach(response => {
-        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
       });
     });
     

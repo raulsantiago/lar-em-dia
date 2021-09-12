@@ -66,7 +66,7 @@ export class LoginProfissionalComponent implements OnInit {
     }, errorResponse => {
       this.errors = ['Usuário e/ou senha incorreto(s)'];
       this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
       });
     })
   }
@@ -90,20 +90,20 @@ export class LoginProfissionalComponent implements OnInit {
     loginProfissionalDTO.nome = this.nome;    
     this.authService.incluirProfissional(loginProfissionalDTO)
     .subscribe( response => {
-      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Cadastro realizado efetue seu login.', life: 5000});
+      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Cadastro realizado efetue seu login.', life: 1500});
       this.cadastrando = false;
       this.email = '';
       this.senha = '';
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
     })
   }
 
   esqueceuSenha(){
-    setTimeout(res => { this.emailRec = ''; }, 2000);
+    setTimeout(res => { this.emailRec = ''; }, 1500);
     this.loginProfissionalService.sendMailProf(this.emailRec, this.not).subscribe( response => {                  
       }, errorResponse => {
         this.emailRec = '';

@@ -20,7 +20,7 @@ export class GerenciarMunicipioComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-  estado: string;
+  uf: string;
   municipio: string;
   municipios: Object[];
 
@@ -62,17 +62,17 @@ export class GerenciarMunicipioComponent implements OnInit {
     let municipioAtendidoDTO: IncluirMunicipioAtendidoDTO = new IncluirMunicipioAtendidoDTO();
     municipioAtendidoDTO.municipio = this.municipio;
     municipioAtendidoDTO.ativo = true;
-    municipioAtendidoDTO.uf = this.estado;    
+    municipioAtendidoDTO.uf = this.uf;    
     this.regiaoService.inserir(municipioAtendidoDTO)
       .subscribe( response => {
-        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado!' , life: 2000 });
+        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Cadastro realizado!' , life: 1500 });
         this.municipio = '';
-        this.estado = 'Selecione';
-        setTimeout( res => { this.ngOnInit(); }, 2100);
+        this.uf = 'Selecione';
+        setTimeout( res => { this.ngOnInit(); }, 1600);
       }, errorResponse => {        
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 2000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
       });
   }

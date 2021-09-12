@@ -28,8 +28,8 @@ const routes: Routes = [
   
 
   { path: '', component: LayoutComponent, children: [
-    { path: 'home', component: HomeComponent },
     { path: '' , redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
     { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent },    
     { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
     { path: 'cadastrarservico', component: IncluirServicoComponent },

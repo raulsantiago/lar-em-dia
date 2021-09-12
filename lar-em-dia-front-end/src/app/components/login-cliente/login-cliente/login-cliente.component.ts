@@ -75,7 +75,7 @@ export class LoginClienteComponent implements OnInit {
     }, errorResponse => {
       this.errors = ['Usuário e/ou senha incorreto(s)'];
       this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
       });
     })
   }
@@ -103,29 +103,29 @@ export class LoginClienteComponent implements OnInit {
     loginClienteDTO.senha = this.senha;    
     this.authService.incluirCliente(loginClienteDTO)
     .subscribe( response => {
-      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Cadastro realizado efetue seu login.', life: 5000});
+      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Cadastro realizado efetue seu login.', life: 1500});
       this.cadastrando = false;
       this.email = '';
       this.senha = '';
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
     })
   }
 
   esqueceuSenha(){
-    setTimeout(res => { this.emailRec = ''; }, 2000);
+    setTimeout(res => { this.emailRec = ''; }, 1500);
     this.loginClienteService.sendMail(this.emailRec, this.not).subscribe( response => {
-      //this.messageService.add({key: 'sen', severity:'success', summary: 'Sucesso!', detail: 'Email enviado com sucesso aguarde chegar na sua conta.', life: 5000});
+      //this.messageService.add({key: 'sen', severity:'success', summary: 'Sucesso!', detail: 'Email enviado com sucesso aguarde chegar na sua conta.', life: 1500});
       this.emailRec = '';      
       }, errorResponse => {
         this.emailRec = '';        
         //this.errors2 = ["E-mail não consta na nossa base de dados."];
         //this.errors2 = errorResponse?.error.errors;
         // this.errors2.forEach(response => {
-        //   this.messageService.add({key: 'sen', severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        //   this.messageService.add({key: 'sen', severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         // });
     });
     

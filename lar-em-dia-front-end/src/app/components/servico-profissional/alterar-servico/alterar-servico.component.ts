@@ -62,18 +62,18 @@ export class AlterarServicoComponent implements OnInit {
         alterarTipoServicoProfissionalDTO.preco = this.preco;
         this.tipoServicoProfissionalService.alterar(alterarTipoServicoProfissionalDTO, this.idTipo)
           .subscribe(response => {
-            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Alteração realizada.' , life: 5000 });            
-            setTimeout( res => { this.router.navigate(['listarservico']); }, 5100);
+            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Alteração realizada.' , life: 1500 });            
+            setTimeout( res => { this.router.navigate(['listarservico']); }, 1600);
           }, errorResponse => {
             this.errors = errorResponse.error.errors;
             this.errors.forEach(response => {
-              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
             });
           });
       }, errorResponse => {
         this.errors = errorResponse.error.errors;
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
       });
 

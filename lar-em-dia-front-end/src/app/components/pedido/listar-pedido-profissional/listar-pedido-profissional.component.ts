@@ -84,12 +84,12 @@ export class ListarPedidoProfissionalComponent implements OnInit {
     pedido.despesas = this.despesas == undefined || this.despesas == null ? null : this.despesas;
     pedido.situacao = false;
     this.pedidoService.alterar(id, pedido).subscribe( respose => { 
-      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Registro realizado.' , life: 2000 });
-      setTimeout( res => { this.ngOnInit() }, 2100);
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Registro realizado.' , life: 1500 });
+      setTimeout( res => { this.ngOnInit() }, 1600);
     }, errorResponse => {      
       this.errors2 = errorResponse.error.errors;
       this.errors2.forEach(response => {
-        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
       });      
     });  
   }
@@ -103,12 +103,12 @@ export class ListarPedidoProfissionalComponent implements OnInit {
   onConfirm() {
     this.messageService.clear('ex');
     this.pedidoService.excluirProf(this.id).subscribe( respose => {
-      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Exclusão realizada.' , life: 2000 });
-      setTimeout( res => { this.ngOnInit() }, 2100);      
+      this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Exclusão realizada.' , life: 1500 });
+      setTimeout( res => { this.ngOnInit() }, 1600);      
     }, errorResponse => {      
       this.errors = errorResponse.error.errors;
       this.errors.forEach(response => {
-        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 5000 });
+        this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
       });
     });
   }

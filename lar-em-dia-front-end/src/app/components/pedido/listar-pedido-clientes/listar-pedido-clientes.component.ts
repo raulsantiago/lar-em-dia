@@ -81,25 +81,25 @@ export class ListarPedidoClientesComponent implements OnInit {
       agenda.disponivel = true;
       this.agendaService.alterar(this.idAgenda, agenda)
         .subscribe( response => {
-          this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Exclusão realizada!' , life: 2000 });
-          setTimeout( res => { this.ngOnInit(); }, 2100);
+          this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Exclusão realizada!' , life: 1500 });
+          setTimeout( res => { this.ngOnInit(); }, 1600);
         }, errorResponse => {            
             this.errors = errorResponse.error.errors;            
             this.errors.forEach(response => {
-              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 2000 });
+              this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
             });
             setTimeout(() => {
               this.exibirDetalhar = true;
-            }, 2100);
+            }, 1600);
         });  
     }, errorResponse => {
         this.errors = errorResponse.error.errors;        
         this.errors.forEach(response => {
-          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 2000 });
+          this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
         });
         setTimeout(() => {
           this.exibirDetalhar = true;
-        }, 2100);
+        }, 1600);
     });
   }
 

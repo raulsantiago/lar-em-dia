@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,17 +9,13 @@ export class HomeComponent implements OnInit {
 
   usuarioLogado: string;
 
-  costructor(    
-  ) { }
+  constructor() {}
 
   exibir: boolean = true;
 
-  ngOnInit(): void {   
-    setTimeout( res => { this.exibir = false; }, 5000);
+  ngOnInit(): void {    
+    setTimeout( res => { this.exibir = false; }, 4500);
   }
 
   
-  
-  
-
 }
