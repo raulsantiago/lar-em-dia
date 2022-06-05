@@ -16,9 +16,11 @@ speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
-.project
-.classpath
-.c9/
+*.idea
+*.class
+*.project
+*.classpath
+*.c9/
 *.launch
 .settings/
 *.sublime-workspace
@@ -40,6 +42,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+/target
 
 # System Files
 .DS_Store

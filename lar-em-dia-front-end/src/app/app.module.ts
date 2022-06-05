@@ -94,24 +94,24 @@ import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.
     ListarPedidoProfissionalComponent,
     LayoutComponent,
     SinteticoComponent
-    
+
   ],
-  imports: [    
+  imports: [
     ChartModule,
     PasswordModule,
     DividerModule,
     MenubarModule,
     ConfirmDialogModule,
-    ToastModule,    
+    ToastModule,
     InputMaskModule,
-    InputNumberModule,        
+    InputNumberModule,
     InputNumberModule,
     PickListModule,
     TableModule,
-    TabMenuModule,    
-    NgxCurrencyModule,    
+    TabMenuModule,
+    NgxCurrencyModule,
     TreeTableModule,
-    FileUploadModule,    
+    FileUploadModule,
     TooltipModule,
     DialogModule,
     NgxMaskModule.forRoot(),
@@ -121,11 +121,11 @@ import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.
     DropdownModule,
     PaginatorModule,
     CalendarModule,
-    BrowserModule,    
+    BrowserModule,
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,        
+    BrowserAnimationsModule,
     InputTextModule,
 		CheckboxModule,
 		ButtonModule,
@@ -145,7 +145,7 @@ import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.
   providers: [
     ConfirmationService,
     MessageService,
-    TableService,    
+    TableService,
     Table,
     HttpClient,
     DatePipe,
@@ -153,7 +153,7 @@ import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.
     LoginProfissionalService,
     LoginClienteService,
     TranslateService,
-    AuthService,    
+    AuthService,
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR'

@@ -118,15 +118,9 @@ export class LoginClienteComponent implements OnInit {
   esqueceuSenha(){
     setTimeout(res => { this.emailRec = ''; }, 1500);
     this.loginClienteService.sendMail(this.emailRec, this.not).subscribe( response => {
-      //this.messageService.add({key: 'sen', severity:'success', summary: 'Sucesso!', detail: 'Email enviado com sucesso aguarde chegar na sua conta.', life: 1500});
       this.emailRec = '';      
       }, errorResponse => {
-        this.emailRec = '';        
-        //this.errors2 = ["E-mail não consta na nossa base de dados."];
-        //this.errors2 = errorResponse?.error.errors;
-        // this.errors2.forEach(response => {
-        //   this.messageService.add({key: 'sen', severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
-        // });
+        this.emailRec = '';                
     });
     
   }

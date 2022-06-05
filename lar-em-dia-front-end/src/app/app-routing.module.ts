@@ -25,12 +25,12 @@ const routes: Routes = [
   { path: 'logincliente', component: LoginClienteComponent },
 
 
-  
+
 
   { path: '', component: LayoutComponent, children: [
     { path: '' , redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent },    
+    { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent },
     { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
     { path: 'cadastrarservico', component: IncluirServicoComponent },
     { path: 'listarservico', component: ListarServicoComponent },
