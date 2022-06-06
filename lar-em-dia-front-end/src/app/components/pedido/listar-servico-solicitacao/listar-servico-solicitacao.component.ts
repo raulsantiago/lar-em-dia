@@ -26,13 +26,19 @@ export class ListarServicoSolicitacaoComponent implements OnInit {
     this.servicoProfissionalService.listarAtivos().subscribe( dado => {
       this.listarServicoProfissionalDTO = dado;
     });
-
+    this.load();
   }
 
   listarTipos(id: number){
     this.router.navigate(['solicitar', id], {
       relativeTo: this.route['solicitar'],
     });
+  }
+
+  load() {    
+    console.log('sessionStorage', sessionStorage);    
+    (sessionStorage.refresh == 'true' || !sessionStorage.refresh) && location.reload();
+    sessionStorage.refresh = false;
   }
 
 }

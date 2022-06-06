@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IncluirLoginClienteDTO } from 'src/app/dto/login-cliente/incluir-login-clienteDTO';
 import { EstadoAtendidoDTO } from 'src/app/dto/regiao/estado-atendidoDTO';
 import { MunicipioAtendidoDTO } from 'src/app/dto/regiao/municipio-atendidoDTO';
@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoginClienteService } from 'src/app/services/login-cliente.service';
 import { RegiaoService } from 'src/app/services/regiao.service';
 import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-login-cliente',
   templateUrl: './login-cliente.component.html',
@@ -16,6 +17,7 @@ export class LoginClienteComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route:    ActivatedRoute,
     private authService: AuthService,
     private regiaoService: RegiaoService,
     private loginClienteService: LoginClienteService,
@@ -48,7 +50,7 @@ export class LoginClienteComponent implements OnInit {
 
   mensagemSucesso2: string;  
   errors2: String[];
-  not: any;
+  not: any;  
 
   ngOnInit(): void {   
     this.regiaoService.listarUfAtivo().subscribe( dado => {
@@ -70,14 +72,22 @@ export class LoginClienteComponent implements OnInit {
     .tentarLogar(this.email, this.senha)
     .subscribe(response => {      
       const access_token = JSON.stringify(response);
-      localStorage.setItem('access_token', access_token);
-      this.router.navigate(['/gerenciarcliente']);      
+      localStorage.setItem('access_token', access_token);      
+      window.location.reload();      
+      this.router.navigate(['/logincliente'], {relativeTo: this.route['logincliente'],});
+      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Login efetuado com sucesso!', life: 1500});
+      //this.rotaInit();
     }, errorResponse => {
       this.errors = ['Usuário e/ou senha incorreto(s)'];
       this.errors.forEach(response => {
           this.messageService.add({severity:'error', summary:'Erro', detail: response.toString(), life: 1500 });
       });
-    })
+    })    
+  }
+
+  rotaInit(){
+    //setTimeout( res => { this.router.navigate(['/solicitar'], {relativeTo: this.route['solicitar'],}); }, 1500);
+    this.router.navigate(['/solicitar'], {relativeTo: this.route['solicitar'],});
   }
 
   tipoAcaoUf(idEstado: number){

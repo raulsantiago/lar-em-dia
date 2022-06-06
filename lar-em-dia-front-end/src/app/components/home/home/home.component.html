@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div *ngIf="exibir" class="embed-responsive embed-responsive-21by9">
-        <video *ngIf="exibir" class="embed-responsive-item" id="video" autoplay>
-            <source id="video_player" src="../assets/img/video-lar-em-dia.mp4" type="video/mp4" style="width:95%;">
+        <video class="embed-responsive-item" autoplay>
+            <source id="video" src="../assets/img/video-lar-em-dia.mp4" type="video/mp4" style="width:95%;">
         </video>
     </div>
 
     <div *ngIf="!exibir" class="fundoHome">
-        <h1  class="center" style="padding: 3%;">Bem vindo aos serviços do Lar em Dia</h1>
+        <h1  class="center" style="padding: 3%;font-weight: 900;">Bem vindo aos serviços do Lar em Dia</h1>
         <figure class="cliente">
             <img src="../assets/img/logo-acesso-cliente.jpg"  width="250" height="250" [routerLink]="['/logincliente']">                
             <figcaption class="center" ><h2>Cliente</h2></figcaption>

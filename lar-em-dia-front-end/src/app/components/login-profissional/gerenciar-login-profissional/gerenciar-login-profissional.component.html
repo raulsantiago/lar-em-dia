@@ -9,7 +9,6 @@
             <img class="rounded-circle" width="80" height="80" src="data:image/jpg;base64,{{gerenciarProfissionalDTO.foto}}"  />
         </div>
     </div>
-<<<<<<< Updated upstream
     <div class="form-row">
         <div class="form-group col-md-4">
             <input type="file" class="custom-file-input" id="validatedCustomFile" 
@@ -72,54 +71,6 @@
                     [(ngModel)]="gerenciarProfissionalDTO.ativo" [value]=false value="false">
                     <label class="custom-control-label" for="customRadioInline2">Sim</label>
                 </div>
-=======
-
-    <div class="row no-gutters">
-        <div class="col-6 col-md-4" *ngIf="gerenciarProfissionalDTO?.foto != null || gerenciarProfissionalDTO?.foto != undefined" >
-            <img width="60" height="50" src="data:image/jpg;base64,{{gerenciarProfissionalDTO.foto}}"  />
-        </div>
-        <div class="col-sm-6 col-md-8">
-            <input type="file" class="custom-file-input" id="validatedCustomFile" 
-            name="foto" (change)="uploadFoto($event)" >
-            <label class="custom-file-label" for="validatedCustomFile">Selecione uma foto</label>
-        </div>        
-    </div>
-    
-    <div  *ngIf="gerenciarProfissionalDTO" >
-    <form   #cadForm="ngForm" (submit)="alterar()">
-
-        <div >
-            <label for="exampleDropdownFormEmailnome">Nome</label>
-            <input type="text" id="exampleDropdownFormEmailnome" 
-            name="nome" [(ngModel)]="gerenciarProfissionalDTO.nome" >
-        </div>
-        <div >
-            <label for="exampleDropdownFormEmailcpf">CPF</label>
-            <input type="text" id="exampleDropdownFormEmailcpf" 
-            name="cpf" [(ngModel)]="gerenciarProfissionalDTO.cpf" >
-        </div>
-        <div>
-            <label for="exampleDropdownFormEmail1">Email</label>
-            <input type="email" id="exampleDropdownFormEmail1" placeholder="email@exemplo.com.br"
-            name="email" [(ngModel)]="gerenciarProfissionalDTO.email" >
-        </div>
-        <div>
-            <label for="exampleDropdownFormEmailcelular">Celular</label>
-            <input type="text" id="exampleDropdownFormEmailcelular" 
-            name="celular" [(ngModel)]="gerenciarProfissionalDTO.celular" >
-        </div>
-        <div>
-            <label for="exampleDropdownFormPassword1">Senha</label>
-            <input type="password"  id="exampleDropdownFormPassword1"
-            name="senha" [(ngModel)]="gerenciarProfissionalDTO.senha" >
-        </div>
-        <div>
-            <p>Cancelar acesso</p>
-            <div class="custom-control custom-radio custom-control-inline">                
-                <input type="radio" id="customRadioInline1" name="customRadioInline" class="custom-control-input" 
-                [(ngModel)]="gerenciarProfissionalDTO.ativo" [value]=true value="true" >
-                <label class="custom-control-label" for="customRadioInline1">Não</label>
->>>>>>> Stashed changes
             </div>
             <div class="form-row">
                 <div class="ml-auto p-2 bd-highlight">
@@ -127,12 +78,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< Updated upstream
-=======
-        <br>
-        <button [routerLink]="['/listarservico']" type="reset" class="btn btn-secondary" >Serviços</button>
-        <button type="submit" class="btn btn-secondary" >Salvar</button>
->>>>>>> Stashed changes
     </form>
     <br>
 

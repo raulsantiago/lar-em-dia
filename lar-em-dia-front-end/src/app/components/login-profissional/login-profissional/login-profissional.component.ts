@@ -62,7 +62,9 @@ export class LoginProfissionalComponent implements OnInit {
     .subscribe(response => {      
       const access_token = JSON.stringify(response);
       localStorage.setItem('access_token', access_token);
-      this.router.navigate(['/gerenciarprofissional']);
+      window.location.reload();      
+      this.router.navigate(['/loginprofissional']);
+      this.messageService.add({severity:'success', summary: 'Sucesso!', detail: 'Login efetuado com sucesso!', life: 1500});
     }, errorResponse => {
       this.errors = ['Usuário e/ou senha incorreto(s)'];
       this.errors.forEach(response => {

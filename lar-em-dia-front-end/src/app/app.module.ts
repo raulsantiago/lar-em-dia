@@ -70,6 +70,7 @@ import { ModalContatoComponent } from './components/pedido/listar-pedido-cliente
 import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -154,6 +155,7 @@ import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.
     LoginClienteService,
     TranslateService,
     AuthService,
+    AuthGuard,
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR'

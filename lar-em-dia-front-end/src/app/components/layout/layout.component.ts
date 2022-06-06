@@ -19,12 +19,13 @@ export class LayoutComponent implements OnInit {
   activeItem: MenuItem;
   usuarioLogado: string;
   perfilUsuario: string;
+  usuarioAutenticado: boolean = false;
 
   ngOnInit() {
     this.usuarioLogado = this.authService.getUsuarioAutenticado();
-    this.perfilUsuario = this.authService.getUsuarioPerfil();
+    this.perfilUsuario = this.authService.getUsuarioPerfil();    
     this.items = [
-        { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/home']  },
+        { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: [''], command: () => this.compile()  },
         this.perfilUsuario === 'ROLE_USER' ? {label: 'Serviços', icon: 'fa fa-briefcase', routerLink: ['/solicitar'] } : {label: ''},
         this.perfilUsuario === 'ROLE_USER' ? {label: 'Meus Pedidos', icon: 'fa fa-check', routerLink: ['/listarpedidoscliente'] } : {label: ''},
         this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Região', icon: 'pi pi-fw pi-map', routerLink: ['/regiao']} : {label: ''},
@@ -33,12 +34,12 @@ export class LayoutComponent implements OnInit {
         this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Contratos', icon: 'fa fa-compress', routerLink: ['/listarpedidosprofissional']} : {label: ''},
         this.perfilUsuario === 'ROLE_ADMIN' ? {label: 'Relatórios', icon: 'fa fa-bar-chart', routerLink: ['/relatorios']} : {label: ''}
     ];
-    this.activeItem = this.items[0];
+    this.activeItem = this.items[0];    
   }
 
   logout(){
     this.authService.encerrarSessao();
-    this.router.navigate(['/home']);
+    this.router.navigate(['']);
     this.usuarioLogado = null;
     this.ngOnInit();
   }
@@ -50,5 +51,22 @@ export class LayoutComponent implements OnInit {
       this.router.navigate(['/gerenciarcliente']);
     }
   }
+
+  home(array: any){    
+    console.log(array);    
+  }
+
+  compile(){
+    this.usuarioAutenticado = this.authService.isAuthenticated();
+    if(this.usuarioAutenticado){
+      if(this.perfilUsuario === 'ROLE_ADMIN'){
+        this.router.navigate(['/gerenciarprofissional']);
+      } else {
+        this.router.navigate(['/gerenciarcliente']);
+      }
+    }
+  }
+
+
 
 }

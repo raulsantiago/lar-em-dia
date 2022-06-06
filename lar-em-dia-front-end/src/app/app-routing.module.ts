@@ -19,34 +19,54 @@ import { ListarPedidoClientesComponent } from './components/pedido/listar-pedido
 import { ListarPedidoProfissionalComponent } from './components/pedido/listar-pedido-profissional/listar-pedido-profissional.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SinteticoComponent } from './components/relatorios/sintetico/sintetico.component';
+import { AuthGuard } from './auth.guard';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: 'loginprofissional', component: LoginProfissionalComponent },
-  { path: 'logincliente', component: LoginClienteComponent },
+   { path: 'loginprofissional', component: LoginProfissionalComponent },
+   { path: 'logincliente', component: LoginClienteComponent },
+  // { path: '', component: LayoutComponent, children: [
+  //   { path: '' , redirectTo: '/home', pathMatch: 'full' },
+  //   { path: 'home', component: HomeComponent },
+  //   { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent, canActivate: [AuthGuard]},
+  //   { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
+  //   { path: 'cadastrarservico', component: IncluirServicoComponent, canActivate: [AuthGuard] },
+  //   { path: 'listarservico', component: ListarServicoComponent, canActivate: [AuthGuard] },
+  //   { path: 'alterarservico/:id', component: AlterarServicoComponent, canActivate: [AuthGuard] },
+  //   { path: 'cadastrartiposervico/:id', component: IncluirTipoServicoComponent, canActivate: [AuthGuard] },
+  //   { path: 'regiao', component: GerenciarMunicipioComponent, canActivate: [AuthGuard] },
+  //   { path: 'regiao/:id', component: ConfigurarMunicipioEstadoComponent, canActivate: [AuthGuard] },
+  //   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
+  //   { path: 'solicitar', component: ListarServicoSolicitacaoComponent, canActivate: [AuthGuard] },
+  //   { path: 'solicitar/:id', component: ListarTipoServicoComponent, canActivate: [AuthGuard] },
+  //   { path: 'agendar/:id', component: AgendarServicoComponent, canActivate: [AuthGuard] },
+  //   { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent, canActivate: [AuthGuard] },
+  //   { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent, canActivate: [AuthGuard] },
+  //   { path: 'relatorios', component: SinteticoComponent, canActivate: [AuthGuard] }
+  // ]}
+  
 
+  // { path: '', component: LayoutComponent, children: [
+  //   { path: '' , redirectTo: '/home', pathMatch: 'full' },
+  //   { path: 'home', component: HomeComponent } ]},
 
-
-
-  { path: '', component: LayoutComponent, children: [
-    { path: '' , redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent },
-    { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent },
-    { path: 'cadastrarservico', component: IncluirServicoComponent },
-    { path: 'listarservico', component: ListarServicoComponent },
-    { path: 'alterarservico/:id', component: AlterarServicoComponent },
-    { path: 'cadastrartiposervico/:id', component: IncluirTipoServicoComponent },
-    { path: 'regiao', component: GerenciarMunicipioComponent },
-    { path: 'regiao/:id', component: ConfigurarMunicipioEstadoComponent },
-    { path: 'agenda', component: AgendaComponent },
-    { path: 'solicitar', component: ListarServicoSolicitacaoComponent },
-    { path: 'solicitar/:id', component: ListarTipoServicoComponent },
-    { path: 'agendar/:id', component: AgendarServicoComponent },
-    { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent },
-    { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent },
-    { path: 'relatorios', component: SinteticoComponent }
-
-  ]}
+  { path: '', component: HomeComponent },
+  { path: 'gerenciarprofissional', component: GerenciarLoginProfissionalComponent, canActivate: [AuthGuard]},
+  { path: 'gerenciarcliente', component: GerenciarLoginClienteComponent, canActivate: [AuthGuard]},
+  { path: 'cadastrarservico', component: IncluirServicoComponent, canActivate: [AuthGuard] },
+  { path: 'listarservico', component: ListarServicoComponent, canActivate: [AuthGuard] },
+  { path: 'alterarservico/:id', component: AlterarServicoComponent, canActivate: [AuthGuard] },
+  { path: 'cadastrartiposervico/:id', component: IncluirTipoServicoComponent, canActivate: [AuthGuard] },
+  { path: 'regiao', component: GerenciarMunicipioComponent, canActivate: [AuthGuard] },
+  { path: 'regiao/:id', component: ConfigurarMunicipioEstadoComponent, canActivate: [AuthGuard] },
+  { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
+  { path: 'solicitar', component: ListarServicoSolicitacaoComponent, canActivate: [AuthGuard] },
+  { path: 'solicitar/:id', component: ListarTipoServicoComponent, canActivate: [AuthGuard] },
+  { path: 'agendar/:id', component: AgendarServicoComponent, canActivate: [AuthGuard] },
+  { path: 'listarpedidoscliente', component: ListarPedidoClientesComponent, canActivate: [AuthGuard] },
+  { path: 'listarpedidosprofissional', component: ListarPedidoProfissionalComponent, canActivate: [AuthGuard] },
+  { path: 'relatorios', component: SinteticoComponent, canActivate: [AuthGuard] }
+  
 ];
 
 @NgModule({

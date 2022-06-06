@@ -21,10 +21,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/loginprofissional", "/gerenciarprofissional/**", "/logincliente",
-                        "/gerenciarcliente/**", "/servico/**", "/tiposervico/**", "/regiao/**",
-                        "/agenda/**", "/pedido/**", "/mail/**").permitAll()
-                //.antMatchers("/gerenciarprofissional/**").authenticated()
+                .antMatchers("/loginprofissional", "/logincliente", "/mail/**").permitAll()
+                .antMatchers("/gerenciarcliente/**", "/gerenciarprofissional/**","/servico/**","/tiposervico/**", "/regiao/**",
+                        "/agenda/**", "/pedido/**").authenticated()
                 .anyRequest().denyAll();
         ;
     }
